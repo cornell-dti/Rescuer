@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8CE9184D1DC43EEE00A24EBD /* UserIsEditingDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE9184C1DC43EEE00A24EBD /* UserIsEditingDetailsViewController.swift */; };
+		8CE9184D1DC43EEE00A24EBD /* EditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE9184C1DC43EEE00A24EBD /* EditingViewController.swift */; };
 		8CEC8B451DC3FCC500FB1924 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEC8B441DC3FCC500FB1924 /* AppDelegate.swift */; };
 		8CEC8B471DC3FCC500FB1924 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEC8B461DC3FCC500FB1924 /* ViewController.swift */; };
 		8CEC8B4C1DC3FCC500FB1924 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CEC8B4B1DC3FCC500FB1924 /* Assets.xcassets */; };
@@ -15,6 +15,8 @@
 		8CEC8B5A1DC3FCC500FB1924 /* ResCUerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEC8B591DC3FCC500FB1924 /* ResCUerTests.swift */; };
 		8CEC8B651DC3FCC500FB1924 /* ResCUerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEC8B641DC3FCC500FB1924 /* ResCUerUITests.swift */; };
 		8CEC8B731DC3FD2700FB1924 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEC8B721DC3FD2700FB1924 /* MainPageViewController.swift */; };
+		BF028F841DCC3BAA00361837 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF028F831DCC3BAA00361837 /* MainTableViewController.swift */; };
+		BF028F861DCC3C3E00361837 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF028F851DCC3C3E00361837 /* MainTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8CE9184C1DC43EEE00A24EBD /* UserIsEditingDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserIsEditingDetailsViewController.swift; sourceTree = "<group>"; };
+		8CE9184C1DC43EEE00A24EBD /* EditingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditingViewController.swift; sourceTree = "<group>"; };
 		8CEC8B411DC3FCC500FB1924 /* ResCUer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ResCUer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CEC8B441DC3FCC500FB1924 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CEC8B461DC3FCC500FB1924 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +51,8 @@
 		8CEC8B641DC3FCC500FB1924 /* ResCUerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResCUerUITests.swift; sourceTree = "<group>"; };
 		8CEC8B661DC3FCC500FB1924 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CEC8B721DC3FD2700FB1924 /* MainPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
+		BF028F831DCC3BAA00361837 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		BF028F851DCC3C3E00361837 /* MainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +105,9 @@
 			children = (
 				8CEC8B441DC3FCC500FB1924 /* AppDelegate.swift */,
 				8CEC8B721DC3FD2700FB1924 /* MainPageViewController.swift */,
-				8CE9184C1DC43EEE00A24EBD /* UserIsEditingDetailsViewController.swift */,
+				BF028F831DCC3BAA00361837 /* MainTableViewController.swift */,
+				BF028F851DCC3C3E00361837 /* MainTableViewCell.swift */,
+				8CE9184C1DC43EEE00A24EBD /* EditingViewController.swift */,
 				8CEC8B461DC3FCC500FB1924 /* ViewController.swift */,
 				8CEC8B4B1DC3FCC500FB1924 /* Assets.xcassets */,
 				8CEC8B4D1DC3FCC500FB1924 /* LaunchScreen.storyboard */,
@@ -196,6 +202,7 @@
 				TargetAttributes = {
 					8CEC8B401DC3FCC500FB1924 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = FV2G57GLFW;
 						ProvisioningStyle = Automatic;
 					};
 					8CEC8B541DC3FCC500FB1924 = {
@@ -264,7 +271,9 @@
 				8CEC8B471DC3FCC500FB1924 /* ViewController.swift in Sources */,
 				8CEC8B731DC3FD2700FB1924 /* MainPageViewController.swift in Sources */,
 				8CEC8B451DC3FCC500FB1924 /* AppDelegate.swift in Sources */,
-				8CE9184D1DC43EEE00A24EBD /* UserIsEditingDetailsViewController.swift in Sources */,
+				BF028F841DCC3BAA00361837 /* MainTableViewController.swift in Sources */,
+				BF028F861DCC3C3E00361837 /* MainTableViewCell.swift in Sources */,
+				8CE9184D1DC43EEE00A24EBD /* EditingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,7 +415,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = FV2G57GLFW;
 				INFOPLIST_FILE = ResCUer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rsr242.RaymoneRadi.ResCUer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -418,7 +429,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = FV2G57GLFW;
 				INFOPLIST_FILE = ResCUer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rsr242.RaymoneRadi.ResCUer;
 				PRODUCT_NAME = "$(TARGET_NAME)";

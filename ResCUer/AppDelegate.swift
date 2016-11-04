@@ -19,7 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow()
         
-        window?.rootViewController = UINavigationController(rootViewController: MainPageViewController()) // sets the main page to the one with all the colors and stuff
+        //window?.rootViewController = UINavigationController(rootViewController: MainPageViewController()) // sets the main page to the one with all the colors and stuff
+        
+        window?.rootViewController = UINavigationController(rootViewController: MainTableViewController())
         
         window?.makeKeyAndVisible()
         

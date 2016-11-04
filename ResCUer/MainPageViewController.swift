@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class MainPageViewController: UIViewController {
 
@@ -75,9 +76,8 @@ class MainPageViewController: UIViewController {
         policeLabel.textColor = .white
         policeLabel.font = policeLabel.font.withSize(35)
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Change", style: .plain, target: self, action: #selector(changeWasTapped))
-        
-        //navigationItem.rightBarButtonItem?.image = UIImage(named: <#T##String#>)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem:
+            UIBarButtonSystemItem.edit, target: self, action: #selector(editTapped))
         
         view.addSubview(blueHomeButton)
         view.addSubview(greenFriendButton)
@@ -89,7 +89,7 @@ class MainPageViewController: UIViewController {
         //view.addSubview(policeLabel)
     }
 
-    func changeWasTapped(){
+    func editTapped(){
         navigationController?.pushViewController(UserIsEditingDetailsViewController(), animated: true)
     }
 
@@ -141,6 +141,11 @@ class MainPageViewController: UIViewController {
     
     func blueButtonWasPressedFunction()
     {
+        
+        CLGeocoder().geocodeAddressString(<#T##addressString: String##String#>) { ([CLPlacemark]?, Error?) in
+            <#code#>
+        }
+        
         if let homeAddress = UserDefaults.standard.string(forKey: "homeAddress"),
             let homeAddressString = String("http://maps.apple.com/?address=" + homeAddress + ""),
             let theHomeAddressURL = URL(string: homeAddressString)
