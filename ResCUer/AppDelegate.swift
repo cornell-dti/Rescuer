@@ -15,14 +15,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         
         window = UIWindow()
         
-        //window?.rootViewController = UINavigationController(rootViewController: MainPageViewController()) // sets the main page to the one with all the colors and stuff
+        func initalizeMainScreen() {
+            let tabBarController = UITabBarController()
+            let home = UINavigationController(rootViewController: MainTableViewController())
+            let blueLight = UIViewController()
+            let guide = UIViewController()
+            let controllers = [home, blueLight, guide]
+            tabBarController.viewControllers = controllers
+            window?.rootViewController = tabBarController
+            home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(), tag: 1)
+            blueLight.tabBarItem = UITabBarItem(title: "Blue Light", image: UIImage(), tag: 2)
+            guide.tabBarItem = UITabBarItem(title: "Guide", image: UIImage(), tag: 3)
+        }
         
-        window?.rootViewController = UINavigationController(rootViewController: MainTableViewController())
-        
+        if UserDefaults.standard.value(forKey: "introShown") == nil {
+            window?.rootViewController = EditViewController()
+            //UserDefaults.standard.set(true, forKey: "introShown")
+        } else {
+            initalizeMainScreen()
+        }
+                
         window?.makeKeyAndVisible()
         
         return true
