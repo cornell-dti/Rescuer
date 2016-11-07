@@ -142,9 +142,9 @@ class MainPageViewController: UIViewController {
     func blueButtonWasPressedFunction()
     {
         
-        CLGeocoder().geocodeAddressString(<#T##addressString: String##String#>) { ([CLPlacemark]?, Error?) in
-            <#code#>
-        }
+//        CLGeocoder().geocodeAddressString(<#T##addressString: String##String#>) { ([CLPlacemark]?, Error?) in
+//            
+//        }
         
         if let homeAddress = UserDefaults.standard.string(forKey: "homeAddress"),
             let homeAddressString = String("http://maps.apple.com/?address=" + homeAddress + ""),
