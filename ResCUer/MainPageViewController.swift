@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import MapKit
 
 class MainPageViewController: UIViewController {
 
@@ -142,33 +143,40 @@ class MainPageViewController: UIViewController {
     func blueButtonWasPressedFunction()
     {
         
-<<<<<<< HEAD
-//        CLGeocoder().geocodeAddressString(<#T##addressString: String##String#>) { ([CLPlacemark]?, Error?) in
-//            
+//        if let homeAddress = UserDefaults.standard.string(forKey: "homeAddress"),
+//            let homeAddressString = String("http://maps.apple.com/?address=" + homeAddress + ""),
+//            let theHomeAddressURL = URL(string: homeAddressString)
+//        {
+//            print ("http://maps.apple.com/?address=" + homeAddress + "\"")
+//            if (UIApplication.shared.canOpenURL(theHomeAddressURL)) {
+//                
+//                if #available(iOS 10.0, *) {
+//                    UIApplication.shared.open(theHomeAddressURL, options: [:], completionHandler: nil)
+//                }
+//                else {
+//                    UIApplication.shared.openURL(theHomeAddressURL)
+//                }
+//            }
 //        }
-=======
-        /*
-        CLGeocoder().geocodeAddressString(addressString: String) { ([CLPlacemark]?, Error?) in
-            code
-        }*/
->>>>>>> 53110114b7b892f3efb8f2ec9c60f7e95d065768
         
-        if let homeAddress = UserDefaults.standard.string(forKey: "homeAddress"),
-            let homeAddressString = String("http://maps.apple.com/?address=" + homeAddress + ""),
-            let theHomeAddressURL = URL(string: homeAddressString)
-        {
-            print ("http://maps.apple.com/?address=" + homeAddress + "\"")
-            if (UIApplication.shared.canOpenURL(theHomeAddressURL)) {
-                
-                if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(theHomeAddressURL, options: [:], completionHandler: nil)
-                }
-                else {
-                    UIApplication.shared.openURL(theHomeAddressURL)
-                }
+        let address = UserDefaults.standard.string(forKey: "homeAddress")
+        let geocoder = CLGeocoder()
+        
+        geocoder.geocodeAddressString(address!, completionHandler: {(placemarks, error) -> Void in
+            if((error) != nil){
+                print("Error", error)
             }
-        }
+            if let placemark = placemarks?.first {
+                let coordinates:CLLocationCoordinate2D = placemark.location!.coordinate
+                let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinates, addressDictionary:nil))
+                mapItem.name = "Destination/Target Address or Name"
+                mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
+            }
+        })
+        
+        
+        
+        
+    
     }
-
-
 }

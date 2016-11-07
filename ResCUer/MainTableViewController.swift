@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CoreLocation
+import MapKit
 
 class MainTableViewController: UITableViewController {
     
@@ -29,13 +31,9 @@ class MainTableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
     // MARK: - Table view data source
 
@@ -92,6 +90,21 @@ class MainTableViewController: UITableViewController {
         
         if indexPath.row == 0 {
         
+            let address = UserDefaults.standard.string(forKey: "homeAddress")
+            let geocoder = CLGeocoder()
+            
+            geocoder.geocodeAddressString(address!, completionHandler: {(placemarks, error) -> Void in
+                if((error) != nil){
+                    self.callError2(address!)
+                }
+                if let placemark = placemarks?.first {
+                    let coordinates:CLLocationCoordinate2D = placemark.location!.coordinate
+                    let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinates, addressDictionary:nil))
+                    mapItem.name = address
+                    mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
+                }
+            })
+            
         }
         
         // Call Friend
@@ -105,7 +118,7 @@ class MainTableViewController: UITableViewController {
         else if indexPath.row == 2 { call(number: "6075888888") }
         
         else if indexPath.row == 3 {
-            // Call Cornell Police - call(number: "255111")
+            navigationController?.pushViewController(EmergencyTableViewController(), animated: true)
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -137,6 +150,15 @@ class MainTableViewController: UITableViewController {
             alertController.addAction(action)
         self.present(alertController, animated: true, completion: nil)
     }
+    
+    func callError2(_ address: String) {
+        let message = "\(address) isn't a valid home address. Please make sure you entered a valid address."
+        let alertController = UIAlertController(title: "Invalid Home Address", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default) { (action) in }
+        alertController.addAction(action)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
 
 }
 
