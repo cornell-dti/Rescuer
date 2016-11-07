@@ -89,8 +89,8 @@ class MainPageViewController: UIViewController {
         //view.addSubview(policeLabel)
     }
 
-    func editTapped(){
-        navigationController?.pushViewController(UserIsEditingDetailsViewController(), animated: true)
+    func editTapped() {
+        navigationController?.pushViewController(EditViewController(), animated: true)
     }
 
     func redButtonWasPressedFunction()
@@ -142,9 +142,16 @@ class MainPageViewController: UIViewController {
     func blueButtonWasPressedFunction()
     {
         
+<<<<<<< HEAD
 //        CLGeocoder().geocodeAddressString(<#T##addressString: String##String#>) { ([CLPlacemark]?, Error?) in
 //            
 //        }
+=======
+        /*
+        CLGeocoder().geocodeAddressString(addressString: String) { ([CLPlacemark]?, Error?) in
+            code
+        }*/
+>>>>>>> 53110114b7b892f3efb8f2ec9c60f7e95d065768
         
         if let homeAddress = UserDefaults.standard.string(forKey: "homeAddress"),
             let homeAddressString = String("http://maps.apple.com/?address=" + homeAddress + ""),

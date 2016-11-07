@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8CE9184D1DC43EEE00A24EBD /* EditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE9184C1DC43EEE00A24EBD /* EditingViewController.swift */; };
+		8CE9184D1DC43EEE00A24EBD /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE9184C1DC43EEE00A24EBD /* EditViewController.swift */; };
 		8CEC8B451DC3FCC500FB1924 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEC8B441DC3FCC500FB1924 /* AppDelegate.swift */; };
 		8CEC8B471DC3FCC500FB1924 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEC8B461DC3FCC500FB1924 /* ViewController.swift */; };
 		8CEC8B4C1DC3FCC500FB1924 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CEC8B4B1DC3FCC500FB1924 /* Assets.xcassets */; };
@@ -37,7 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8CE9184C1DC43EEE00A24EBD /* EditingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditingViewController.swift; sourceTree = "<group>"; };
+		8CE9184C1DC43EEE00A24EBD /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		8CEC8B411DC3FCC500FB1924 /* ResCUer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ResCUer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CEC8B441DC3FCC500FB1924 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CEC8B461DC3FCC500FB1924 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -107,7 +107,7 @@
 				8CEC8B721DC3FD2700FB1924 /* MainPageViewController.swift */,
 				BF028F831DCC3BAA00361837 /* MainTableViewController.swift */,
 				BF028F851DCC3C3E00361837 /* MainTableViewCell.swift */,
-				8CE9184C1DC43EEE00A24EBD /* EditingViewController.swift */,
+				8CE9184C1DC43EEE00A24EBD /* EditViewController.swift */,
 				8CEC8B461DC3FCC500FB1924 /* ViewController.swift */,
 				8CEC8B4B1DC3FCC500FB1924 /* Assets.xcassets */,
 				8CEC8B4D1DC3FCC500FB1924 /* LaunchScreen.storyboard */,
@@ -197,7 +197,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Raymone Radi ";
 				TargetAttributes = {
 					8CEC8B401DC3FCC500FB1924 = {
@@ -273,7 +273,7 @@
 				8CEC8B451DC3FCC500FB1924 /* AppDelegate.swift in Sources */,
 				BF028F841DCC3BAA00361837 /* MainTableViewController.swift in Sources */,
 				BF028F861DCC3C3E00361837 /* MainTableViewCell.swift in Sources */,
-				8CE9184D1DC43EEE00A24EBD /* EditingViewController.swift in Sources */,
+				8CE9184D1DC43EEE00A24EBD /* EditViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +338,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -387,6 +388,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

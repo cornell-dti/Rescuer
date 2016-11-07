@@ -10,6 +10,7 @@ import UIKit
 
 class MainTableViewCell: UITableViewCell {
     
+    var cellDimensions: (cellHeight: CGFloat, separation: CGFloat) = (0, 0)
     var titleLabel: UILabel!
     var mainView: UIView!
 
@@ -29,21 +30,13 @@ class MainTableViewCell: UITableViewCell {
         
         backgroundColor = UIColor.darkGray
         
-        titleLabel = UILabel()
-        titleLabel.center = contentView.center
-        titleLabel.textColor = .white
-        titleLabel.font = UIFont.systemFont(ofSize: 36)
-        contentView.addSubview(titleLabel)
-        
-        mainView = UIView(frame: contentView.frame)
-        print("mainView.frame \(mainView.frame)")
-        //mainView.frame.size.width -= contentView.frame.width / 4
-        //mainView.frame.size.height -= contentView.frame.height / 8
-        //mainView.center = CGPoint(x: contentView.frame.width / 2, y: contentView.frame.height / 2)
-         print("mainView.frame \(mainView.frame)")
+        mainView = UIView()
         contentView.addSubview(mainView)
         
-        mainView.layer.cornerRadius = 16
+        titleLabel = UILabel(frame: CGRect())
+        titleLabel.textColor = .white
+        titleLabel.font = UIFont.systemFont(ofSize: 36)
+        mainView.addSubview(titleLabel)
         
     }
     
@@ -52,8 +45,18 @@ class MainTableViewCell: UITableViewCell {
     }
     
     func setCell(data: (title: String, color: UIColor)) {
-        titleLabel.text = data.title
+        
+        mainView.frame.size.height = cellDimensions.cellHeight - (2 * cellDimensions.separation)
+        mainView.frame.size.width = contentView.frame.width * 0.9
+        mainView.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: cellDimensions.cellHeight / 2)
         mainView.backgroundColor = data.color
+        
+        titleLabel.text = data.title
+        titleLabel.setNeedsDisplay()
+        titleLabel.frame.size = titleLabel.intrinsicContentSize
+        titleLabel.center = CGPoint(x: mainView.frame.width / 2, y: mainView.frame.height / 2)
+        
+        
     }
 
 }

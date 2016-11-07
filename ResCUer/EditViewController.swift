@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserIsEditingDetailsViewController: UIViewController {
+class EditViewController: UIViewController {
 
     var homeCoordinates: String!
     var usersFriendsNumber: String!
@@ -19,7 +19,7 @@ class UserIsEditingDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Edit Address and Friend's Number"
+        title = "Preferences"
         
         view.backgroundColor = .darkGray
         
@@ -47,6 +47,7 @@ class UserIsEditingDetailsViewController: UIViewController {
         updateButton.setTitle("Update", for: .normal)
         updateButton.setTitleColor(.white, for: .normal)
         updateButton.addTarget(self, action: #selector(updateInfoFunction), for: .touchUpInside)
+        updateButton.center.x = view.frame.width / 2.0
         view.addSubview(updateButton)
         
         if let friendsNumber = UserDefaults.standard.string(forKey: "friendsNumber"){
@@ -60,8 +61,46 @@ class UserIsEditingDetailsViewController: UIViewController {
     }
     
     func updateInfoFunction() {
+    
         UserDefaults.standard.set(contactNumberTextfield.text, forKey: "friendsNumber")
         UserDefaults.standard.set(addressTextField.text, forKey: "homeAddress")
+        
+        if UserDefaults.standard.value(forKey: "introShown") == nil {
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            
+            let tabBarController = UITabBarController()
+            let home = UINavigationController(rootViewController: MainTableViewController())
+            let blueLight = UIViewController()
+            let guide = UIViewController()
+            let controllers = [home, blueLight, guide]
+            tabBarController.viewControllers = controllers
+            appDelegate.window?.rootViewController = tabBarController
+            home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(), tag: 1)
+            blueLight.tabBarItem = UITabBarItem(title: "Blue Light", image: UIImage(), tag: 2)
+            guide.tabBarItem = UITabBarItem(title: "Guide", image: UIImage(), tag: 3)
+            
+            let desiredViewController = UINavigationController(rootViewController: MainTableViewController())
+            
+            let snapshot: UIView = appDelegate.window!.snapshotView(afterScreenUpdates: true)!
+            desiredViewController.view.addSubview(snapshot);
+            
+            UserDefaults.standard.set(true, forKey: "introShown")
+            
+            UIView.animate(withDuration: 0.8, animations: {() in
+                snapshot.layer.opacity = 0;
+                snapshot.layer.transform = CATransform3DMakeScale(1.5, 1.5, 1.5);
+            }, completion: {
+                (value: Bool) in
+                snapshot.removeFromSuperview()
+            })
+            
+        } else {
+
+            let _ = navigationController?.popViewController(animated: true)
+            
+        }
+        
     }
     
 }
