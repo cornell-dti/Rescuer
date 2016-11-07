@@ -27,6 +27,15 @@ class MainTableViewController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem:
             UIBarButtonSystemItem.edit, target: self, action: #selector(editTapped))
 
+        UIView.animate(withDuration: 1.0, animations: {
+            self.view.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            self.view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            
+            }, completion: { _ in
+                
+        })
+
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
