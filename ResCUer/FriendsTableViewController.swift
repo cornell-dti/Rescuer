@@ -1,32 +1,31 @@
 //
-//  MainTableViewController.swift
+//  FriendsTableViewController.swift
 //  ResCUer
 //
-//  Created by Matthew Barker on 11/3/16.
+//  Created by Raymone Radi  on 11/7/16.
 //  Copyright © 2016 Raymone Radi . All rights reserved.
 //
 
 import UIKit
-import CoreLocation
-import MapKit
 
-class MainTableViewController: UITableViewController {
+class FriendsTableViewController: UITableViewController {
     
-    let cellData = [(title: "Home", color: UIColor(netHex: "2474CC")),
-                     (title: "Friends", color: UIColor(netHex: "6CB95B")),
-                    (title: "Taxi", color: UIColor(netHex: "F9B604")),
-                    (title: "Emergency", color: UIColor(netHex: "E62424"))]
-
+    
+    var cellData = [(String, UIColor)]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.separatorStyle = .none
-        tableView.backgroundColor = UIColor.darkGray
-        tableView.isScrollEnabled = false
+        if let number1 = UserDefaults.standard.string(forKey: "friendsNumber"),
+        let number2 = UserDefaults.standard.string(forKey: "friendsNumber2"),
+        let number3 = UserDefaults.standard.string(forKey: "friendsNumber3"){
+            
+            cellData = [(title: number1, color: UIColor(netHex: "43D169")),
+                        (title: number2, color: UIColor(netHex: "3AB55B")),
+                        (title: number3, color: UIColor(netHex: "2F9149"))]
+            
+        }
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem:
-            UIBarButtonSystemItem.edit, target: self, action: #selector(editTapped))
-
         UIView.animate(withDuration: 1.0, animations: {
             self.view.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             self.view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
@@ -34,24 +33,22 @@ class MainTableViewController: UITableViewController {
             }, completion: { _ in
                 
         })
-
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = UIColor.darkGray
+        tableView.isScrollEnabled = false
+        
     }
-
-
+    
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 3
     }
     
     func cellDimensions() -> (cellHeight: CGFloat, separation: CGFloat) {
@@ -61,23 +58,12 @@ class MainTableViewController: UITableViewController {
         let statusBar = UIApplication.shared.value(forKey: "statusBar") as! UIView?
         let statusBarHeight = statusBar?.frame.height ?? 0
         
-        /*
-         
-         There are 5 "spaces" between all the buttons
-            1) Navigation Controller Bottom to First Button
-            2) First Button to Second Button
-            ...
-            5) Last Button to Tab Controller Top
-         Each cell has two borders, top and bottom, so one of those is
-         the available space divided by 5 spaces, divided again in half
-         
-         */
         
         let viewableSpace = height - navigationHeight - tabHeight - statusBarHeight
-        let totalCellHeight = viewableSpace / CGFloat(4)
+        let totalCellHeight = viewableSpace / CGFloat(3)
         
-        let buttonHeight = totalCellHeight * 0.8
-        let totalSeparation = viewableSpace - (buttonHeight * 4)
+        let buttonHeight = totalCellHeight * 0.6
+        let totalSeparation = viewableSpace - (buttonHeight * 3)
         let separation = totalSeparation / 10.0
         
         return (totalCellHeight, separation)
@@ -87,7 +73,7 @@ class MainTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return cellDimensions().cellHeight
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = MainTableViewCell() //tableView.dequeueReusableCell(withIdentifier: "mainCell", for: indexPath)
         cell.cellDimensions = cellDimensions()
@@ -97,44 +83,28 @@ class MainTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexPath.row == 0 {
-        
-            let address = UserDefaults.standard.string(forKey: "homeAddress")
-            let geocoder = CLGeocoder()
-            
-            geocoder.geocodeAddressString(address!, completionHandler: {(placemarks, error) -> Void in
-                if((error) != nil){
-                    self.callError2(address!)
-                }
-                if let placemark = placemarks?.first {
-                    let coordinates:CLLocationCoordinate2D = placemark.location!.coordinate
-                    let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinates, addressDictionary:nil))
-                    mapItem.name = address
-                    mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
-                }
-            })
+        if indexPath.row == 0
+        {
+            confirmationThenCall(number: UserDefaults.standard.string(forKey: "friendsNumber")!)
             
         }
-        
-        //  Friend Options Pop Up
-        else if indexPath.row == 1 {
-            navigationController?.pushViewController(FriendsTableViewController(), animated: true)
+            
+            
+        else if indexPath.row == 1
+        {
+            confirmationThenCall(number: UserDefaults.standard.string(forKey: "friendsNumber2")!)
         }
-        
-        // Call Taxi
-        else if indexPath.row == 2 { confirmationThenCall(number: "6075888888") }
-        
-        else if indexPath.row == 3 {
-            navigationController?.pushViewController(EmergencyTableViewController(), animated: true)
+            
+            
+        else if indexPath.row == 2
+        {
+            confirmationThenCall(number: UserDefaults.standard.string(forKey: "friendsNumber3")!)
+
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    /// Show settings page
-    func editTapped(){
-        navigationController?.pushViewController(EditViewController(), animated: true)
-    }
     
     /// Attempts to call phone number, fires callError if there is a failure
     func call(number: String) {
@@ -153,8 +123,8 @@ class MainTableViewController: UITableViewController {
     func callError(_ number: String) {
         let message = "\(number) isn't a valid phone number. Please make sure you entered a valid phone number."
         let alertController = UIAlertController(title: "Invalid Phone Number", message: message, preferredStyle: .alert)
-            let action = UIAlertAction(title: "OK", style: .default) { (action) in }
-            alertController.addAction(action)
+        let action = UIAlertAction(title: "OK", style: .default) { (action) in }
+        alertController.addAction(action)
         self.present(alertController, animated: true, completion: nil)
     }
     
@@ -167,6 +137,11 @@ class MainTableViewController: UITableViewController {
     }
     
     func confirmationThenCall(number: String) {
+        
+        if number.isEmpty {
+            self.callError(number)
+        }
+        
         let message = "Are you sure that you want to call " + (number) + "?"
         let alertController = UIAlertController(title: "Confirm Call", message: message, preferredStyle: .alert)
         
@@ -182,19 +157,6 @@ class MainTableViewController: UITableViewController {
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
     }
-
     
-
-}
-
-/** Create UIColors from hex values */
-extension UIColor {
-    convenience init(red: Int, green: Int, blue: Int) {
-        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
-    }
     
-    convenience init(netHex: String) {
-        let hex = Int(netHex, radix: 16)!
-        self.init(red:(hex >> 16) & 0xff, green:(hex >> 8) & 0xff, blue:hex & 0xff)
-    }
 }
