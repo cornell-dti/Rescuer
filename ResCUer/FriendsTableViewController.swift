@@ -26,7 +26,7 @@ class FriendsTableViewController: UITableViewController {
             
         }
         
-        UIView.animate(withDuration: 1.0, animations: {
+        UIView.animate(withDuration: 0.8, animations: {
             self.view.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             self.view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             

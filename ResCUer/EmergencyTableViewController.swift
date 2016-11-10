@@ -12,12 +12,12 @@ class EmergencyTableViewController: UITableViewController {
 
     let cellData = [(title: "Cornell Police", color: UIColor(netHex: "E51B29")),
                     (title: "Ithaca Police", color: UIColor(netHex: "E23F4A")),
-                    (title: "Third Option", color: UIColor(netHex: "CC555D"))]
+                    (title: "Gannett Health", color: UIColor(netHex: "CC555D"))]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        UIView.animate(withDuration: 1.0, animations: {
+        UIView.animate(withDuration: 0.8, animations: {
             self.view.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             self.view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             
@@ -76,7 +76,7 @@ class EmergencyTableViewController: UITableViewController {
         
         if indexPath.row == 0
         {
-            confirmationThenCall(number: "251111")
+            confirmationThenCall(number: "607251111")
             
         }
         
@@ -89,7 +89,7 @@ class EmergencyTableViewController: UITableViewController {
          
         else if indexPath.row == 2
         {
-            
+            confirmationThenCall(number: "6072555155")
         }
         
         tableView.deselectRow(at: indexPath, animated: true)

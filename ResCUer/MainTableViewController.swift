@@ -23,11 +23,12 @@ class MainTableViewController: UITableViewController {
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.darkGray
         tableView.isScrollEnabled = false
+        title = "Cornell Rescuer"
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem:
             UIBarButtonSystemItem.edit, target: self, action: #selector(editTapped))
 
-        UIView.animate(withDuration: 1.0, animations: {
+        UIView.animate(withDuration: 0.8, animations: {
             self.view.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             self.view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             
