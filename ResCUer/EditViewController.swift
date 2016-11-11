@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Contacts
+import ContactsUI
 
 class EditViewController: UIViewController {
 
@@ -17,6 +19,7 @@ class EditViewController: UIViewController {
     var contactNumberTextfield2: UITextField!
     var contactNumberTextfield3: UITextField!
     var updateButton: UIButton!
+    var pickContactButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +74,13 @@ class EditViewController: UIViewController {
         updateButton.addTarget(self, action: #selector(updateInfoFunction), for: .touchUpInside)
         updateButton.center.x = view.frame.width / 2.0
         view.addSubview(updateButton)
+        
+        pickContactButton = UIButton(frame: CGRect(x: 50, y: 300, width: 200, height: 50 ))
+        pickContactButton.setTitle("Pick Contact", for: .normal)
+        pickContactButton.setTitleColor(.white, for: .normal)
+        pickContactButton.addTarget(self, action: #selector(pickContactButtonPushed), for: .touchUpInside)
+        pickContactButton.center.x = view.frame.width / 2.0
+        view.addSubview(pickContactButton)
         
         if let friendsNumber = UserDefaults.standard.string(forKey: "friendsNumber"){
             contactNumberTextfield1.text = friendsNumber
@@ -133,6 +143,10 @@ class EditViewController: UIViewController {
             
         }
         
+    }
+    
+    func pickContactButtonPushed(){
+        navigationController?.pushViewController(ContactsViewController(), animated: true)
     }
     
 }
