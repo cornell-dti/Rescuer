@@ -45,8 +45,7 @@
 /* Begin PBXFileReference section */
 		8C6010FE1DD1552400FB1179 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		8C83C3E01DD0DA2600B4B737 /* EmergencyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmergencyTableViewController.swift; sourceTree = "<group>"; };
-		8CE1077E1DD61BE200CC5E6A /* ContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
-		8CE9184C1DC43EEE00A24EBD /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		8CE9184C1DC43EEE00A24EBD /* EditingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditingViewController.swift; sourceTree = "<group>"; };
 		8CEC8B411DC3FCC500FB1924 /* ResCUer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ResCUer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CEC8B441DC3FCC500FB1924 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CEC8B461DC3FCC500FB1924 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -123,8 +122,10 @@
 				8C83C3E01DD0DA2600B4B737 /* EmergencyTableViewController.swift */,
 				8C6010FE1DD1552400FB1179 /* FriendsTableViewController.swift */,
 				BF028F851DCC3C3E00361837 /* MainTableViewCell.swift */,
-				8CE9184C1DC43EEE00A24EBD /* EditViewController.swift */,
-				8CE1077E1DD61BE200CC5E6A /* ContactsViewController.swift */,
+				8CE9184C1DC43EEE00A24EBD /* EditingViewController.swift */,
+				BF591BE81DD60C6E004B5E6B /* EditTableViewController.swift */,
+				BF591BEE1DD62D98004B5E6B /* EditingTableViewController.swift */,
+				BF591BEC1DD6284B004B5E6B /* EditTableViewCell.swift */,
 				8CEC8B461DC3FCC500FB1924 /* ViewController.swift */,
 				8CEC8B4B1DC3FCC500FB1924 /* Assets.xcassets */,
 				8CEC8B4D1DC3FCC500FB1924 /* LaunchScreen.storyboard */,
@@ -290,7 +291,7 @@
 				8C6010FF1DD1552400FB1179 /* FriendsTableViewController.swift in Sources */,
 				8CEC8B731DC3FD2700FB1924 /* MainPageViewController.swift in Sources */,
 				8CEC8B451DC3FCC500FB1924 /* AppDelegate.swift in Sources */,
-				8CE1077F1DD61BE200CC5E6A /* ContactsViewController.swift in Sources */,
+				BF591BEB1DD60E9E004B5E6B /* Actions.swift in Sources */,
 				BF028F841DCC3BAA00361837 /* MainTableViewController.swift in Sources */,
 				BF028F861DCC3C3E00361837 /* MainTableViewCell.swift in Sources */,
 				BF591BEF1DD62D98004B5E6B /* EditingTableViewController.swift in Sources */,
