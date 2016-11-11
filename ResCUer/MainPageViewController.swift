@@ -163,14 +163,14 @@ class MainPageViewController: UIViewController {
         let geocoder = CLGeocoder()
         
         geocoder.geocodeAddressString(address!, completionHandler: {(placemarks, error) -> Void in
-            if((error) != nil){
-                print("Error", error)
+            if (error) != nil {
+                print("Error: \(error)")
             }
             if let placemark = placemarks?.first {
                 let coordinates:CLLocationCoordinate2D = placemark.location!.coordinate
                 let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinates, addressDictionary:nil))
                 mapItem.name = "Destination/Target Address or Name"
-                mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
+                mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeWalking])
             }
         })
         

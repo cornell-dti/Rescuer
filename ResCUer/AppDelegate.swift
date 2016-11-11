@@ -23,16 +23,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let home = UINavigationController(rootViewController: MainTableViewController())
             let blueLight = UIViewController()
             let guide = UIViewController()
-            let controllers = [home, blueLight, guide]
+            let settings = UINavigationController(rootViewController: EditViewController())
+            let controllers = [home, blueLight, guide, settings]
             tabBarController.viewControllers = controllers
             window?.rootViewController = tabBarController
             home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(), tag: 1)
             blueLight.tabBarItem = UITabBarItem(title: "Blue Light", image: UIImage(), tag: 2)
             guide.tabBarItem = UITabBarItem(title: "Guide", image: UIImage(), tag: 3)
+            settings.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(), tag: 3)
         }
         
         if UserDefaults.standard.value(forKey: "introShown") == nil {
-            window?.rootViewController = EditViewController()
+            window?.rootViewController = UINavigationController(rootViewController: EditViewController())
             //UserDefaults.standard.set(true, forKey: "introShown")
         } else {
             initalizeMainScreen()

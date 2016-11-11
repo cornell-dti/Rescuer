@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		8C6010FF1DD1552400FB1179 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6010FE1DD1552400FB1179 /* FriendsTableViewController.swift */; };
 		8C83C3E11DD0DA2600B4B737 /* EmergencyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C83C3E01DD0DA2600B4B737 /* EmergencyTableViewController.swift */; };
-		8CE9184D1DC43EEE00A24EBD /* EditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE9184C1DC43EEE00A24EBD /* EditingViewController.swift */; };
+		8CE1077F1DD61BE200CC5E6A /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE1077E1DD61BE200CC5E6A /* ContactsViewController.swift */; };
+		8CE9184D1DC43EEE00A24EBD /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE9184C1DC43EEE00A24EBD /* EditViewController.swift */; };
 		8CEC8B451DC3FCC500FB1924 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEC8B441DC3FCC500FB1924 /* AppDelegate.swift */; };
 		8CEC8B471DC3FCC500FB1924 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEC8B461DC3FCC500FB1924 /* ViewController.swift */; };
 		8CEC8B4C1DC3FCC500FB1924 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CEC8B4B1DC3FCC500FB1924 /* Assets.xcassets */; };
@@ -19,10 +20,6 @@
 		8CEC8B731DC3FD2700FB1924 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEC8B721DC3FD2700FB1924 /* MainPageViewController.swift */; };
 		BF028F841DCC3BAA00361837 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF028F831DCC3BAA00361837 /* MainTableViewController.swift */; };
 		BF028F861DCC3C3E00361837 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF028F851DCC3C3E00361837 /* MainTableViewCell.swift */; };
-		BF591BE91DD60C6E004B5E6B /* EditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF591BE81DD60C6E004B5E6B /* EditTableViewController.swift */; };
-		BF591BEB1DD60E9E004B5E6B /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF591BEA1DD60E9E004B5E6B /* Actions.swift */; };
-		BF591BED1DD6284B004B5E6B /* EditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF591BEC1DD6284B004B5E6B /* EditTableViewCell.swift */; };
-		BF591BEF1DD62D98004B5E6B /* EditingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF591BEE1DD62D98004B5E6B /* EditingTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,10 +59,6 @@
 		8CEC8B721DC3FD2700FB1924 /* MainPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		BF028F831DCC3BAA00361837 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		BF028F851DCC3C3E00361837 /* MainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
-		BF591BE81DD60C6E004B5E6B /* EditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTableViewController.swift; sourceTree = "<group>"; };
-		BF591BEA1DD60E9E004B5E6B /* Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
-		BF591BEC1DD6284B004B5E6B /* EditTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTableViewCell.swift; sourceTree = "<group>"; };
-		BF591BEE1DD62D98004B5E6B /* EditingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditingTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +112,6 @@
 				8CEC8B441DC3FCC500FB1924 /* AppDelegate.swift */,
 				8CEC8B721DC3FD2700FB1924 /* MainPageViewController.swift */,
 				BF028F831DCC3BAA00361837 /* MainTableViewController.swift */,
-				BF591BEA1DD60E9E004B5E6B /* Actions.swift */,
 				8C83C3E01DD0DA2600B4B737 /* EmergencyTableViewController.swift */,
 				8C6010FE1DD1552400FB1179 /* FriendsTableViewController.swift */,
 				BF028F851DCC3C3E00361837 /* MainTableViewCell.swift */,
@@ -293,10 +285,7 @@
 				8CE1077F1DD61BE200CC5E6A /* ContactsViewController.swift in Sources */,
 				BF028F841DCC3BAA00361837 /* MainTableViewController.swift in Sources */,
 				BF028F861DCC3C3E00361837 /* MainTableViewCell.swift in Sources */,
-				BF591BEF1DD62D98004B5E6B /* EditingTableViewController.swift in Sources */,
-				BF591BE91DD60C6E004B5E6B /* EditTableViewController.swift in Sources */,
-				BF591BED1DD6284B004B5E6B /* EditTableViewCell.swift in Sources */,
-				8CE9184D1DC43EEE00A24EBD /* EditingViewController.swift in Sources */,
+				8CE9184D1DC43EEE00A24EBD /* EditViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
