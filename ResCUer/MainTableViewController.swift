@@ -104,14 +104,14 @@ class MainTableViewController: UITableViewController {
             let geocoder = CLGeocoder()
             
             geocoder.geocodeAddressString(address!, completionHandler: {(placemarks, error) -> Void in
-                if((error) != nil){
-                    self.callError2(address!)
+                if (error) != nil {
+                    self.addressError(address!)
                 }
                 if let placemark = placemarks?.first {
                     let coordinates:CLLocationCoordinate2D = placemark.location!.coordinate
                     let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinates, addressDictionary:nil))
                     mapItem.name = address
-                    mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
+                    mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeWalking])
                 }
             })
             
@@ -152,15 +152,15 @@ class MainTableViewController: UITableViewController {
     
     /// Presents a UIAlert in the MainTableView Controller informing users of the invalid phone number
     func callError(_ number: String) {
-        let message = "\(number) isn't a valid phone number. Please make sure you entered a valid phone number."
+        let message = number == "" ? "You have not entered a valid phone number. " : "The phone number \(number) is not valid. "
         let alertController = UIAlertController(title: "Invalid Phone Number", message: message, preferredStyle: .alert)
             let action = UIAlertAction(title: "OK", style: .default) { (action) in }
             alertController.addAction(action)
         self.present(alertController, animated: true, completion: nil)
     }
     
-    func callError2(_ address: String) {
-        let message = "\(address) isn't a valid home address. Please make sure you entered a valid address."
+    func addressError(_ address: String) {
+        let message = address == "" ? "You have not entered a valid home address." : "The address \(address) is not valid. "
         let alertController = UIAlertController(title: "Invalid Home Address", message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default) { (action) in }
         alertController.addAction(action)
@@ -172,13 +172,10 @@ class MainTableViewController: UITableViewController {
         let alertController = UIAlertController(title: "Confirm Call", message: message, preferredStyle: .alert)
         
         let yesAction = UIAlertAction(title: "Yes", style: UIAlertActionStyle.default) {
-            UIAlertAction in
-            self.call(number: number)
+            UIAlertAction in self.call(number: number)
         }
-        let cancelAction = UIAlertAction(title: "No", style: UIAlertActionStyle.cancel) {
-            UIAlertAction in
-            
-        }
+        
+        let cancelAction = UIAlertAction(title: "No", style: UIAlertActionStyle.cancel, handler: nil)
         alertController.addAction(yesAction)
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
