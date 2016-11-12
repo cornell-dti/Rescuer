@@ -23,13 +23,10 @@ class EditTableViewCell: UITableViewCell, UITextFieldDelegate {
         textfield.delegate = self
         textfield.borderStyle = .none
         textfield.clearButtonMode = .whileEditing
-        textfield.textColor = UIColor.black.withAlphaComponent(0.75)
-        
-        contentView.addSubview(textfield)
-        
-        //textfield.addTarget(self, action: #selector(self.editing), for: UIControlEvents.editingChanged)
         textfield.textAlignment = .right
-        
+        textfield.textColor = UIColor.black.withAlphaComponent(0.75)
+        contentView.addSubview(textfield)
+    
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -42,22 +39,9 @@ class EditTableViewCell: UITableViewCell, UITextFieldDelegate {
         return true //save()
     }
     
-    /*
-    func editing(textField: UITextField) {
-        detailTextLabel?.text = self.textfield.text?.replacingOccurrences(of: " ", with: "\u{00a0}")
-        detailTextLabel?.setNeedsDisplay()
-    }
- */
-    
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if mode == "Number" { textfield.keyboardType = .phonePad }
         return true
     }
-    
-    /*
-    func save() {
-        contentView.endEditing(true)
-        self.setSelected(false, animated: true)
-    } */
     
 }

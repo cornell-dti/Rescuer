@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>Rescuer Today Extension.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -23,6 +28,11 @@
 			<true/>
 		</dict>
 		<key>8CEC8B5F1DC3FCC500FB1924</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BFBEC1291DD6A73D003F67A8</key>
 		<dict>
 			<key>primary</key>
 			<true/>

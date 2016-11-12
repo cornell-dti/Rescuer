@@ -74,21 +74,15 @@ class EmergencyTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexPath.row == 0
-        {
+        if indexPath.row == 0 {
             confirmationThenCall(number: "607251111")
-            
         }
         
-            
-        else if indexPath.row == 1
-        {
+        else if indexPath.row == 1 {
            confirmationThenCall(number: "911")
         }
             
-         
-        else if indexPath.row == 2
-        {
+        else if indexPath.row == 2 {
             confirmationThenCall(number: "6072555155")
         }
         

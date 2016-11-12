@@ -12,6 +12,8 @@ import MapKit
 
 class MainTableViewController: UITableViewController {
     
+    let data = UserDefaults(suiteName: "group.rescuer")!
+    
     let cellData = [(title: "Home", color: UIColor(netHex: "2474CC")),
                      (title: "Friends", color: UIColor(netHex: "6CB95B")),
                     (title: "Taxi", color: UIColor(netHex: "F9B604")),
@@ -25,9 +27,6 @@ class MainTableViewController: UITableViewController {
         tableView.isScrollEnabled = false
         title = "Cornell Rescuer"
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem:
-            UIBarButtonSystemItem.edit, target: self, action: #selector(editTapped))
-
         UIView.animate(withDuration: 0.8, animations: {
             self.view.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             self.view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
@@ -36,12 +35,6 @@ class MainTableViewController: UITableViewController {
                 
         })
 
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
 
@@ -93,48 +86,177 @@ class MainTableViewController: UITableViewController {
         let cell = MainTableViewCell() //tableView.dequeueReusableCell(withIdentifier: "mainCell", for: indexPath)
         cell.cellDimensions = cellDimensions()
         cell.setCell(data: cellData[indexPath.row])
+        cell.selectionStyle = .none
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        // Home
         if indexPath.row == 0 {
-        
-            let address = UserDefaults.standard.string(forKey: "homeAddress")
-            let geocoder = CLGeocoder()
-            
-            geocoder.geocodeAddressString(address!, completionHandler: {(placemarks, error) -> Void in
-                if (error) != nil {
-                    self.addressError(address!)
-                }
-                if let placemark = placemarks?.first {
-                    let coordinates:CLLocationCoordinate2D = placemark.location!.coordinate
-                    let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinates, addressDictionary:nil))
-                    mapItem.name = address
-                    mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeWalking])
-                }
-            })
+    
+            if let address = data.string(forKey: "address") {
+                getDirections(forLocation: address)
+            } else { addressError("") }
             
         }
         
-        //  Friend Options Pop Up
+        // Friends
         else if indexPath.row == 1 {
-            navigationController?.pushViewController(FriendsTableViewController(), animated: true)
+            
+            var accum = 0
+            
+            for index in 0...2 {
+                
+                if data.value(forKey: "contact_\(index)_content") is String {
+                    print (data.value(forKey: "contact_\(index)_content"))
+                    accum = accum + 1
+                }
+                
+            }
+            
+            
+            if accum == 0 {
+                
+                let alertController = UIAlertController(title: "No Friends Found", message: "Please add some friends in the settings page.", preferredStyle: .alert)
+                
+                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
+                
+                alertController.addAction(okAction)
+                
+                self.present(alertController, animated: true, completion: nil)
+                
+                
+            }
+            
+            if accum == 1 {
+                
+                if let number1: String = data.value(forKey: "contact_\(0)_content") as! String?,
+                    let name1: String = data.value(forKey: "contact_\(0)_name") as! String?
+                    
+                {
+                let alertController = UIAlertController(title: "Call a Friend", message: "Who do you want to call?", preferredStyle: .alert)
+                
+                let firstOption = UIAlertAction(title: name1, style: UIAlertActionStyle.default)
+                {
+                    action in self.call(number: number1)
+                }
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+                
+                alertController.addAction(firstOption)
+                alertController.addAction(cancelAction)
+                
+                self.present(alertController, animated: true, completion: nil)
+                
+                }
+            }
+            
+            if accum == 2 {
+                
+                if let number1: String = data.value(forKey: "contact_\(0)_content") as! String?,
+                    let name1: String = data.value(forKey: "contact_\(0)_name") as! String?,
+                    let number2: String = data.value(forKey: "contact_\(1)_content") as! String?,
+                    let name2: String = data.value(forKey: "contact_\(1)_name") as! String?
+                    
+                    {
+                        
+                    let alertController = UIAlertController(title: "Call a Friend", message: "Who do you want to call?", preferredStyle: .alert)
+                    
+                    let firstOption = UIAlertAction(title: name1, style: UIAlertActionStyle.default)
+                    {
+                        action in self.call(number: number1)
+                    }
+                    
+                    let secondOption = UIAlertAction(title: name2, style: UIAlertActionStyle.default)
+                    {
+                        action in self.call(number: number2)
+                    }
+                    
+                    let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+                    
+                    alertController.addAction(firstOption)
+                    alertController.addAction(secondOption)
+                    alertController.addAction(cancelAction)
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                    
+                    }
+                
+                
+            }
+            
+            if accum == 3 {
+                
+                if let number1: String = data.value(forKey: "contact_\(0)_content") as! String?,
+                    let name1: String = data.value(forKey: "contact_\(0)_name") as! String?,
+                    let number2: String = data.value(forKey: "contact_\(1)_content") as! String?,
+                    let name2: String = data.value(forKey: "contact_\(1)_name") as! String?,
+                    let number3: String = data.value(forKey: "contact_\(2)_content") as! String?,
+                    let name3: String = data.value(forKey: "contact_\(2)_name") as! String?
+                    
+                    
+                {
+                    
+                    let alertController = UIAlertController(title: "Call a Friend", message: "Who do you want to call?", preferredStyle: .alert)
+                    
+                    let firstOption = UIAlertAction(title: name1, style: UIAlertActionStyle.default)
+                    {
+                        action in self.call(number: number1)
+                    }
+                    
+                    let secondOption = UIAlertAction(title: name2, style: UIAlertActionStyle.default)
+                    {
+                        action in self.call(number: number2)
+                    }
+                    
+                    let thirdOption = UIAlertAction(title: name3, style: UIAlertActionStyle.default)
+                    {
+                        action in self.call(number: number3)
+                    }
+                    
+                    let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+                    
+                    alertController.addAction(firstOption)
+                    alertController.addAction(secondOption)
+                    alertController.addAction(thirdOption)
+                    alertController.addAction(cancelAction)
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                    
+                }
+                
+                
+            }
+            
         }
         
-        // Call Taxi
-        else if indexPath.row == 2 { confirmationThenCall(number: "6075888888") }
+        // Taxi
+        else if indexPath.row == 2 { confirmCall(number: "6075888888", recipient: "Taxi Service") }
         
+        // Emergency
         else if indexPath.row == 3 {
             navigationController?.pushViewController(EmergencyTableViewController(), animated: true)
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
+        
+    // MARK: Call Functions
     
-    /// Show settings page
-    func editTapped(){
-        navigationController?.pushViewController(EditViewController(), animated: true)
+    /// Presents a UIAlert where the user can confirm the call and do so
+    func confirmCall(number: String, recipient: String) {
+        let message = "Are you sure that you want to call " + (number) + "?"
+        let alertController = UIAlertController(title: "Call \(recipient)", message: message, preferredStyle: .alert)
+        
+        let yesAction = UIAlertAction(title: "Call", style: UIAlertActionStyle.default) {
+            action in self.call(number: number)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+        alertController.addAction(yesAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     /// Attempts to call phone number, fires callError if there is a failure
@@ -159,6 +281,24 @@ class MainTableViewController: UITableViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
+    // MARK: Location Functions
+    
+    /// Opens Apple Maps with walking directions from current location to address
+    func getDirections(forLocation: String) {
+        CLGeocoder().geocodeAddressString(forLocation, completionHandler: {(placemarks, error) -> Void in
+            if (error) != nil {
+                self.addressError(forLocation)
+            }
+            if let placemark = placemarks?.first {
+                let coordinates:CLLocationCoordinate2D = placemark.location!.coordinate
+                let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinates, addressDictionary:nil))
+                mapItem.name = forLocation
+                mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeWalking])
+            }
+        })
+    }
+    
+    /// Present alert for an invalid address
     func addressError(_ address: String) {
         let message = address == "" ? "You have not entered a valid home address." : "The address \(address) is not valid. "
         let alertController = UIAlertController(title: "Invalid Home Address", message: message, preferredStyle: .alert)
@@ -166,22 +306,6 @@ class MainTableViewController: UITableViewController {
         alertController.addAction(action)
         self.present(alertController, animated: true, completion: nil)
     }
-    
-    func confirmationThenCall(number: String) {
-        let message = "Are you sure that you want to call " + (number) + "?"
-        let alertController = UIAlertController(title: "Confirm Call", message: message, preferredStyle: .alert)
-        
-        let yesAction = UIAlertAction(title: "Yes", style: UIAlertActionStyle.default) {
-            UIAlertAction in self.call(number: number)
-        }
-        
-        let cancelAction = UIAlertAction(title: "No", style: UIAlertActionStyle.cancel, handler: nil)
-        alertController.addAction(yesAction)
-        alertController.addAction(cancelAction)
-        self.present(alertController, animated: true, completion: nil)
-    }
-
-    
 
 }
 
