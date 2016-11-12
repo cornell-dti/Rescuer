@@ -12,32 +12,25 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let data = UserDefaults(suiteName: "group.rescuer")!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow()
-        
-        func initalizeMainScreen() {
+                
+        if data.value(forKey: "introShown") == nil {
+            window?.rootViewController = UINavigationController(rootViewController: SettingsTableViewController())
+        } else {
             let tabBarController = UITabBarController()
             let home = UINavigationController(rootViewController: MainTableViewController())
-            let blueLight = UIViewController()
             let guide = UIViewController()
-            let settings = UINavigationController(rootViewController: EditViewController())
-            let controllers = [home, blueLight, guide, settings]
+            let settings = UINavigationController(rootViewController: SettingsTableViewController())
+            let controllers = [home, guide, settings]
             tabBarController.viewControllers = controllers
             window?.rootViewController = tabBarController
             home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(), tag: 1)
-            blueLight.tabBarItem = UITabBarItem(title: "Blue Light", image: UIImage(), tag: 2)
-            guide.tabBarItem = UITabBarItem(title: "Guide", image: UIImage(), tag: 3)
+            guide.tabBarItem = UITabBarItem(title: "Guide", image: UIImage(), tag: 2)
             settings.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(), tag: 3)
-        }
-        
-        if UserDefaults.standard.value(forKey: "introShown") == nil {
-            window?.rootViewController = UINavigationController(rootViewController: EditViewController())
-            //UserDefaults.standard.set(true, forKey: "introShown")
-        } else {
-            initalizeMainScreen()
         }
                 
         window?.makeKeyAndVisible()
