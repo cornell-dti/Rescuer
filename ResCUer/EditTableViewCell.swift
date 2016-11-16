@@ -11,6 +11,7 @@ import UIKit
 class EditTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     var mode: String!
+    var dialPad: Bool = false
     var placeholder: String!
     var textfield: UITextField!
     var accessory: UIToolbar!
@@ -40,7 +41,7 @@ class EditTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if mode == "Number" { textfield.keyboardType = .phonePad }
+        if mode == "Number" && dialPad { textfield.keyboardType = .phonePad }
         return true
     }
     

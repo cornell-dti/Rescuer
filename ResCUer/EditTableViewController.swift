@@ -58,7 +58,6 @@ class EditTableViewController: UITableViewController {
             (cell as! EditTableViewCell).mode = mode
             
             if mode! == "Number" {
-                
                 if item == ("Name", "Phone Number") {
                     (cell as! EditTableViewCell).textfield.placeholder =
                         (indexPath.row == 0) ? item.name: item.content
@@ -66,7 +65,7 @@ class EditTableViewController: UITableViewController {
                     (cell as! EditTableViewCell).textfield.text =
                         (indexPath.row == 0) ? item.name: item.content
                 }
-                
+                if indexPath.row == 1 { (cell as! EditTableViewCell).dialPad = true }
             } else {
                 
                 if address == "" {
