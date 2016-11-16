@@ -101,11 +101,132 @@ class MainTableViewController: UITableViewController {
             
         }
         
-        // Contacts
+        // Friends
         else if indexPath.row == 1 {
-            //navigationController?.pushViewController(FriendsTableViewController(), animated: true)
             
-            //TODO: UIAlert asking which person to call, with a cancel option
+            var accum = 0
+            
+            for index in 0...2 {
+                
+                if data.value(forKey: "contact_\(index)_content") is String {
+                    accum = accum + 1
+                }
+                
+            }
+            
+            
+            if accum == 0 {
+                
+                let alertController = UIAlertController(title: "No Friends Found", message: "Please add some friends in the settings page.", preferredStyle: .alert)
+                
+                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
+                
+                alertController.addAction(okAction)
+                
+                self.present(alertController, animated: true, completion: nil)
+                
+                
+            }
+            
+            if accum == 1 {
+                
+                if let number1: String = data.value(forKey: "contact_\(0)_content") as! String?,
+                    let name1: String = data.value(forKey: "contact_\(0)_name") as! String?
+                    
+                {
+                let alertController = UIAlertController(title: "Call a Friend", message: "Who do you want to call?", preferredStyle: .alert)
+                
+                let firstOption = UIAlertAction(title: name1, style: UIAlertActionStyle.default)
+                {
+                    action in self.call(number: number1)
+                }
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+                
+                alertController.addAction(firstOption)
+                alertController.addAction(cancelAction)
+                
+                self.present(alertController, animated: true, completion: nil)
+                
+                }
+            }
+            
+            if accum == 2 {
+                
+                if let number1: String = data.value(forKey: "contact_\(0)_content") as! String?,
+                    let name1: String = data.value(forKey: "contact_\(0)_name") as! String?,
+                    let number2: String = data.value(forKey: "contact_\(1)_content") as! String?,
+                    let name2: String = data.value(forKey: "contact_\(1)_name") as! String?
+                    
+                    {
+                        
+                    let alertController = UIAlertController(title: "Call a Friend", message: "Who do you want to call?", preferredStyle: .alert)
+                    
+                    let firstOption = UIAlertAction(title: name1, style: UIAlertActionStyle.default)
+                    {
+                        action in self.call(number: number1)
+                    }
+                    
+                    let secondOption = UIAlertAction(title: name2, style: UIAlertActionStyle.default)
+                    {
+                        action in self.call(number: number2)
+                    }
+                    
+                    let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+                    
+                    alertController.addAction(firstOption)
+                    alertController.addAction(secondOption)
+                    alertController.addAction(cancelAction)
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                    
+                    }
+                
+                
+            }
+            
+            if accum == 3 {
+                
+                if let number1: String = data.value(forKey: "contact_\(0)_content") as! String?,
+                    let name1: String = data.value(forKey: "contact_\(0)_name") as! String?,
+                    let number2: String = data.value(forKey: "contact_\(1)_content") as! String?,
+                    let name2: String = data.value(forKey: "contact_\(1)_name") as! String?,
+                    let number3: String = data.value(forKey: "contact_\(2)_content") as! String?,
+                    let name3: String = data.value(forKey: "contact_\(2)_name") as! String?
+                    
+                    
+                {
+                    
+                    let alertController = UIAlertController(title: "Call a Friend", message: "Who do you want to call?", preferredStyle: .alert)
+                    
+                    let firstOption = UIAlertAction(title: name1, style: UIAlertActionStyle.default)
+                    {
+                        action in self.call(number: number1)
+                    }
+                    
+                    let secondOption = UIAlertAction(title: name2, style: UIAlertActionStyle.default)
+                    {
+                        action in self.call(number: number2)
+                    }
+                    
+                    let thirdOption = UIAlertAction(title: name3, style: UIAlertActionStyle.default)
+                    {
+                        action in self.call(number: number3)
+                    }
+                    
+                    let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+                    
+                    alertController.addAction(firstOption)
+                    alertController.addAction(secondOption)
+                    alertController.addAction(thirdOption)
+                    alertController.addAction(cancelAction)
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                    
+                }
+                
+                
+            }
             
         }
         
@@ -122,7 +243,7 @@ class MainTableViewController: UITableViewController {
         
     // MARK: Call Functions
     
-    /// Presents a UIAlert where the suer can confirm the call and do so
+    /// Presents a UIAlert where the user can confirm the call and do so
     func confirmCall(number: String, recipient: String) {
         let message = "Are you sure that you want to call " + (number) + "?"
         let alertController = UIAlertController(title: "Call \(recipient)", message: message, preferredStyle: .alert)

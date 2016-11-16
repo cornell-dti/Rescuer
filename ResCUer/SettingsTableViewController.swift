@@ -65,12 +65,6 @@ class SettingsTableViewController: UITableViewController {
         
     }
         
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table View Functions
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return section == 0 ? "Address" : "Contacts"

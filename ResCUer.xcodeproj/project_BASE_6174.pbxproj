@@ -21,7 +21,7 @@
 		BFBEC12D1DD6A73D003F67A8 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFBEC12C1DD6A73D003F67A8 /* NotificationCenter.framework */; };
 		BFBEC1301DD6A73D003F67A8 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBEC12F1DD6A73D003F67A8 /* TodayViewController.swift */; };
 		BFBEC1331DD6A73D003F67A8 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFBEC1311DD6A73D003F67A8 /* MainInterface.storyboard */; };
-		BFBEC1371DD6A73D003F67A8 /* Rescuer.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BFBEC12A1DD6A73D003F67A8 /* Rescuer.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BFBEC1371DD6A73D003F67A8 /* Rescuer Today Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BFBEC12A1DD6A73D003F67A8 /* Rescuer Today Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BFBEC13D1DD6A909003F67A8 /* TodayViewCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBEC13C1DD6A909003F67A8 /* TodayViewCollectionCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,7 +56,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				BFBEC1371DD6A73D003F67A8 /* Rescuer.appex in Embed App Extensions */,
+				BFBEC1371DD6A73D003F67A8 /* Rescuer Today Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -82,7 +82,7 @@
 		BF591BEC1DD6284B004B5E6B /* EditTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTableViewCell.swift; sourceTree = "<group>"; };
 		BF591BEE1DD62D98004B5E6B /* EditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTableViewController.swift; sourceTree = "<group>"; };
 		BFBEC1251DD6745C003F67A8 /* ResCUer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ResCUer.entitlements; sourceTree = "<group>"; };
-		BFBEC12A1DD6A73D003F67A8 /* Rescuer.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Rescuer.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFBEC12A1DD6A73D003F67A8 /* Rescuer Today Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Rescuer Today Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFBEC12C1DD6A73D003F67A8 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		BFBEC12F1DD6A73D003F67A8 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		BFBEC1321DD6A73D003F67A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -142,7 +142,7 @@
 				8CEC8B411DC3FCC500FB1924 /* ResCUer.app */,
 				8CEC8B551DC3FCC500FB1924 /* ResCUerTests.xctest */,
 				8CEC8B601DC3FCC500FB1924 /* ResCUerUITests.xctest */,
-				BFBEC12A1DD6A73D003F67A8 /* Rescuer.appex */,
+				BFBEC12A1DD6A73D003F67A8 /* Rescuer Today Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -275,7 +275,7 @@
 			);
 			name = "Rescuer Today Extension";
 			productName = "Rescuer Today Extension";
-			productReference = BFBEC12A1DD6A73D003F67A8 /* Rescuer.appex */;
+			productReference = BFBEC12A1DD6A73D003F67A8 /* Rescuer Today Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -290,33 +290,31 @@
 				TargetAttributes = {
 					8CEC8B401DC3FCC500FB1924 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = FV2G57GLFW;
+						DevelopmentTeam = MJ5Q5C9SFW;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
 					8CEC8B541DC3FCC500FB1924 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = MJ5Q5C9SFW;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 8CEC8B401DC3FCC500FB1924;
 					};
 					8CEC8B5F1DC3FCC500FB1924 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = MJ5Q5C9SFW;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 8CEC8B401DC3FCC500FB1924;
 					};
 					BFBEC1291DD6A73D003F67A8 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = MJ5Q5C9SFW;
+						DevelopmentTeam = FV2G57GLFW;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -479,7 +477,6 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -530,7 +527,6 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -557,13 +553,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = ResCUer/ResCUer.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = FV2G57GLFW;
+				DEVELOPMENT_TEAM = MJ5Q5C9SFW;
 				INFOPLIST_FILE = ResCUer/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.rescuer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rsr242.ResCUer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -574,13 +570,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = ResCUer/ResCUer.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = FV2G57GLFW;
+				DEVELOPMENT_TEAM = MJ5Q5C9SFW;
 				INFOPLIST_FILE = ResCUer/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.rescuer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rsr242.ResCUer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -591,8 +587,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = MJ5Q5C9SFW;
 				INFOPLIST_FILE = ResCUerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rsr242.RaymoneRadi.ResCUerTests;
@@ -607,8 +601,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = MJ5Q5C9SFW;
 				INFOPLIST_FILE = ResCUerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rsr242.RaymoneRadi.ResCUerTests;
@@ -622,8 +614,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = MJ5Q5C9SFW;
 				INFOPLIST_FILE = ResCUerUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rsr242.RaymoneRadi.ResCUerUITests;
@@ -637,8 +627,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = MJ5Q5C9SFW;
 				INFOPLIST_FILE = ResCUerUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rsr242.RaymoneRadi.ResCUerUITests;
@@ -651,19 +639,13 @@
 		BFBEC1391DD6A73D003F67A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = MJ5Q5C9SFW;
+				CODE_SIGN_ENTITLEMENTS = "Rescuer Today Extension/Rescuer Today Extension.entitlements";
+				DEVELOPMENT_TEAM = FV2G57GLFW;
 				INFOPLIST_FILE = "Rescuer Today Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-<<<<<<< HEAD
-				PRODUCT_BUNDLE_IDENTIFIER = com.rescuer;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rsr242.ResCUer.Rescuer-Today-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-=======
-				PRODUCT_BUNDLE_IDENTIFIER = com.rsr242.ResCUer.Exten;
-				PRODUCT_NAME = Rescuer;
->>>>>>> dcf5841bfa434e0fcd12b5a7cc22a1261ead6c5c
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
@@ -672,19 +654,13 @@
 		BFBEC13A1DD6A73D003F67A8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = MJ5Q5C9SFW;
+				CODE_SIGN_ENTITLEMENTS = "Rescuer Today Extension/Rescuer Today Extension.entitlements";
+				DEVELOPMENT_TEAM = FV2G57GLFW;
 				INFOPLIST_FILE = "Rescuer Today Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-<<<<<<< HEAD
-				PRODUCT_BUNDLE_IDENTIFIER = com.rescuer;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rsr242.ResCUer.Rescuer-Today-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-=======
-				PRODUCT_BUNDLE_IDENTIFIER = com.rsr242.ResCUer.Exten;
-				PRODUCT_NAME = Rescuer;
->>>>>>> dcf5841bfa434e0fcd12b5a7cc22a1261ead6c5c
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
@@ -736,7 +712,6 @@
 				BFBEC13A1DD6A73D003F67A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
