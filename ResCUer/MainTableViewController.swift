@@ -109,7 +109,6 @@ class MainTableViewController: UITableViewController {
             for index in 0...2 {
                 
                 if data.value(forKey: "contact_\(index)_content") is String {
-                    print (data.value(forKey: "contact_\(index)_content"))
                     accum = accum + 1
                 }
                 
