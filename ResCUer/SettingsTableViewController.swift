@@ -120,7 +120,7 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         return (indexPath.section == 1 &&
-            indexPath.row != numbers.count || numbers.count == 3) ? .delete : .none
+            indexPath.row != numbers.count || indexPath.section == 1 && numbers.count == 3) ? .delete : .none
     }
     
     override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {

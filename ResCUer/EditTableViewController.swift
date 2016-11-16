@@ -126,7 +126,7 @@ class EditTableViewController: UITableViewController {
     }
     
     func emptyTextfieldAlert() {
-        let message = "You left at lest textfield blank! Be on the safe side and please fill it in."
+        let message = "You left a textfield blank! Be on the safe side and please fill it in."
         let alertController = UIAlertController(title: "Hold up, Danger Danger", message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "Safety first!", style: .cancel, handler: nil)
         alertController.addAction(action)
