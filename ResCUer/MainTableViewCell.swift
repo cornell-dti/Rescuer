@@ -31,6 +31,7 @@ class MainTableViewCell: UITableViewCell {
         backgroundColor = UIColor.darkGray
         
         mainView = UIView()
+        mainView.layer.cornerRadius = 8
         contentView.addSubview(mainView)
         
         titleLabel = UILabel(frame: CGRect())

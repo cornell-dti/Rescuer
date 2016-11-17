@@ -25,7 +25,14 @@ class MainTableViewController: UITableViewController {
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.darkGray
         tableView.isScrollEnabled = false
-        title = "Cornell Rescuer"
+        
+        let statusBar = UIApplication.shared.value(forKey: "statusBar") as! UIView?
+        let statusBarHeight = statusBar?.frame.height ?? 0
+        tableView.contentInset = UIEdgeInsets(top: statusBarHeight, left: 0, bottom: 0, right: 0)
+        
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
         
         UIView.animate(withDuration: 0.8, animations: {
             self.view.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
@@ -34,9 +41,15 @@ class MainTableViewController: UITableViewController {
             }, completion: { _ in
                 
         })
-
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        UIApplication.shared.statusBarStyle = .lightContent
+        self.tabBarController?.tabBar.tintColor = .clear
+        self.tabBarController?.tabBar.backgroundImage = UIImage()
+        self.tabBarController?.tabBar.shadowImage = UIImage()
+        self.tabBarController?.tabBar.tintColor = .white
+    }
 
     // MARK: - Table view data source
 
@@ -50,11 +63,10 @@ class MainTableViewController: UITableViewController {
     
     func cellDimensions() -> (cellHeight: CGFloat, separation: CGFloat) {
         let height = view.frame.height
-        let navigationHeight = navigationController?.navigationBar.frame.height ?? 0
         let tabHeight = tabBarController?.tabBar.frame.height ?? 0
         let statusBar = UIApplication.shared.value(forKey: "statusBar") as! UIView?
         let statusBarHeight = statusBar?.frame.height ?? 0
-        
+                
         /*
          
          There are 5 "spaces" between all the buttons
@@ -67,7 +79,7 @@ class MainTableViewController: UITableViewController {
          
          */
         
-        let viewableSpace = height - navigationHeight - tabHeight - statusBarHeight
+        let viewableSpace = height - tabHeight - statusBarHeight
         let totalCellHeight = viewableSpace / CGFloat(4)
         
         let buttonHeight = totalCellHeight * 0.8
