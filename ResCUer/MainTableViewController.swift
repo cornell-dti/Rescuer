@@ -45,10 +45,10 @@ class MainTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         UIApplication.shared.statusBarStyle = .lightContent
-        self.tabBarController?.tabBar.tintColor = .clear
-        self.tabBarController?.tabBar.backgroundImage = UIImage()
-        self.tabBarController?.tabBar.shadowImage = UIImage()
-        self.tabBarController?.tabBar.tintColor = .white
+        self.tabBarController?.tabBar.tintColor = .black
+        //self.tabBarController?.tabBar.backgroundColor = UIColor.darkGray.withAlphaComponent(0.75)
+        //self.tabBarController?.tabBar.shadowImage = UIImage()
+        //self.tabBarController?.tabBar.tintColor = .white
     }
 
     // MARK: - Table view data source
