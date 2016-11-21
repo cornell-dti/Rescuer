@@ -156,7 +156,7 @@ class SettingsTableViewController: UITableViewController {
         
         let tabBarController = UITabBarController()
         let home = UINavigationController(rootViewController: MainTableViewController())
-        let guide = UIViewController()
+        let guide = UINavigationController(rootViewController: CollapsibleTableViewController())
         let settings = UINavigationController(rootViewController: SettingsTableViewController())
         let controllers = [home, guide, settings]
         tabBarController.viewControllers = controllers

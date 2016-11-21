@@ -235,12 +235,38 @@ class MainTableViewController: UITableViewController {
         
         // Emergency
         else if indexPath.row == 3 {
-            navigationController?.pushViewController(EmergencyTableViewController(), animated: true)
+            
+            let alertController = UIAlertController(title: "Emergency Options", message: "Who do you want to call?", preferredStyle: .alert)
+            
+            let firstOption = UIAlertAction(title: "Cornell Police", style: UIAlertActionStyle.default)
+            {
+                action in self.call(number: "607-255-1111")
+            }
+            
+            let secondOption = UIAlertAction(title: "Ithaca Police (911)", style: UIAlertActionStyle.default)
+            {
+                action in self.call(number: "911")
+            }
+            
+            let thirdOption = UIAlertAction(title: "Cayuga Medical Center", style: UIAlertActionStyle.default)
+            {
+                action in self.call(number: "607-274-4411")
+            }
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+            
+            alertController.addAction(firstOption)
+            alertController.addAction(secondOption)
+            alertController.addAction(thirdOption)
+            alertController.addAction(cancelAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+            
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
-        
+    
     // MARK: Call Functions
     
     /// Presents a UIAlert where the user can confirm the call and do so
