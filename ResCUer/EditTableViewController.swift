@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import ContactsUI
 
-class EditTableViewController: UITableViewController {
+class EditTableViewController: UITableViewController, CNContactPickerDelegate {
     
     var mode: String!
     var index: Int!
     var item: (name: String, content: String)!
-    var address: String!
+    var address: String! = ""
     let data = UserDefaults(suiteName: "group.rescuer")!
 
     override func viewDidLoad() {
@@ -21,6 +22,14 @@ class EditTableViewController: UITableViewController {
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "editingCell")
         tableView = UITableView(frame: self.tableView.frame, style: .grouped)
+        
+        /*
+        if mode == "Contact Info" {
+            let contacts = UIBarButtonItem(title: "Contacts", style: .plain, target: self, action: #selector(didTouchContactsButton))
+            navigationItem.setRightBarButton(contacts, animated: true)
+        }
+        */
+        
 
     }
     
@@ -33,20 +42,44 @@ class EditTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func didTouchContactsButton() {
+        let contactPicker = CNContactPickerViewController()
+        contactPicker.delegate = self
+        contactPicker.displayedPropertyKeys =  [CNContactPhoneNumbersKey]
+        present(contactPicker, animated: true, completion: nil)
+    }
+    
+    func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
+                
+        let nameCell = tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! EditTableViewCell
+        let numberCell = tableView.cellForRow(at: IndexPath(row: 1, section: 1)) as! EditTableViewCell
+        
+        nameCell.textfield.text = contact.givenName
+        numberCell.textfield.text = contact.phoneNumbers.count > 0 ? contact.phoneNumbers[0].value.stringValue : ""
+        data.setValue(nameCell.textfield.text == "" || numberCell.textfield.text == "", forKey: "error")
+        saveData()
+        let _ = navigationController?.popViewController(animated: true)
 
+    }
+    
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return section == 0 ? "\(mode!)" : nil
+        if mode! == "Address" {
+            return section == 0 ? "\(mode!)" : nil
+        } else {
+            return section == 1 ? "\(mode!)" : nil
+        }
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return (mode! == "Address") ? 2 : 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if mode! == "Address" { return 1 }
-        else { return section == 0 ? 2 : 1 }
+        else { return section == 1 ? 2 : 1 }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -54,20 +87,13 @@ class EditTableViewController: UITableViewController {
         var cell = UITableViewCell()
         
         if indexPath.section == 0 {
-            cell = EditTableViewCell()
-            (cell as! EditTableViewCell).mode = mode
-            
-            if mode! == "Number" {
-                if item == ("Name", "Phone Number") {
-                    (cell as! EditTableViewCell).textfield.placeholder =
-                        (indexPath.row == 0) ? item.name: item.content
-                } else {
-                    (cell as! EditTableViewCell).textfield.text =
-                        (indexPath.row == 0) ? item.name: item.content
-                }
-                if indexPath.row == 1 { (cell as! EditTableViewCell).dialPad = true }
+            if mode! == "Contact Info" {
+                cell.textLabel?.text = "Add From Contacts"
+                cell.textLabel?.textColor = UIColor(netHex: "0E7AFE")
+                cell.textLabel?.textAlignment = .center
             } else {
-                
+                cell = EditTableViewCell()
+                (cell as! EditTableViewCell).mode = mode
                 if address == "" {
                     (cell as! EditTableViewCell).textfield.placeholder = "Address"
                 } else {
@@ -75,14 +101,28 @@ class EditTableViewController: UITableViewController {
                 }
                 
             }
-            
-            if indexPath.row == 0 {
-                //(cell as! EditTableViewCell).textfield.becomeFirstResponder()
-            }
-            
         }
         
-        else if indexPath.section == 1 {
+        if indexPath.section == 1 {
+            if mode! == "Contact Info" {
+                cell = EditTableViewCell()
+                (cell as! EditTableViewCell).mode = mode
+                if item == ("Name", "Phone Number") {
+                    (cell as! EditTableViewCell).textfield.placeholder =
+                        (indexPath.row == 0) ? item.name : item.content
+                } else {
+                    (cell as! EditTableViewCell).textfield.text =
+                        (indexPath.row == 0) ? item.name : item.content
+                }
+                if indexPath.row == 1 { (cell as! EditTableViewCell).dialPad = true }
+            } else {
+                cell.textLabel?.text = "Save"
+                cell.textLabel?.textColor = UIColor(netHex: "0E7AFE")
+                cell.textLabel?.textAlignment = .center
+            }
+        }
+        
+        else if indexPath.section == 2 {
             cell.textLabel?.text = "Save"
             cell.textLabel?.textColor = UIColor(netHex: "0E7AFE")
             cell.textLabel?.textAlignment = .center
@@ -93,8 +133,12 @@ class EditTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        if mode == "Contact Info" && indexPath.section == 0 {
+            didTouchContactsButton()
+        }
+        
         // Save and pop
-        if indexPath.section == 1 {
+        if mode == "Address" && indexPath.section == 1 || indexPath.section == 2 {
             saveData()
             let _ = navigationController?.popViewController(animated: true)
         }
@@ -112,8 +156,8 @@ class EditTableViewController: UITableViewController {
                 data.set(cell.textfield.text, forKey: "address")
             }
         } else {
-            let nameCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! EditTableViewCell
-            let numberCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as! EditTableViewCell
+            let nameCell = tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! EditTableViewCell
+            let numberCell = tableView.cellForRow(at: IndexPath(row: 1, section: 1)) as! EditTableViewCell
             item = (name: nameCell.textfield.text!, content: numberCell.textfield.text!)
             if item.name == "" || item.content == "" {
                 emptyTextfieldAlert()

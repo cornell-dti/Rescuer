@@ -57,6 +57,15 @@ class SettingsTableViewController: UITableViewController {
             address = savedAddress
         }
         
+        if data.value(forKey: "error") as? Bool == true {
+             let message = "We couldn't find a valid name or phone number for this contact. Try again, or type the info in manually."
+             let alertController = UIAlertController(title: "Couldn't Add Contact", message: message, preferredStyle: .alert)
+             let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+             alertController.addAction(action)
+             present(alertController, animated: true, completion: nil)
+            data.set(false, forKey: "error")
+        }
+        
         numbers = []
         for index in 0...2 {
             let name = data.value(forKey: "contact_\(index)_name") as? String
@@ -112,8 +121,9 @@ class SettingsTableViewController: UITableViewController {
             editingVC.item = (indexPath.row == numbers.count) ? ("Name", "Phone Number") : numbers[indexPath.row]
         }
         
-        editingVC.mode = indexPath.section == 0 ? "Address" : "Number"
-        editingVC.title = indexPath.section == 0 ? "Home" : editingVC.item.name
+        editingVC.mode = indexPath.section == 0 ? "Address" : "Contact Info"
+        editingVC.title = indexPath.section == 0 ? "Home" :
+            "Name" == editingVC.item.name ? "New Contact" : editingVC.item.name
         editingVC.index = indexPath.row
         
         navigationController?.pushViewController(editingVC, animated: true)
@@ -164,9 +174,9 @@ class SettingsTableViewController: UITableViewController {
         let controllers = [home, guide, settings]
         tabBarController.viewControllers = controllers
         appDelegate.window?.rootViewController = tabBarController
-        home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(), tag: 1)
-        guide.tabBarItem = UITabBarItem(title: "Guide", image: UIImage(), tag: 2)
-        settings.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(), tag: 3)
+        home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home_for_light"), tag: 1)
+        guide.tabBarItem = UITabBarItem(title: "Guide", image: UIImage(named: "guide_for_light"), tag: 2)
+        settings.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "settings_for_light"), tag: 3)
         
         let desiredViewController = UINavigationController(rootViewController: MainTableViewController())
         

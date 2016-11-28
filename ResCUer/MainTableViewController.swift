@@ -66,19 +66,7 @@ class MainTableViewController: UITableViewController {
         let tabHeight = tabBarController?.tabBar.frame.height ?? 0
         let statusBar = UIApplication.shared.value(forKey: "statusBar") as! UIView?
         let statusBarHeight = statusBar?.frame.height ?? 0
-                
-        /*
-         
-         There are 5 "spaces" between all the buttons
-            1) Navigation Controller Bottom to First Button
-            2) First Button to Second Button
-            ...
-            5) Last Button to Tab Controller Top
-         Each cell has two borders, top and bottom, so one of those is
-         the available space divided by 5 spaces, divided again in half
-         
-         */
-        
+
         let viewableSpace = height - tabHeight - statusBarHeight
         let totalCellHeight = viewableSpace / CGFloat(4)
         
@@ -103,6 +91,8 @@ class MainTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        print("row selected: \(indexPath.row)")
         
         // Home
         if indexPath.row == 0 {
