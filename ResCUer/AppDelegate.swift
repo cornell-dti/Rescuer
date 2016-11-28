@@ -22,15 +22,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = UINavigationController(rootViewController: SettingsTableViewController())
         } else {
             let tabBarController = UITabBarController()
+
             let home = UINavigationController(rootViewController: MainTableViewController())
             let guide = UINavigationController(rootViewController: CollapsibleTableViewController())
             let settings = UINavigationController(rootViewController: SettingsTableViewController())
             let controllers = [home, guide, settings]
             tabBarController.viewControllers = controllers
             window?.rootViewController = tabBarController
-            home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(), tag: 1)
-            guide.tabBarItem = UITabBarItem(title: "Guide", image: UIImage(), tag: 2)
-            settings.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(), tag: 3)
+            
+            
+            
+            home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home_for_light"), tag: 1)
+            guide.tabBarItem = UITabBarItem(title: "Guide", image: UIImage(named: "guide_for_light"), tag: 2)
+            settings.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "settings_for_light"), tag: 3)
         }
                 
         window?.makeKeyAndVisible()

@@ -48,7 +48,10 @@ class SettingsTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
+        UIApplication.shared.statusBarStyle = .default
+        self.tabBarController?.tabBar.tintColor = .black
+                
         // Load saved data, if any
         if let savedAddress = data.value(forKey: "address") as? String {
             address = savedAddress
