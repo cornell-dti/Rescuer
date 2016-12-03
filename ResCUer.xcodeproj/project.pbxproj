@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C0BAF591DF3544F0074BD9E /* MainGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0BAF581DF3544F0074BD9E /* MainGuideViewController.swift */; };
+		8C0BAF6B1DF36CD70074BD9E /* CollapsibleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0BAF6A1DF36CD70074BD9E /* CollapsibleTableViewController.swift */; };
+		8C0BAF6D1DF36CF30074BD9E /* CollapsibleTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0BAF6C1DF36CF30074BD9E /* CollapsibleTableViewHeader.swift */; };
 		8C83C3E11DD0DA2600B4B737 /* EmergencyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C83C3E01DD0DA2600B4B737 /* EmergencyTableViewController.swift */; };
 		8CEC8B451DC3FCC500FB1924 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEC8B441DC3FCC500FB1924 /* AppDelegate.swift */; };
 		8CEC8B4C1DC3FCC500FB1924 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CEC8B4B1DC3FCC500FB1924 /* Assets.xcassets */; };
@@ -64,6 +67,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8C0BAF581DF3544F0074BD9E /* MainGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainGuideViewController.swift; sourceTree = "<group>"; };
+		8C0BAF6A1DF36CD70074BD9E /* CollapsibleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollapsibleTableViewController.swift; sourceTree = "<group>"; };
+		8C0BAF6C1DF36CF30074BD9E /* CollapsibleTableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollapsibleTableViewHeader.swift; sourceTree = "<group>"; };
 		8C83C3E01DD0DA2600B4B737 /* EmergencyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmergencyTableViewController.swift; sourceTree = "<group>"; };
 		8CEC8B411DC3FCC500FB1924 /* ResCUer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ResCUer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CEC8B441DC3FCC500FB1924 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -155,6 +161,9 @@
 				BF028F831DCC3BAA00361837 /* MainTableViewController.swift */,
 				8C83C3E01DD0DA2600B4B737 /* EmergencyTableViewController.swift */,
 				BF028F851DCC3C3E00361837 /* MainTableViewCell.swift */,
+				8C0BAF581DF3544F0074BD9E /* MainGuideViewController.swift */,
+				8C0BAF6A1DF36CD70074BD9E /* CollapsibleTableViewController.swift */,
+				8C0BAF6C1DF36CF30074BD9E /* CollapsibleTableViewHeader.swift */,
 				BF591BE81DD60C6E004B5E6B /* SettingsTableViewController.swift */,
 				BF591BEE1DD62D98004B5E6B /* EditTableViewController.swift */,
 				BF591BEC1DD6284B004B5E6B /* EditTableViewCell.swift */,
@@ -382,8 +391,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C0BAF6B1DF36CD70074BD9E /* CollapsibleTableViewController.swift in Sources */,
+				8C0BAF6D1DF36CF30074BD9E /* CollapsibleTableViewHeader.swift in Sources */,
 				8C83C3E11DD0DA2600B4B737 /* EmergencyTableViewController.swift in Sources */,
 				8CEC8B451DC3FCC500FB1924 /* AppDelegate.swift in Sources */,
+				8C0BAF591DF3544F0074BD9E /* MainGuideViewController.swift in Sources */,
 				BF028F841DCC3BAA00361837 /* MainTableViewController.swift in Sources */,
 				BF028F861DCC3C3E00361837 /* MainTableViewCell.swift in Sources */,
 				BF591BEF1DD62D98004B5E6B /* EditTableViewController.swift in Sources */,

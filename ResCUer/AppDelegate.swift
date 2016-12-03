@@ -22,8 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = UINavigationController(rootViewController: SettingsTableViewController())
         } else {
             let tabBarController = UITabBarController()
-            let home = MainTableViewController()
-            let guide = UIViewController()
+
+            let home = UINavigationController(rootViewController: MainTableViewController())
+            let guide = UINavigationController(rootViewController: MainGuideViewController())
             let settings = UINavigationController(rootViewController: SettingsTableViewController())
             let controllers = [home, guide, settings]
             tabBarController.viewControllers = controllers
