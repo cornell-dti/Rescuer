@@ -29,19 +29,34 @@ struct Section {
 class CollapsibleTableViewController: UITableViewController {
     
     var sections = [Section]()
+    var guideSection: GuideSection!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Guide"
+        UIApplication.shared.statusBarStyle = .default
+        self.tabBarController?.tabBar.tintColor = .black
         
-        // Initialize the sections array
-        // Here we have three sections: Mac, iPad, iPhone
+        self.title = guideSection.title
+        
+        if self.title == "Active Shooter"{
         sections = [
-            Section(name: "Run", items: ["If there is an escape path, attempt to evacuate, Evacuate whether other agree or not, Leave your belongings behind, Help others escape if possible, Prevent others from entering the area, Meet at a predetermined area, do not leave campus, Call 911 when you are safe"]),
-            Section(name: "Hide", items: ["iPad Pro", "iPad Air 2", "iPad mini 4", "Accessories"]),
-            Section(name: "Fight", items: ["iPhone 6s", "iPhone 6", "iPhone SE", "Accessories"]),
+            Section(name: "Run", items: ["If there is an escape path, attempt to evacuate", "Evacuate whether others agree or not", "Leave your belongings behind", "Help others escape if possible", "Prevent others from entering the area", "Meet at a predetermined area, do not leave campus", "Call 911 when you are safe"]),
+            Section(name: "Hide", items: ["Lock and/or blockade the door", "Silence your cell phone", "Hide behind large objects", "Remain very quiet"]),
+            Section(name: "Fight", items: ["Attempt to incapacitate the shooter", "Improvise weapons", "Act with physical aggression", "Commit to your actions"]),
+            Section(name: "Law Enforcement on Scene", items: ["Attempt to incapacitate the shooter", "Improvise weapons", "Act with physical aggression", "Commit to your actions"])
         ]
+        }
+        
+        if self.title == "Animal Incidents"{
+            sections = [
+                Section(name: "Animal Inside Building", items: ["just this"]),
+                Section(name: "Unable to Control Animal", items: ["iPad Pro", "iPad Air 2", "iPad mini 4", "Accessories"]),
+                Section(name: "Animal Loose on Campus", items: ["iPhone 6s", "iPhone 6", "iPhone SE", "Accessories"]),
+            ]
+        }
+        
+     
     }
     
 }
