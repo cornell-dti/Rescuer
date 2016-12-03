@@ -29,9 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             tabBarController.viewControllers = controllers
             window?.rootViewController = tabBarController
             
-            home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home_for_light"), tag: 1)
-            guide.tabBarItem = UITabBarItem(title: "Guide", image: UIImage(named: "guide_for_light"), tag: 2)
-            settings.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "settings_for_light"), tag: 3)
+            home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home"), tag: 1)
+            guide.tabBarItem = UITabBarItem(title: "Guide", image: UIImage(named: "guide"), tag: 2)
+            settings.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "settings"), tag: 3)
         }
                 
         window?.makeKeyAndVisible()
