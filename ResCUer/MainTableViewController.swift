@@ -26,13 +26,19 @@ class MainTableViewController: UITableViewController {
         tableView.backgroundColor = UIColor.darkGray
         tableView.isScrollEnabled = false
         
-        let statusBar = UIApplication.shared.value(forKey: "statusBar") as! UIView?
-        let statusBarHeight = statusBar?.frame.height ?? 0
-        tableView.contentInset = UIEdgeInsets(top: statusBarHeight, left: 0, bottom: 0, right: 0)
+        //let statusBar = UIApplication.shared.value(forKey: "statusBar") as! UIView?
+        //let statusBarHeight = statusBar?.frame.height ?? 0
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
+        //navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        //navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
+        
+        navigationController?.navigationBar.barTintColor = UIColor(netHex: "E74E33")
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        
+        
+        title = "Cornell Rescuer"
         
         UIView.animate(withDuration: 0.8, animations: {
             self.view.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
@@ -66,11 +72,12 @@ class MainTableViewController: UITableViewController {
         let tabHeight = tabBarController?.tabBar.frame.height ?? 0
         let statusBar = UIApplication.shared.value(forKey: "statusBar") as! UIView?
         let statusBarHeight = statusBar?.frame.height ?? 0
+        let navHeight = self.navigationController?.navigationBar.frame.height ?? 0
 
-        let viewableSpace = height - tabHeight - statusBarHeight
+        let viewableSpace = height - tabHeight - statusBarHeight - navHeight
         let totalCellHeight = viewableSpace / CGFloat(4)
         
-        let buttonHeight = totalCellHeight * 0.8
+        let buttonHeight = totalCellHeight * 0.7
         let totalSeparation = viewableSpace - (buttonHeight * 4)
         let separation = totalSeparation / 10.0
         
