@@ -44,7 +44,7 @@ class CollapsibleTableViewController: UITableViewController {
             Section(name: "Run", items: ["If there is an escape path, attempt to evacuate", "Evacuate whether others agree or not", "Leave your belongings behind", "Help others escape if possible", "Prevent others from entering the area", "Meet at a predetermined area, do not leave campus", "Call 911 when you are safe"]),
             Section(name: "Hide", items: ["Lock and/or blockade the door", "Silence your cell phone", "Hide behind large objects", "Remain very quiet"]),
             Section(name: "Fight", items: ["Attempt to incapacitate the shooter", "Improvise weapons", "Act with physical aggression", "Commit to your actions"]),
-            Section(name: "Law Enforcement on Scene", items: ["Attempt to incapacitate the shooter", "Improvise weapons", "Act with physical aggression", "Commit to your actions"])
+            Section(name: "Law Enforcement on Scene", items: ["Do exactly as the team of officers instructs", "Do not approach the officers", "Keep your hands visible, fingers spread, and empty"])
         ]
         }
         

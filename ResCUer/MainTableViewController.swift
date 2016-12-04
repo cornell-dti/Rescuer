@@ -107,19 +107,47 @@ class MainTableViewController: UITableViewController {
         else if indexPath.row == 1 {
             
             var accum = 0
-            
             for index in 0...2 {
-                
                 if data.value(forKey: "contact_\(index)_content") is String {
-                    accum = accum + 1
+                    accum += 1
                 }
+            }
+            
+            var alertController: UIAlertController!; var actions = [UIAlertAction]()
+            if accum == 0 {
+                
+                alertController = UIAlertController(title: "No Friends Found", message: "Please add some friends in the settings page.", preferredStyle: .alert)
+                let action = UIAlertAction(title: "Hey, I have friends!", style: UIAlertActionStyle.cancel, handler: nil)
+                actions.append(action)
+                
+            } else {
+                
+                alertController = UIAlertController(title: "Call a Friend", message: "Who do you want to call?", preferredStyle: .alert)
+                
+                for i in 1...accum {
+                    if let number: String = data.value(forKey: "contact_\(i - 1)_content") as! String?,
+                        let name: String = data.value(forKey: "contact_\(i - 1)_name") as! String? {
+                        
+                        let action = UIAlertAction(title: name, style: UIAlertActionStyle.default) {
+                            action in self.call(number: number)
+                        }
+                        
+                        actions.append(action)
+                    }
+                }
+                
+                let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+                actions.append(cancel)
                 
             }
             
+            for action in actions { alertController.addAction(action) }
+            self.present(alertController, animated: true, completion: nil)
+            
+            /*
             
             if accum == 0 {
                 
-                let alertController = UIAlertController(title: "No Friends Found", message: "Please add some friends in the settings page.", preferredStyle: .alert)
                 
                 let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
                 
@@ -199,7 +227,7 @@ class MainTableViewController: UITableViewController {
                     
                 {
                     
-                    let alertController = UIAlertController(title: "Call a Friend", message: "Who do you want to call?", preferredStyle: .alert)
+                    
                     
                     let firstOption = UIAlertAction(title: name1, style: UIAlertActionStyle.default)
                     {
@@ -226,9 +254,8 @@ class MainTableViewController: UITableViewController {
                     self.present(alertController, animated: true, completion: nil)
                     
                 }
-                
-                
-            }
+             
+             } */
             
         }
         
@@ -273,7 +300,6 @@ class MainTableViewController: UITableViewController {
     
     /// Presents a UIAlert where the user can confirm the call and do so
     func confirmCall(number: String, recipient: String) {
-        if number ==
         let message = "Are you sure that you want to call \(number)?"
         let alertController = UIAlertController(title: "Call \(recipient)", message: message, preferredStyle: .alert)
         

@@ -35,7 +35,6 @@ class MainGuideViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        UIApplication.shared.statusBarStyle = .default
         view.backgroundColor = .white
         
         title = "Emergency Guide"
@@ -67,6 +66,10 @@ class MainGuideViewController: UIViewController, UITableViewDataSource, UITableV
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        UIApplication.shared.statusBarStyle = .default
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return guideSections.count
     }
@@ -74,6 +77,7 @@ class MainGuideViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "Reuse")
         cell.textLabel?.text = guideSections[indexPath.row].title
+        cell.accessoryType = .disclosureIndicator
         return cell
         
     }
