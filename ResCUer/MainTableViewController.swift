@@ -273,7 +273,7 @@ class MainTableViewController: UITableViewController {
     
     /// Presents a UIAlert where the user can confirm the call and do so
     func confirmCall(number: String, recipient: String) {
-        if number ==
+        //if number ==
         let message = "Are you sure that you want to call \(number)?"
         let alertController = UIAlertController(title: "Call \(recipient)", message: message, preferredStyle: .alert)
         
