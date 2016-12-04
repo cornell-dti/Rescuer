@@ -149,120 +149,9 @@ class MainTableViewController: UITableViewController {
             }
             
             for action in actions { alertController.addAction(action) }
-            self.present(alertController, animated: true, completion: nil)
-            
-            /*
-            
-            if accum == 0 {
-                
-                
-                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
-                
-                alertController.addAction(okAction)
-                
+            DispatchQueue.main.async {
                 self.present(alertController, animated: true, completion: nil)
-                
-                
             }
-            
-            if accum == 1 {
-                
-                if let number1: String = data.value(forKey: "contact_\(0)_content") as! String?,
-                    let name1: String = data.value(forKey: "contact_\(0)_name") as! String?
-                    
-                {
-                let alertController = UIAlertController(title: "Call a Friend", message: "Who do you want to call?", preferredStyle: .alert)
-                
-                let firstOption = UIAlertAction(title: name1, style: UIAlertActionStyle.default)
-                {
-                    action in self.call(number: number1)
-                }
-                
-                let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
-                
-                alertController.addAction(firstOption)
-                alertController.addAction(cancelAction)
-                
-                self.present(alertController, animated: true, completion: nil)
-                
-                }
-            }
-            
-            if accum == 2 {
-                
-                if let number1: String = data.value(forKey: "contact_\(0)_content") as! String?,
-                    let name1: String = data.value(forKey: "contact_\(0)_name") as! String?,
-                    let number2: String = data.value(forKey: "contact_\(1)_content") as! String?,
-                    let name2: String = data.value(forKey: "contact_\(1)_name") as! String?
-                    
-                    {
-                        
-                    let alertController = UIAlertController(title: "Call a Friend", message: "Who do you want to call?", preferredStyle: .alert)
-                    
-                    let firstOption = UIAlertAction(title: name1, style: UIAlertActionStyle.default)
-                    {
-                        action in self.call(number: number1)
-                    }
-                    
-                    let secondOption = UIAlertAction(title: name2, style: UIAlertActionStyle.default)
-                    {
-                        action in self.call(number: number2)
-                    }
-                    
-                    let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
-                    
-                    alertController.addAction(firstOption)
-                    alertController.addAction(secondOption)
-                    alertController.addAction(cancelAction)
-                    
-                    self.present(alertController, animated: true, completion: nil)
-                    
-                    }
-                
-                
-            }
-            
-            if accum == 3 {
-                
-                if let number1: String = data.value(forKey: "contact_\(0)_content") as! String?,
-                    let name1: String = data.value(forKey: "contact_\(0)_name") as! String?,
-                    let number2: String = data.value(forKey: "contact_\(1)_content") as! String?,
-                    let name2: String = data.value(forKey: "contact_\(1)_name") as! String?,
-                    let number3: String = data.value(forKey: "contact_\(2)_content") as! String?,
-                    let name3: String = data.value(forKey: "contact_\(2)_name") as! String?
-                    
-                    
-                {
-                    
-                    
-                    
-                    let firstOption = UIAlertAction(title: name1, style: UIAlertActionStyle.default)
-                    {
-                        action in self.call(number: number1)
-                    }
-                    
-                    let secondOption = UIAlertAction(title: name2, style: UIAlertActionStyle.default)
-                    {
-                        action in self.call(number: number2)
-                    }
-                    
-                    let thirdOption = UIAlertAction(title: name3, style: UIAlertActionStyle.default)
-                    {
-                        action in self.call(number: number3)
-                    }
-                    
-                    let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
-                    
-                    alertController.addAction(firstOption)
-                    alertController.addAction(secondOption)
-                    alertController.addAction(thirdOption)
-                    alertController.addAction(cancelAction)
-                    
-                    self.present(alertController, animated: true, completion: nil)
-                    
-                }
-             
-             } */
             
         }
         
@@ -296,7 +185,9 @@ class MainTableViewController: UITableViewController {
             alertController.addAction(thirdOption)
             alertController.addAction(cancelAction)
             
-            self.present(alertController, animated: true, completion: nil)
+            DispatchQueue.main.async {
+                self.present(alertController, animated: true, completion: nil)
+            }
             
         }
         
@@ -317,7 +208,12 @@ class MainTableViewController: UITableViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
         alertController.addAction(yesAction)
         alertController.addAction(cancelAction)
-        self.present(alertController, animated: true, completion: nil)
+        
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true, completion: nil)
+        }
+        
+        
     }
     
     /// Attempts to call phone number, fires callError if there is a failure
@@ -339,7 +235,9 @@ class MainTableViewController: UITableViewController {
         let alertController = UIAlertController(title: "Invalid Phone Number", message: message, preferredStyle: .alert)
             let action = UIAlertAction(title: "OK", style: .default) { (action) in }
             alertController.addAction(action)
-        self.present(alertController, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
     
     // MARK: Location Functions
