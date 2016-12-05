@@ -219,15 +219,22 @@ class MainTableViewController: UITableViewController {
     
     /// Attempts to call phone number, fires callError if there is a failure
     func call(number: String) {
-        if let phoneCallNumber = URL(string: "tel://\(number)") {
+        var number2 = number
+        if number.range(of:"+") != nil{
+            number2 = number.replacingOccurrences(of: "+", with: "", options: NSString.CompareOptions.literal, range:nil)
+        }
+        if number2.range(of:" ") != nil{
+            number2 = number.replacingOccurrences(of: " ", with: "", options: NSString.CompareOptions.literal, range:nil)
+            }
+        if let phoneCallNumber = URL(string: "tel://\(number2)") {
             if UIApplication.shared.canOpenURL(phoneCallNumber) {
                 if #available(iOS 10.0, *) {
                     UIApplication.shared.open(phoneCallNumber, options: [:], completionHandler: nil)
                 } else {
                     UIApplication.shared.openURL(phoneCallNumber)
                 }
-            } else { callError(number) }
-        } else { callError(number) }
+            } else { callError(number2) }
+        } else { callError(number2) }
     }
     
     /// Presents a UIAlert in the MainTableView Controller informing users of the invalid phone number

@@ -40,8 +40,6 @@ class CollapsibleTableViewController: UITableViewController {
         
         self.title = guideSection.title
         
-        var cellHeight = self
-        
         if self.title == "Active Shooter"{
         sections = [
             Section(name: "Run", items: ["If there is an escape path, attempt to evacuate", "Evacuate whether others agree or not", "Leave your belongings behind", "Help others escape if possible", "Prevent others from entering the area", "Meet at a predetermined area, do not leave campus", "Call 911 when you are safe"]),
@@ -86,19 +84,26 @@ extension CollapsibleTableViewController {
         
         cell.textLabel?.text = sections[(indexPath as NSIndexPath).section].items[(indexPath as NSIndexPath).row]
         
-        
         return cell
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as UITableViewCell? ?? UITableViewCell(style: .default, reuseIdentifier: "cell")
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as UITableViewCell? ?? UITableViewCell(style: .default, reuseIdentifier: "cell")
         
-        cell.textLabel?.preferredMaxLayoutWidth = CGFloat(1.0)
-        let lines = cell.textLabel?.numberOfLines
-        print (lines)
-        var cellHeight = Double(lines!) * 8.0
+//        cell.textLabel?.preferredMaxLayoutWidth = CGFloat(1.0)
+//        let lines = cell.textLabel?.numberOfLines
+//        print (lines)
+//        var cellHeight = Double(lines!) * 8.0
         
-        return sections[(indexPath as NSIndexPath).section].collapsed! ? 0 : 65.0
+        return sections[(indexPath as NSIndexPath).section].collapsed! ? 0 : 44.0
     }
     
     // Header
