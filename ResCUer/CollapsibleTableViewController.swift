@@ -31,6 +31,7 @@ class CollapsibleTableViewController: UITableViewController {
     var sections = [Section]()
     var guideSection: GuideSection!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,12 +40,14 @@ class CollapsibleTableViewController: UITableViewController {
         
         self.title = guideSection.title
         
+        var cellHeight = self
+        
         if self.title == "Active Shooter"{
         sections = [
             Section(name: "Run", items: ["If there is an escape path, attempt to evacuate", "Evacuate whether others agree or not", "Leave your belongings behind", "Help others escape if possible", "Prevent others from entering the area", "Meet at a predetermined area, do not leave campus", "Call 911 when you are safe"]),
             Section(name: "Hide", items: ["Lock and/or blockade the door", "Silence your cell phone", "Hide behind large objects", "Remain very quiet"]),
             Section(name: "Fight", items: ["Attempt to incapacitate the shooter", "Improvise weapons", "Act with physical aggression", "Commit to your actions"]),
-            Section(name: "Law Enforcement on Scene", items: ["Attempt to incapacitate the shooter", "Improvise weapons", "Act with physical aggression", "Commit to your actions"])
+            Section(name: "Law Enforcement on Scene", items: ["Do exactly as the team of officers instructs", "Do not approach the officers", "Keep your hands visible, fingers spread, and empty"])
         ]
         }
         
@@ -83,11 +86,19 @@ extension CollapsibleTableViewController {
         
         cell.textLabel?.text = sections[(indexPath as NSIndexPath).section].items[(indexPath as NSIndexPath).row]
         
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return sections[(indexPath as NSIndexPath).section].collapsed! ? 0 : 44.0
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as UITableViewCell? ?? UITableViewCell(style: .default, reuseIdentifier: "cell")
+        
+        cell.textLabel?.preferredMaxLayoutWidth = CGFloat(1.0)
+        let lines = cell.textLabel?.numberOfLines
+        print (lines)
+        var cellHeight = Double(lines!) * 8.0
+        
+        return sections[(indexPath as NSIndexPath).section].collapsed! ? 0 : 65.0
     }
     
     // Header
