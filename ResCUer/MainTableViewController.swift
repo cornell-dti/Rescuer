@@ -219,14 +219,11 @@ class MainTableViewController: UITableViewController {
     
     /// Attempts to call phone number, fires callError if there is a failure
     func call(number: String) {
-        var number2 = number
-        if number.range(of:"+") != nil{
-            number2 = number.replacingOccurrences(of: "+", with: "", options: NSString.CompareOptions.literal, range:nil)
-        }
-        if number2.range(of:" ") != nil{
-            number2 = number.replacingOccurrences(of: " ", with: "", options: NSString.CompareOptions.literal, range:nil)
-            }
+        
+        let number2 = number.components(separatedBy: CharacterSet.decimalDigits.inverted).joined(separator: "")
+        
         if let phoneCallNumber = URL(string: "tel://\(number2)") {
+            
             if UIApplication.shared.canOpenURL(phoneCallNumber) {
                 if #available(iOS 10.0, *) {
                     UIApplication.shared.open(phoneCallNumber, options: [:], completionHandler: nil)
