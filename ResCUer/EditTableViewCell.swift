@@ -41,7 +41,7 @@ class EditTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if mode == "Number" && dialPad { textfield.keyboardType = .phonePad }
+        if dialPad { textfield.keyboardType = .phonePad }
         return true
     }
     
