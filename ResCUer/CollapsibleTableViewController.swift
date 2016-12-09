@@ -16,7 +16,7 @@ struct Section {
     var items: [String]!
     var collapsed: Bool!
     
-    init(name: String, items: [String], collapsed: Bool = true) {
+    init(name: String, items: [String], collapsed: Bool = false) {
         self.name = name
         self.items = items
         self.collapsed = collapsed
@@ -28,9 +28,13 @@ struct Section {
 //
 class CollapsibleTableViewController: UITableViewController {
     
-    var sections = [Section]()
-    var guideSection: GuideSection!
+    override func viewWillAppear(_ animated: Bool) {
+        UIApplication.shared.statusBarStyle = .default
+    }
     
+    var sections = [Section]()
+    //var guideSection: GuideSection!
+    var value: [(name: String, values: [String])] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,11 +42,15 @@ class CollapsibleTableViewController: UITableViewController {
         UIApplication.shared.statusBarStyle = .default
         self.tabBarController?.tabBar.tintColor = .black
         
-        self.title = guideSection.title
+        for entry in value {
+            let item = Section(name: entry.name, items: entry.values)
+            sections.append(item)
+        }
         
+        /*
         if self.title == "Active Shooter"{
         sections = [
-            Section(name: "Run", items: ["If there is an escape path, attempt to evacuate", "Evacuate whether others agree or not", "Leave your belongings behind", "Help others escape if possible", "Prevent others from entering the area", "Meet at a predetermined area, do not leave campus", "Call 911 when you are safe"]),
+            Section(name: "Run", items: ["If there is an escape path, attempt to evacuateIf there is an escape path, attempt to evacuateIf there is an escape path, attempt to evacuateIf there is an escape path, attempt to evacuateIf there is an escape path, attempt to evacuateIf there is an escape path, attempt to evacuateIf there is an escape path, attempt to evacuateIf there is an escape path, attempt to evacuateIf there is an escape path, attempt to evacuate", "Evacuate whether others agree or not", "Leave your belongings behind", "Help others escape if possible", "Prevent others from entering the area", "Meet at a predetermined area, do not leave campus", "Call 911 when you are safe"]),
             Section(name: "Hide", items: ["Lock and/or blockade the door", "Silence your cell phone", "Hide behind large objects", "Remain very quiet"]),
             Section(name: "Fight", items: ["Attempt to incapacitate the shooter", "Improvise weapons", "Act with physical aggression", "Commit to your actions"]),
             Section(name: "Law Enforcement on Scene", items: ["Do exactly as the team of officers instructs", "Do not approach the officers", "Keep your hands visible, fingers spread, and empty"])
@@ -56,6 +64,7 @@ class CollapsibleTableViewController: UITableViewController {
                 Section(name: "Animal Loose on Campus", items: ["iPhone 6s", "iPhone 6", "iPhone SE", "Accessories"]),
             ]
         }
+ */
         
      
     }
@@ -78,32 +87,34 @@ extension CollapsibleTableViewController {
     
     // Cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as UITableViewCell? ?? UITableViewCell(style: .default, reuseIdentifier: "cell")
         
         cell.selectionStyle = .none
+        cell.textLabel?.frame.size.width = cell.frame.size.width
+        cell.textLabel?.numberOfLines = 0
         
         cell.textLabel?.text = sections[(indexPath as NSIndexPath).section].items[(indexPath as NSIndexPath).row]
         
         return cell
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
-    
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
+//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        return UITableViewAutomaticDimension
+//    }
+//    
+//    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        return UITableViewAutomaticDimension
+//    }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as UITableViewCell? ?? UITableViewCell(style: .default, reuseIdentifier: "cell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as UITableViewCell? ?? UITableViewCell(style: .default, reuseIdentifier: "cell")
         
-//        cell.textLabel?.preferredMaxLayoutWidth = CGFloat(1.0)
-//        let lines = cell.textLabel?.numberOfLines
-//        print (lines)
-//        var cellHeight = Double(lines!) * 8.0
-        
-        return sections[(indexPath as NSIndexPath).section].collapsed! ? 0 : 44.0
+        cell.frame.size.width = view.frame.size.width
+        print("label text before func call: \(cell.textLabel?.text)")
+        let secondPart = cell.textLabel?.requiredHeight()
+        if secondPart != nil { print("secondPart: \(secondPart)") }
+        return sections[(indexPath as NSIndexPath).section].collapsed! ? 0 : UITableViewAutomaticDimension
     }
     
     // Header
@@ -148,4 +159,22 @@ extension CollapsibleTableViewController: CollapsibleTableViewHeaderDelegate {
         tableView.endUpdates()
     }
     
+}
+
+extension UILabel {
+    
+    func requiredHeight() -> CGFloat {
+        
+        let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: CGFloat.greatestFiniteMagnitude))
+        label.numberOfLines = 0
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.font = self.font
+        label.text = self.text
+        
+        label.sizeToFit()
+        
+        print("label frame: \(label.frame)")
+        
+        return label.frame.height
+    }
 }

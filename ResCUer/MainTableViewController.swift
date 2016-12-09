@@ -222,7 +222,12 @@ class MainTableViewController: UITableViewController {
         
         let number2 = number.components(separatedBy: CharacterSet.decimalDigits.inverted).joined(separator: "")
         
+        // this is my parsing solution, pretty optimized if you ask me
+        // if user doesnt enter a valid number theres a problem (we need to check if there are letters or things other than numbers and - and () and " "
+        
+        
         if let phoneCallNumber = URL(string: "tel://\(number2)") {
+            
             
             if UIApplication.shared.canOpenURL(phoneCallNumber) {
                 if #available(iOS 10.0, *) {
@@ -230,8 +235,8 @@ class MainTableViewController: UITableViewController {
                 } else {
                     UIApplication.shared.openURL(phoneCallNumber)
                 }
-            } else { callError(number2) }
-        } else { callError(number2) }
+            } else { callError(number) }
+        } else { callError(number) }
     }
     
     /// Presents a UIAlert in the MainTableView Controller informing users of the invalid phone number

@@ -8,9 +8,6 @@
 
 import UIKit
 
-    
-var guideSections = [GuideSection]()
-
 class GuideSection
     
 {
@@ -31,37 +28,25 @@ class GuideSection
 class MainGuideViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var tableView: UITableView!
+    let topics = ["Active Shooter", "Animal Incidents", "Bomb Threat", "Building Evacuation", "Crime", "Earthquake", "Elevator Emergency",
+                  "Facility or Utility Problem", "Fire, Smoke, Explosion", "Hazardous Materials", "Medical/Health Emergency", "Severe Weather",
+                  "Suspicious Mail or Package", "Workplace Violence"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        //view.backgroundColor = .white
         
         title = "Emergency Guide"
         
         tableView = UITableView(frame: view.frame)
-        tableView.backgroundColor = .white
+        //tableView.backgroundColor = .white
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
         
         view.addSubview(tableView)
         
-        
-        guideSections.append(GuideSection(title: "Active Shooter", text: ""))
-        guideSections.append(GuideSection(title: "Animal Incidents", text: "weriherw"))
-        guideSections.append(GuideSection(title: "Bomb Threat", text: ""))
-        guideSections.append(GuideSection(title: "Building Evacuation", text: ""))
-        guideSections.append(GuideSection(title: "Crime", text: ""))
-        guideSections.append(GuideSection(title: "Earthquake", text: ""))
-        guideSections.append(GuideSection(title: "Elevator Emergency", text: ""))
-        guideSections.append(GuideSection(title: "Facility or Utility Problem", text: ""))
-        guideSections.append(GuideSection(title: "Fire, Smoke, Explosion", text: ""))
-        guideSections.append(GuideSection(title: "Hazardous Materials", text: ""))
-        guideSections.append(GuideSection(title: "Medical/Health Emergency", text: ""))
-        guideSections.append(GuideSection(title: "Severe Weather", text: ""))
-        guideSections.append(GuideSection(title: "Suspicious Mail or Package", text: ""))
-        guideSections.append(GuideSection(title: "Workplace Violence", text: " "))
         
         
     }
@@ -71,22 +56,22 @@ class MainGuideViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return guideSections.count
+        return topics.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "Reuse")
-        cell.textLabel?.text = guideSections[indexPath.row].title
+        cell.textLabel?.text = topics[indexPath.row]
         cell.accessoryType = .disclosureIndicator
         return cell
         
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let guideSection = guideSections[indexPath.row]
-        
+
         let guideDetailViewController = CollapsibleTableViewController()
-        guideDetailViewController.guideSection = guideSection
+        guideDetailViewController.value = GuideText(topics[indexPath.row]).value
+        guideDetailViewController.title = topics[indexPath.row]
         
         navigationController?.pushViewController(guideDetailViewController, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
