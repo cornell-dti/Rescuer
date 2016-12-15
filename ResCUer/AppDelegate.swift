@@ -30,8 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             tabBarController.viewControllers = controllers
             window?.rootViewController = tabBarController
             
-            home.tabBarItem = UITabBarItem(title: "Cornell Rescuer", image: UIImage(named: "home"), tag: 1)
-            guide.tabBarItem = UITabBarItem(title: "Emergency Guide", image: UIImage(named: "guide"), tag: 2)
+            home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home"), tag: 1)
+            guide.tabBarItem = UITabBarItem(title: "Guide", image: UIImage(named: "guide"), tag: 2)
             settings.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "settings"), tag: 3)
         }
                 

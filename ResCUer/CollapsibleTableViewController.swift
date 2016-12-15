@@ -33,14 +33,15 @@ class CollapsibleTableViewController: UITableViewController {
     }
     
     var sections = [Section]()
-    //var guideSection: GuideSection!
     var value: [(name: String, values: [String])] = []
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+                //super.viewDidLoad()
         
-        UIApplication.shared.statusBarStyle = .default
         self.tabBarController?.tabBar.tintColor = .black
+        let backButton = UIBarButtonItem()
+        backButton.title = "Guide"
+        self.navigationItem.backBarButtonItem? = backButton
         
         for entry in value {
             let item = Section(name: entry.name, items: entry.values)
