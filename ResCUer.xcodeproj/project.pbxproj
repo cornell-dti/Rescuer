@@ -21,11 +21,6 @@
 		BF591BE91DD60C6E004B5E6B /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF591BE81DD60C6E004B5E6B /* SettingsTableViewController.swift */; };
 		BF591BED1DD6284B004B5E6B /* EditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF591BEC1DD6284B004B5E6B /* EditTableViewCell.swift */; };
 		BF591BEF1DD62D98004B5E6B /* EditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF591BEE1DD62D98004B5E6B /* EditTableViewController.swift */; };
-		BFBEC12D1DD6A73D003F67A8 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFBEC12C1DD6A73D003F67A8 /* NotificationCenter.framework */; };
-		BFBEC1301DD6A73D003F67A8 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBEC12F1DD6A73D003F67A8 /* TodayViewController.swift */; };
-		BFBEC1331DD6A73D003F67A8 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFBEC1311DD6A73D003F67A8 /* MainInterface.storyboard */; };
-		BFBEC1371DD6A73D003F67A8 /* Rescuer Today Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BFBEC12A1DD6A73D003F67A8 /* Rescuer Today Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		BFBEC13D1DD6A909003F67A8 /* TodayViewCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBEC13C1DD6A909003F67A8 /* TodayViewCollectionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,13 +38,6 @@
 			remoteGlobalIDString = 8CEC8B401DC3FCC500FB1924;
 			remoteInfo = ResCUer;
 		};
-		BFBEC1351DD6A73D003F67A8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8CEC8B391DC3FCC500FB1924 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = BFBEC1291DD6A73D003F67A8;
-			remoteInfo = "Rescuer Today Extension";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -59,7 +47,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				BFBEC1371DD6A73D003F67A8 /* Rescuer Today Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -88,13 +75,7 @@
 		BF591BEC1DD6284B004B5E6B /* EditTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTableViewCell.swift; sourceTree = "<group>"; };
 		BF591BEE1DD62D98004B5E6B /* EditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTableViewController.swift; sourceTree = "<group>"; };
 		BFBEC1251DD6745C003F67A8 /* ResCUer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ResCUer.entitlements; sourceTree = "<group>"; };
-		BFBEC12A1DD6A73D003F67A8 /* Rescuer Today Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Rescuer Today Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFBEC12C1DD6A73D003F67A8 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
-		BFBEC12F1DD6A73D003F67A8 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		BFBEC1321DD6A73D003F67A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		BFBEC1341DD6A73D003F67A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BFBEC13C1DD6A909003F67A8 /* TodayViewCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayViewCollectionCell.swift; sourceTree = "<group>"; };
-		BFBEC13E1DD6C9B4003F67A8 /* Rescuer Today Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Rescuer Today Extension.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,14 +100,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BFBEC1271DD6A73D003F67A8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BFBEC12D1DD6A73D003F67A8 /* NotificationCenter.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -136,7 +109,6 @@
 				8CEC8B431DC3FCC500FB1924 /* ResCUer */,
 				8CEC8B581DC3FCC500FB1924 /* ResCUerTests */,
 				8CEC8B631DC3FCC500FB1924 /* ResCUerUITests */,
-				BFBEC12E1DD6A73D003F67A8 /* Rescuer Today Extension */,
 				BFBEC12B1DD6A73D003F67A8 /* Frameworks */,
 				8CEC8B421DC3FCC500FB1924 /* Products */,
 			);
@@ -148,7 +120,6 @@
 				8CEC8B411DC3FCC500FB1924 /* ResCUer.app */,
 				8CEC8B551DC3FCC500FB1924 /* ResCUerTests.xctest */,
 				8CEC8B601DC3FCC500FB1924 /* ResCUerUITests.xctest */,
-				BFBEC12A1DD6A73D003F67A8 /* Rescuer Today Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -200,18 +171,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		BFBEC12E1DD6A73D003F67A8 /* Rescuer Today Extension */ = {
-			isa = PBXGroup;
-			children = (
-				BFBEC13E1DD6C9B4003F67A8 /* Rescuer Today Extension.entitlements */,
-				BFBEC12F1DD6A73D003F67A8 /* TodayViewController.swift */,
-				BFBEC13C1DD6A909003F67A8 /* TodayViewCollectionCell.swift */,
-				BFBEC1311DD6A73D003F67A8 /* MainInterface.storyboard */,
-				BFBEC1341DD6A73D003F67A8 /* Info.plist */,
-			);
-			path = "Rescuer Today Extension";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -227,7 +186,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				BFBEC1361DD6A73D003F67A8 /* PBXTargetDependency */,
 			);
 			name = ResCUer;
 			productName = ResCUer;
@@ -270,23 +228,6 @@
 			productReference = 8CEC8B601DC3FCC500FB1924 /* ResCUerUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		BFBEC1291DD6A73D003F67A8 /* Rescuer Today Extension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BFBEC1381DD6A73D003F67A8 /* Build configuration list for PBXNativeTarget "Rescuer Today Extension" */;
-			buildPhases = (
-				BFBEC1261DD6A73D003F67A8 /* Sources */,
-				BFBEC1271DD6A73D003F67A8 /* Frameworks */,
-				BFBEC1281DD6A73D003F67A8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Rescuer Today Extension";
-			productName = "Rescuer Today Extension";
-			productReference = BFBEC12A1DD6A73D003F67A8 /* Rescuer Today Extension.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -319,16 +260,6 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 8CEC8B401DC3FCC500FB1924;
 					};
-					BFBEC1291DD6A73D003F67A8 = {
-						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = FV2G57GLFW;
-						ProvisioningStyle = Automatic;
-						SystemCapabilities = {
-							com.apple.ApplicationGroups.iOS = {
-								enabled = 0;
-							};
-						};
-					};
 				};
 			};
 			buildConfigurationList = 8CEC8B3C1DC3FCC500FB1924 /* Build configuration list for PBXProject "ResCUer" */;
@@ -347,7 +278,6 @@
 				8CEC8B401DC3FCC500FB1924 /* ResCUer */,
 				8CEC8B541DC3FCC500FB1924 /* ResCUerTests */,
 				8CEC8B5F1DC3FCC500FB1924 /* ResCUerUITests */,
-				BFBEC1291DD6A73D003F67A8 /* Rescuer Today Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -373,14 +303,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BFBEC1281DD6A73D003F67A8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BFBEC1331DD6A73D003F67A8 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,15 +342,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BFBEC1261DD6A73D003F67A8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BFBEC13D1DD6A909003F67A8 /* TodayViewCollectionCell.swift in Sources */,
-				BFBEC1301DD6A73D003F67A8 /* TodayViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -442,11 +355,6 @@
 			target = 8CEC8B401DC3FCC500FB1924 /* ResCUer */;
 			targetProxy = 8CEC8B611DC3FCC500FB1924 /* PBXContainerItemProxy */;
 		};
-		BFBEC1361DD6A73D003F67A8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = BFBEC1291DD6A73D003F67A8 /* Rescuer Today Extension */;
-			targetProxy = BFBEC1351DD6A73D003F67A8 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -456,14 +364,6 @@
 				8CEC8B4E1DC3FCC500FB1924 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		BFBEC1311DD6A73D003F67A8 /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BFBEC1321DD6A73D003F67A8 /* Base */,
-			);
-			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -567,7 +467,6 @@
 		8CEC8B6A1DC3FCC500FB1924 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -584,7 +483,6 @@
 		8CEC8B6B1DC3FCC500FB1924 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -660,38 +558,6 @@
 			};
 			name = Release;
 		};
-		BFBEC1391DD6A73D003F67A8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = FV2G57GLFW;
-				INFOPLIST_FILE = "Rescuer Today Extension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mattbarker.Rescuer.TodayExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		BFBEC13A1DD6A73D003F67A8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = FV2G57GLFW;
-				INFOPLIST_FILE = "Rescuer Today Extension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mattbarker.Rescuer.TodayExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -727,15 +593,6 @@
 			buildConfigurations = (
 				8CEC8B701DC3FCC500FB1924 /* Debug */,
 				8CEC8B711DC3FCC500FB1924 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BFBEC1381DD6A73D003F67A8 /* Build configuration list for PBXNativeTarget "Rescuer Today Extension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BFBEC1391DD6A73D003F67A8 /* Debug */,
-				BFBEC13A1DD6A73D003F67A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -112,43 +112,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //let storyboard = UIStoryboard(name: "Main", bundle: nil)
         var vc: MainTableViewController? = nil
         if !(window!.rootViewController is UITabBarController) {
-            // app has never been open, either disable or ignore
-        }
-        for navController in (window!.rootViewController! as! UITabBarController).childViewControllers {
-            let controller = (navController as! UINavigationController).viewControllers.first
-            if controller is MainTableViewController {
-                vc = controller as? MainTableViewController
+            print("caught error"); handled = false
+        } else {
+            
+            for navController in (window!.rootViewController! as! UITabBarController).childViewControllers {
+                let controller = (navController as! UINavigationController).viewControllers.first
+                if controller is MainTableViewController {
+                    vc = controller as? MainTableViewController
+                }
             }
+            
+            switch (shortCutType) {
+            case ShortcutIdentifier.Home.type:
+                vc?.zeroSelected(); handled = true; break
+            case ShortcutIdentifier.Friends.type:
+                vc?.oneSelected(); handled = true; break
+            case ShortcutIdentifier.Taxi.type:
+                vc?.twoSelected(); handled = true; break
+            case ShortcutIdentifier.Emergency.type:
+                vc?.threeSelected(); handled = true; break
+            default: break
+            }
+            
         }
-        
-        switch (shortCutType) {
-        case ShortcutIdentifier.Home.type:
-            vc?.zeroSelected()
-            handled = true
-            break
-        case ShortcutIdentifier.Friends.type:
-            vc?.oneSelected()
-            handled = true
-            break
-        case ShortcutIdentifier.Taxi.type:
-            vc?.twoSelected()
-            handled = true
-            break
-        case ShortcutIdentifier.Emergency.type:
-            vc?.threeSelected()
-            handled = true
-            break
-        default:
-            break
-        }
-        
-        // Display the selected view controller
-        /*
-        window!.rootViewController?.present(mainTVC, animated: true, completion: {
-            (home.viewControllers.first as! MainTableViewController)
-                .tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
-        })*/
-        
+
         return handled
         
     }

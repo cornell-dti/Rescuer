@@ -26,7 +26,7 @@
 	<array>
 		<dict>
 			<key>UIApplicationShortcutItemIconType</key>
-			<string>UIApplicationShortcutIconTypeFavorite</string>
+			<string>UIApplicationShortcutIconTypeHome</string>
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>Get Directions Home</string>
 			<key>UIApplicationShortcutItemType</key>
@@ -39,7 +39,7 @@
 		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemIconType</key>
-			<string>UIApplicationShortcutIconTypeFavorite</string>
+			<string>UIApplicationShortcutIconTypeContact</string>
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>Call A Friend</string>
 			<key>UIApplicationShortcutItemType</key>
@@ -65,7 +65,7 @@
 		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemIconType</key>
-			<string>UIApplicationShortcutIconTypeFavorite</string>
+			<string>UIApplicationShortcutIconTypeLove</string>
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>Call Emergency Services</string>
 			<key>UIApplicationShortcutItemType</key>
@@ -74,69 +74,6 @@
 			<dict>
 				<key>secondShortcutKey1</key>
 				<string>fourthShortcutValue1</string>
-			</dict>
-		</dict>
-	</array>
-	<key>UIApplicationShortcutItemsMine</key>
-	<array>
-		<dict>
-			<key>UIApplicationShorcutItemTitle</key>
-			<string>Get Directions Home</string>
-			<key>UIApplicationShortcutItemIconType</key>
-			<string>UIApplicationShortcutItemIconTypeFavorite</string>
-			<key>UIApplicationShortcutItemSubtitle</key>
-			<string></string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER).Home</string>
-			<key>UIApplicationShortcutItemUserInfo</key>
-			<dict>
-				<key>shortcutKey1</key>
-				<string>shortcutKeyValue1</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>UIApplicationShorcutItemTitle</key>
-			<string>Call A Friend</string>
-			<key>UIApplicationShortcutItemIconType</key>
-			<string>UIApplicationShortcutItemIconTypeFavorite</string>
-			<key>UIApplicationShortcutItemSubtitle</key>
-			<string></string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER).Friends</string>
-			<key>UIApplicationShortcutItemUserInfo</key>
-			<dict>
-				<key>shortcutKey1</key>
-				<string>shortcutKeyValue1</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>UIApplicationShorcutItemTitle</key>
-			<string>Call A Taxi</string>
-			<key>UIApplicationShortcutItemIconType</key>
-			<string>UIApplicationShortcutItemIconTypeFavorite</string>
-			<key>UIApplicationShortcutItemSubtitle</key>
-			<string></string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER).Taxi</string>
-			<key>UIApplicationShortcutItemUserInfo</key>
-			<dict>
-				<key>shortcutKey1</key>
-				<string>shortcutKeyValue1</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>UIApplicationShorcutItemTitle</key>
-			<string>Call Emergency Services</string>
-			<key>UIApplicationShortcutItemIconType</key>
-			<string>UIApplicationShortcutItemIconTypeFavorite</string>
-			<key>UIApplicationShortcutItemSubtitle</key>
-			<string></string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER).Emergency</string>
-			<key>UIApplicationShortcutItemUserInfo</key>
-			<dict>
-				<key>shortcutKey1</key>
-				<string>shortcutKeyValue1</string>
 			</dict>
 		</dict>
 	</array>
