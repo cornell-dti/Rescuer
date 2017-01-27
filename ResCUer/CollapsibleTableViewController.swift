@@ -108,15 +108,14 @@ extension CollapsibleTableViewController {
 //        return UITableViewAutomaticDimension
 //    }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as UITableViewCell? ?? UITableViewCell(style: .default, reuseIdentifier: "cell")
-        
-        cell.frame.size.width = view.frame.size.width
-        print("label text before func call: \(cell.textLabel?.text)")
-        let secondPart = cell.textLabel?.requiredHeight()
-        if secondPart != nil { print("secondPart: \(secondPart)") }
-        return sections[(indexPath as NSIndexPath).section].collapsed! ? 0 : UITableViewAutomaticDimension
-    }
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as UITableViewCell? ?? UITableViewCell(style: .default, reuseIdentifier: "cell")
+//        
+//        cell.frame.size.width = view.frame.size.width
+//        print("label text before func call: \(cell.textLabel?.text)")
+//        let secondPart = cell.textLabel?.requiredHeight()
+//        return sections[(indexPath as NSIndexPath).section].collapsed! ? 0 : UITableViewAutomaticDimension
+//    }
     
     // Header
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

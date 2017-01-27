@@ -15,7 +15,7 @@ public struct GuideText {
     let activeShooter: [(name: String, values: [String])] = [
         
         ("Run",
-         ["If there is an escape path, attempt to evacuate",
+         ["If there is an escape path, attempt to evacuate EXTRA STUFF LOLOLOL HAHAHAHAHA ",
           "Evacuate whether others agree or not",
           "Leave your belongings behind",
           "Help others escape if possible",
