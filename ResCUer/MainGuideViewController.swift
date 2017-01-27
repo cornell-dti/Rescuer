@@ -73,6 +73,9 @@ class MainGuideViewController: UIViewController, UITableViewDataSource, UITableV
         guideDetailViewController.value = GuideText(topics[indexPath.row]).value
         guideDetailViewController.title = topics[indexPath.row]
         
+        let backButton = UIBarButtonItem(title: "Guide", style:.plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backButton
+        
         navigationController?.pushViewController(guideDetailViewController, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
