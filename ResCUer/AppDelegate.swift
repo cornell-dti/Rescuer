@@ -8,13 +8,43 @@
 
 import UIKit
 
+/// Saved shortcut item used as a result of an app launch, used later when app is activated.
+var launchedShortcutItem: UIApplicationShortcutItem?
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    enum ShortcutIdentifier: String {
+        case Home
+        case Friends
+        case Taxi
+        case Emergency
+        
+        // MARK: Initializers
+        
+        init?(fullIdentifier: String) {
+            guard let shortIdentifier = fullIdentifier.components(separatedBy: ".").last else {
+                return nil
+            }
+            self.init(rawValue: shortIdentifier)
+        }
+        
+        // MARK: Properties
+        
+        var type: String {
+            return Bundle.main.bundleIdentifier! + ".\(self.rawValue)"
+        }
+    }
 
     var window: UIWindow?
     let data = UserDefaults(suiteName: "group.rescuer")!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
+            
+            launchedShortcutItem = shortcutItem
+        }
         
         window = UIWindow()
                 
@@ -42,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -59,6 +89,88 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
+        guard let shortcut = launchedShortcutItem else { return }
+        let _ = handleShortCutItem(shortcut)
+        launchedShortcutItem = nil
+        
+    }
+    
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        let handledShortCutItem = handleShortCutItem(shortcutItem)
+        completionHandler(handledShortCutItem)
+    }
+    
+    func handleShortCutItem(_ shortcutItem: UIApplicationShortcutItem) -> Bool {
+        var handled = false
+        
+        // Verify that the provided `shortcutItem`'s `type` is one handled by the application.
+        guard ShortcutIdentifier(fullIdentifier: shortcutItem.type) != nil else { return false }
+        
+        guard let shortCutType = shortcutItem.type as String? else { return false }
+        
+        //let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        var vc: MainTableViewController? = nil
+        for navController in (window!.rootViewController! as! UITabBarController).childViewControllers {
+            let controller = (navController as! UINavigationController).viewControllers.first
+            if controller is MainTableViewController {
+                vc = controller as? MainTableViewController
+            }
+        }
+                
+        /*
+        let mainTVC = UITabBarController()
+        let home = UINavigationController(rootViewController: MainTableViewController())
+        let guide = UINavigationController(rootViewController: MainGuideViewController())
+        guide.navigationItem.title = "Emergency Guide"
+        let settings = UINavigationController(rootViewController: SettingsTableViewController())
+        settings.navigationItem.title = "Settings"
+        let controllers = [home, guide, settings]
+        mainTVC.viewControllers = controllers
+        
+        home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home"), tag: 1)
+        guide.tabBarItem = UITabBarItem(title: "Guide", image: UIImage(named: "guide"), tag: 2)
+        settings.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "settings"), tag: 3)
+ */
+        
+        switch (shortCutType) {
+        case ShortcutIdentifier.Home.type:
+            /*window!.rootViewController?.present(mainTVC, animated: true, completion: {
+                (home.viewControllers.first as! MainTableViewController).zeroSelected() })*/
+            vc?.zeroSelected()
+            handled = true
+            break
+        case ShortcutIdentifier.Friends.type:
+            /* window!.rootViewController?.present(mainTVC, animated: true, completion: {
+                (home.viewControllers.first as! MainTableViewController).oneSelected() }) */
+            vc?.oneSelected()
+            handled = true
+            break
+        case ShortcutIdentifier.Taxi.type:
+            /* window!.rootViewController?.present(mainTVC, animated: true, completion: {
+                (home.viewControllers.first as! MainTableViewController).twoSelected() }) */
+            vc?.twoSelected()
+            handled = true
+            break
+        case ShortcutIdentifier.Emergency.type:
+            /* window!.rootViewController?.present(mainTVC, animated: true, completion: {
+                (home.viewControllers.first as! MainTableViewController).threeSelected() }) */
+            vc?.threeSelected()
+            handled = true
+            break
+        default:
+            break
+        }
+        
+        // Display the selected view controller
+        /*
+        window!.rootViewController?.present(mainTVC, animated: true, completion: {
+            (home.viewControllers.first as! MainTableViewController)
+                .tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
+        })*/
+        
+        return handled
+        
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
