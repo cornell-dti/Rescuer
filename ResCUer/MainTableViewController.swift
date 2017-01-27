@@ -26,6 +26,8 @@ class MainTableViewController: UITableViewController {
         tableView.backgroundColor = UIColor.darkGray
         tableView.isScrollEnabled = false
         
+        self.navigationItem.title = "Cornell Rescuer"
+        
         //let statusBar = UIApplication.shared.value(forKey: "statusBar") as! UIView?
         //let statusBarHeight = statusBar?.frame.height ?? 0
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -36,10 +38,7 @@ class MainTableViewController: UITableViewController {
         
         navigationController?.navigationBar.barTintColor = UIColor(netHex: "E74E33")
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        
-        
-        title = "Cornell Rescuer"
-        
+                
         UIView.animate(withDuration: 0.8, animations: {
             self.view.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             self.view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
@@ -97,99 +96,96 @@ class MainTableViewController: UITableViewController {
         return cell
     }
     
+    func zeroSelected() {
+        if let address = data.string(forKey: "address") {
+            getDirections(forLocation: address)
+        } else { addressError("") }
+    }
+    
+    func oneSelected() {
+        var accum = 0
+        for index in 0...2 {
+            if data.value(forKey: "contact_\(index)_content") is String {
+                accum += 1
+            }
+        }
+        
+        var alertController: UIAlertController!; var actions = [UIAlertAction]()
+        if accum == 0 {
+            
+            alertController = UIAlertController(title: "No Friends Found", message: "Please add some friends in the settings page.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Hey, I have friends!", style: UIAlertActionStyle.cancel, handler: nil)
+            actions.append(action)
+            
+        } else {
+            
+            alertController = UIAlertController(title: "Call a Friend", message: "Who do you want to call?", preferredStyle: .alert)
+            
+            for i in 1...accum {
+                if let number: String = data.value(forKey: "contact_\(i - 1)_content") as! String?,
+                    let name: String = data.value(forKey: "contact_\(i - 1)_name") as! String? {
+                    
+                    let action = UIAlertAction(title: name, style: UIAlertActionStyle.default) {
+                        action in self.call(number: number)
+                    }
+                    
+                    actions.append(action)
+                }
+            }
+            
+            let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+            actions.append(cancel)
+            
+        }
+        
+        for action in actions { alertController.addAction(action) }
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    func twoSelected() {
+        confirmCall(number: "(607) 588-8888", recipient: "Taxi Service")
+    }
+    
+    func threeSelected() {
+        let alertController = UIAlertController(title: "Emergency Options", message: "Who do you want to call?", preferredStyle: .alert)
+        
+        let firstOption = UIAlertAction(title: "Cornell Police", style: UIAlertActionStyle.default)
+        {
+            action in self.call(number: "607-255-1111")
+        }
+        
+        let secondOption = UIAlertAction(title: "Ithaca Police (911)", style: UIAlertActionStyle.default)
+        {
+            action in self.call(number: "911")
+        }
+        
+        let thirdOption = UIAlertAction(title: "Cayuga Medical Center", style: UIAlertActionStyle.default)
+        {
+            action in self.call(number: "607-274-4411")
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+        
+        alertController.addAction(firstOption)
+        alertController.addAction(secondOption)
+        alertController.addAction(thirdOption)
+        alertController.addAction(cancelAction)
+        
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        //print("row selected: \(indexPath.row)")
+        print("row selected: \(indexPath.row)")
         
-        // Home
-        if indexPath.row == 0 {
-    
-            if let address = data.string(forKey: "address") {
-                getDirections(forLocation: address)
-            } else { addressError("") }
-            
-        }
-        
-        // Friends
-        else if indexPath.row == 1 {
-            
-            var accum = 0
-            for index in 0...2 {
-                if data.value(forKey: "contact_\(index)_content") is String {
-                    accum += 1
-                }
-            }
-            
-            var alertController: UIAlertController!; var actions = [UIAlertAction]()
-            if accum == 0 {
-                
-                alertController = UIAlertController(title: "No Friends Found", message: "Please add some friends in the settings page.", preferredStyle: .alert)
-                let action = UIAlertAction(title: "Hey, I have friends!", style: UIAlertActionStyle.cancel, handler: nil)
-                actions.append(action)
-                
-            } else {
-                
-                alertController = UIAlertController(title: "Call a Friend", message: "Who do you want to call?", preferredStyle: .alert)
-                
-                for i in 1...accum {
-                    if let number: String = data.value(forKey: "contact_\(i - 1)_content") as! String?,
-                        let name: String = data.value(forKey: "contact_\(i - 1)_name") as! String? {
-                        
-                        let action = UIAlertAction(title: name, style: UIAlertActionStyle.default) {
-                            action in self.call(number: number)
-                        }
-                        
-                        actions.append(action)
-                    }
-                }
-                
-                let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
-                actions.append(cancel)
-                
-            }
-            
-            for action in actions { alertController.addAction(action) }
-            DispatchQueue.main.async {
-                self.present(alertController, animated: true, completion: nil)
-            }
-            
-        }
-        
-        // Taxi
-        else if indexPath.row == 2 { confirmCall(number: "(607) 588-8888", recipient: "Taxi Service") }
-        
-        // Emergency
-        else if indexPath.row == 3 {
-            
-            let alertController = UIAlertController(title: "Emergency Options", message: "Who do you want to call?", preferredStyle: .alert)
-            
-            let firstOption = UIAlertAction(title: "Cornell Police", style: UIAlertActionStyle.default)
-            {
-                action in self.call(number: "607-255-1111")
-            }
-            
-            let secondOption = UIAlertAction(title: "Ithaca Police (911)", style: UIAlertActionStyle.default)
-            {
-                action in self.call(number: "911")
-            }
-            
-            let thirdOption = UIAlertAction(title: "Cayuga Medical Center", style: UIAlertActionStyle.default)
-            {
-                action in self.call(number: "607-274-4411")
-            }
-            
-            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
-            
-            alertController.addAction(firstOption)
-            alertController.addAction(secondOption)
-            alertController.addAction(thirdOption)
-            alertController.addAction(cancelAction)
-            
-            DispatchQueue.main.async {
-                self.present(alertController, animated: true, completion: nil)
-            }
-            
-        }
+        if indexPath.row == 0 { zeroSelected() } // Home
+        else if indexPath.row == 1 { oneSelected() } // Friends
+        else if indexPath.row == 2 { twoSelected() } // Taxi
+        else if indexPath.row == 3 { threeSelected() } // Emergency
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -227,8 +223,6 @@ class MainTableViewController: UITableViewController {
         
         
         if let phoneCallNumber = URL(string: "tel://\(number2)") {
-            
-            
             if UIApplication.shared.canOpenURL(phoneCallNumber) {
                 if #available(iOS 10.0, *) {
                     UIApplication.shared.open(phoneCallNumber, options: [:], completionHandler: nil)

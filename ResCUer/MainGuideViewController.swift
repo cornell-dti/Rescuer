@@ -37,8 +37,8 @@ class MainGuideViewController: UIViewController, UITableViewDataSource, UITableV
         
         //view.backgroundColor = .white
         
-        title = "Emergency Guide"
-        
+        self.navigationItem.title = "Emergency Guide"
+                
         tableView = UITableView(frame: view.frame)
         //tableView.backgroundColor = .white
         tableView.dataSource = self
@@ -72,6 +72,9 @@ class MainGuideViewController: UIViewController, UITableViewDataSource, UITableV
         let guideDetailViewController = CollapsibleTableViewController()
         guideDetailViewController.value = GuideText(topics[indexPath.row]).value
         guideDetailViewController.title = topics[indexPath.row]
+        
+        let backButton = UIBarButtonItem(title: "Guide", style:.plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backButton
         
         navigationController?.pushViewController(guideDetailViewController, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
