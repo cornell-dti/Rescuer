@@ -111,50 +111,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //let storyboard = UIStoryboard(name: "Main", bundle: nil)
         var vc: MainTableViewController? = nil
+        if !(window!.rootViewController is UITabBarController) {
+            // app has never been open, either disable or ignore
+        }
         for navController in (window!.rootViewController! as! UITabBarController).childViewControllers {
             let controller = (navController as! UINavigationController).viewControllers.first
             if controller is MainTableViewController {
                 vc = controller as? MainTableViewController
             }
         }
-                
-        /*
-        let mainTVC = UITabBarController()
-        let home = UINavigationController(rootViewController: MainTableViewController())
-        let guide = UINavigationController(rootViewController: MainGuideViewController())
-        guide.navigationItem.title = "Emergency Guide"
-        let settings = UINavigationController(rootViewController: SettingsTableViewController())
-        settings.navigationItem.title = "Settings"
-        let controllers = [home, guide, settings]
-        mainTVC.viewControllers = controllers
-        
-        home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home"), tag: 1)
-        guide.tabBarItem = UITabBarItem(title: "Guide", image: UIImage(named: "guide"), tag: 2)
-        settings.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "settings"), tag: 3)
- */
         
         switch (shortCutType) {
         case ShortcutIdentifier.Home.type:
-            /*window!.rootViewController?.present(mainTVC, animated: true, completion: {
-                (home.viewControllers.first as! MainTableViewController).zeroSelected() })*/
             vc?.zeroSelected()
             handled = true
             break
         case ShortcutIdentifier.Friends.type:
-            /* window!.rootViewController?.present(mainTVC, animated: true, completion: {
-                (home.viewControllers.first as! MainTableViewController).oneSelected() }) */
             vc?.oneSelected()
             handled = true
             break
         case ShortcutIdentifier.Taxi.type:
-            /* window!.rootViewController?.present(mainTVC, animated: true, completion: {
-                (home.viewControllers.first as! MainTableViewController).twoSelected() }) */
             vc?.twoSelected()
             handled = true
             break
         case ShortcutIdentifier.Emergency.type:
-            /* window!.rootViewController?.present(mainTVC, animated: true, completion: {
-                (home.viewControllers.first as! MainTableViewController).threeSelected() }) */
             vc?.threeSelected()
             handled = true
             break
