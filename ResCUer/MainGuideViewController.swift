@@ -37,8 +37,8 @@ class MainGuideViewController: UIViewController, UITableViewDataSource, UITableV
         
         //view.backgroundColor = .white
         
-        title = "Emergency Guide"
-        
+        self.navigationItem.title = "Emergency Guide"
+                
         tableView = UITableView(frame: view.frame)
         //tableView.backgroundColor = .white
         tableView.dataSource = self

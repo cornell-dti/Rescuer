@@ -26,6 +26,8 @@ class MainTableViewController: UITableViewController {
         tableView.backgroundColor = UIColor.darkGray
         tableView.isScrollEnabled = false
         
+        self.navigationItem.title = "Cornell Rescuer"
+        
         //let statusBar = UIApplication.shared.value(forKey: "statusBar") as! UIView?
         //let statusBarHeight = statusBar?.frame.height ?? 0
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -36,10 +38,7 @@ class MainTableViewController: UITableViewController {
         
         navigationController?.navigationBar.barTintColor = UIColor(netHex: "E74E33")
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        
-        
-        title = "Cornell Rescuer"
-        
+                
         UIView.animate(withDuration: 0.8, animations: {
             self.view.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             self.view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
@@ -227,8 +226,6 @@ class MainTableViewController: UITableViewController {
         
         
         if let phoneCallNumber = URL(string: "tel://\(number2)") {
-            
-            
             if UIApplication.shared.canOpenURL(phoneCallNumber) {
                 if #available(iOS 10.0, *) {
                     UIApplication.shared.open(phoneCallNumber, options: [:], completionHandler: nil)

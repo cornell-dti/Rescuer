@@ -1,16 +1,8 @@
 //
-//  TableViewController.swift
+//  SettingsTableViewController.swift
 //  ResCUer
 //
 //  Created by Matthew Barker on 11/11/16.
-//  Copyright © 2016 Raymone Radi . All rights reserved.
-//
-
-//
-//  UserIsEditingDetailsViewController.swift
-//  ResCUer
-//
-//  Created by Raymone Radi  on 10/28/16.
 //  Copyright © 2016 Raymone Radi . All rights reserved.
 //
 
@@ -26,8 +18,8 @@ class SettingsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Settings"
-        
+        self.navigationItem.title = "Settings"
+                
         if data.value(forKey: "introShown") == nil {
             
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem:

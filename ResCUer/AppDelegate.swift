@@ -20,12 +20,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
         if data.value(forKey: "introShown") == nil {
             window?.rootViewController = UINavigationController(rootViewController: SettingsTableViewController())
+            window?.rootViewController?.navigationItem.title = "Settings"
         } else {
             let tabBarController = UITabBarController()
 
             let home = UINavigationController(rootViewController: MainTableViewController())
             let guide = UINavigationController(rootViewController: MainGuideViewController())
+            guide.navigationItem.title = "Emergency Guide"
             let settings = UINavigationController(rootViewController: SettingsTableViewController())
+            settings.navigationItem.title = "Settings"
             let controllers = [home, guide, settings]
             tabBarController.viewControllers = controllers
             window?.rootViewController = tabBarController
