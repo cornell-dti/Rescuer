@@ -37,6 +37,7 @@ class MainGuideViewController: UIViewController, UITableViewDataSource, UITableV
         
         //view.backgroundColor = .white
         
+        
         self.navigationItem.title = "Emergency Guide"
                 
         tableView = UITableView(frame: view.frame)
@@ -44,6 +45,16 @@ class MainGuideViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableViewAutomaticDimension
+        //tableView.register(BookTableViewCell.self, forCellReuseIdentifier: bookCellReuseIdentifier)
+        
+        view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
         view.addSubview(tableView)
         
@@ -69,9 +80,7 @@ class MainGuideViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        let guideDetailViewController = CollapsibleTableViewController()
-        guideDetailViewController.value = GuideText(topics[indexPath.row]).value
-        guideDetailViewController.title = topics[indexPath.row]
+        let guideDetailViewController = ViewController()
         
         let backButton = UIBarButtonItem(title: "Guide", style:.plain, target: nil, action: nil)
         self.navigationItem.backBarButtonItem = backButton

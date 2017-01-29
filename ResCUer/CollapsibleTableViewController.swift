@@ -38,6 +38,9 @@ class CollapsibleTableViewController: UITableViewController {
     override func viewDidLoad() {
                 //super.viewDidLoad()
         
+        self.tableView.setNeedsLayout()
+        self.tableView.layoutIfNeeded()
+        
         self.tabBarController?.tabBar.tintColor = .black
         let backButton = UIBarButtonItem()
         backButton.title = "Guide"
