@@ -42,7 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
-            
             launchedShortcutItem = shortcutItem
         }
         
@@ -61,6 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             settings.navigationItem.title = "Settings"
             let controllers = [home, guide, settings]
             tabBarController.viewControllers = controllers
+            tabBarController.tabBar.tintColor = UIColor(netHex: "E74E33")
             window?.rootViewController = tabBarController
             
             home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home"), tag: 1)

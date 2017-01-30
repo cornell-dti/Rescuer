@@ -25,27 +25,18 @@ class MainTableViewController: UITableViewController {
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.darkGray
         tableView.isScrollEnabled = false
-        
-        self.navigationItem.title = "Cornell Rescuer"
-        
-        //let statusBar = UIApplication.shared.value(forKey: "statusBar") as! UIView?
-        //let statusBarHeight = statusBar?.frame.height ?? 0
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
-        //navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        //navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationItem.title = "Cornell Rescuer"
+
         navigationController?.navigationBar.isTranslucent = true
-        
         navigationController?.navigationBar.barTintColor = UIColor(netHex: "E74E33")
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
                 
         UIView.animate(withDuration: 0.8, animations: {
             self.view.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             self.view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-            
-            }, completion: { _ in
-                
-        })
+        }, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {

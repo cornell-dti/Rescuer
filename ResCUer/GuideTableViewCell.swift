@@ -18,6 +18,7 @@ class BookTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         let marginGuide = contentView.layoutMarginsGuide
+        self.isUserInteractionEnabled = false
         
         // configure titleLabel
         contentView.addSubview(nameLabel)
