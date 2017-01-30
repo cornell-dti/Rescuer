@@ -25,27 +25,18 @@ class MainTableViewController: UITableViewController {
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.darkGray
         tableView.isScrollEnabled = false
-        
-        self.navigationItem.title = "Cornell Rescuer"
-        
-        //let statusBar = UIApplication.shared.value(forKey: "statusBar") as! UIView?
-        //let statusBarHeight = statusBar?.frame.height ?? 0
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
-        //navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        //navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationItem.title = "Cornell Rescuer"
+
         navigationController?.navigationBar.isTranslucent = true
-        
         navigationController?.navigationBar.barTintColor = UIColor(netHex: "E74E33")
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
                 
         UIView.animate(withDuration: 0.8, animations: {
             self.view.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             self.view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-            
-            }, completion: { _ in
-                
-        })
+        }, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -149,7 +140,9 @@ class MainTableViewController: UITableViewController {
     }
     
     func threeSelected() {
-        let alertController = UIAlertController(title: "Emergency Options", message: "Who do you want to call?", preferredStyle: .alert)
+        
+        let subtitle = "Who do you want to call? Tap More Information to determine the best option for your emergency."
+        let alertController = UIAlertController(title: "Emergency Options", message: subtitle, preferredStyle: .alert)
         
         let firstOption = UIAlertAction(title: "Cornell Police", style: UIAlertActionStyle.default)
         {
@@ -166,11 +159,22 @@ class MainTableViewController: UITableViewController {
             action in self.call(number: "607-274-4411")
         }
         
+        let fourthOption = UIAlertAction(title: "More Information", style: UIAlertActionStyle.default) { action in
+            let information = "A 911 Emergency situation requires an immediate police, fire, or medical response to preserve life or property, including: Assault or immediate danger of; Weapons; Crime in progress; Fire; Chemicals; Severely impaired respiratory ability; Loss of consciousness; Drowning; Serious injury or illness (e.g. heart attack, stroke)\n\nContact Cornell Police, NOT 911, to report a non-emergency on-campus incident or for information and general assistance. (e.g. minor auto accidents, crimes no longer in progress, loud parties, missing property, power outages)\n\nCayuga Medical Center is Ithaca's nearest major hospital."
+            let alertController2 = UIAlertController(title: "Emergency Contact Information", message: information, preferredStyle: .alert)
+            let goBack = UIAlertAction(title: "Go Back", style: UIAlertActionStyle.default) { action in
+                self.threeSelected()
+            }
+            alertController2.addAction(goBack)
+            self.present(alertController2, animated: true, completion: nil)
+        }
+        
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
         
         alertController.addAction(firstOption)
         alertController.addAction(secondOption)
         alertController.addAction(thirdOption)
+        alertController.addAction(fourthOption)
         alertController.addAction(cancelAction)
         
         DispatchQueue.main.async {
@@ -179,8 +183,6 @@ class MainTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        print("row selected: \(indexPath.row)")
         
         if indexPath.row == 0 { zeroSelected() } // Home
         else if indexPath.row == 1 { oneSelected() } // Friends
