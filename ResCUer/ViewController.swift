@@ -11,10 +11,10 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let bookCellReuseIdentifier = "BookTableViewCellIdentifier"
+    let tableview = UITableView()
     
-    fileprivate let bookCellReuseIdentifier = "BookTableViewCellIdentifier"
-    fileprivate let bookList = BookDataSource.bookList()
-    fileprivate let tableview = UITableView()
+    var library: [Book] = []
 
     let topics = ["Active Shooter", "Animal Incidents", "Bomb Threat", "Building Evacuation", "Crime", "Earthquake", "Elevator Emergency",
                   "Facility or Utility Problem", "Fire, Smoke, Explosion", "Hazardous Materials", "Medical/Health Emergency", "Severe Weather",
@@ -48,15 +48,14 @@ class ViewController: UIViewController {
 }
 
 extension ViewController : UITableViewDataSource {
-
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return bookList.count
+        return library.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableview.dequeueReusableCell(withIdentifier: bookCellReuseIdentifier, for: indexPath) as! BookTableViewCell
-        let book = bookList[indexPath.row]
+        let book = library[indexPath.row]
         cell.nameLabel.text = book.name
         cell.detailLabel.text = book.details
         return cell

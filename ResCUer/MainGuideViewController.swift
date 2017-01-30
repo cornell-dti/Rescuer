@@ -81,6 +81,7 @@ class MainGuideViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         let guideDetailViewController = ViewController()
+        guideDetailViewController.library = GuideText(indexPath.row).value
         
         let backButton = UIBarButtonItem(title: "Guide", style:.plain, target: nil, action: nil)
         self.navigationItem.backBarButtonItem = backButton
