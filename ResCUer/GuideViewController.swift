@@ -28,9 +28,7 @@ class GuideSection
 class MainGuideViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var tableView: UITableView!
-    let topics = ["Active Shooter", "Animal Incidents", "Bomb Threat", "Building Evacuation", "Crime", "Earthquake", "Elevator Emergency",
-                  "Facility or Utility Problem", "Fire, Smoke, Explosion", "Hazardous Materials", "Medical/Health Emergency", "Severe Weather",
-                  "Suspicious Mail or Package", "Workplace Violence"]
+    let topics = ["Active Shooter", "Animal Incidents", "Bomb Threat", "Building Evacuation", "Crime", "Earthquake", "Elevator Emergency", "Facility / Utility Problem", "Fire, Smoke, Explosion", "Hazardous Materials", "Medical / Mental Health Emergency", "Severe Weather", "Suspicious Mail / Package", "Workplace Violence"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,6 +80,7 @@ class MainGuideViewController: UIViewController, UITableViewDataSource, UITableV
 
         let guideDetailViewController = ViewController()
         guideDetailViewController.library = GuideText(indexPath.row).value
+        guideDetailViewController.pageTitle = topics[indexPath.row]
         
         let backButton = UIBarButtonItem(title: "Guide", style:.plain, target: nil, action: nil)
         self.navigationItem.backBarButtonItem = backButton

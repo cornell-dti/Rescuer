@@ -14,16 +14,12 @@ class ViewController: UIViewController {
     let bookCellReuseIdentifier = "BookTableViewCellIdentifier"
     let tableview = UITableView()
     
+    var pageTitle: String = ""
     var library: [Book] = []
-
-    let topics = ["Active Shooter", "Animal Incidents", "Bomb Threat", "Building Evacuation", "Crime", "Earthquake", "Elevator Emergency",
-                  "Facility or Utility Problem", "Fire, Smoke, Explosion", "Hazardous Materials", "Medical/Health Emergency", "Severe Weather",
-                  "Suspicious Mail or Package", "Workplace Violence"]
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Books"
+        title = pageTitle
         configureTableView()
     }
     

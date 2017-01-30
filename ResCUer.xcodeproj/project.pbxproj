@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8C0BAF591DF3544F0074BD9E /* MainGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0BAF581DF3544F0074BD9E /* MainGuideViewController.swift */; };
+		8C0BAF591DF3544F0074BD9E /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0BAF581DF3544F0074BD9E /* GuideViewController.swift */; };
 		8CE339361DFA4F4A0052B052 /* GuideText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE339351DFA4F4A0052B052 /* GuideText.swift */; };
 		8CEC8B451DC3FCC500FB1924 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEC8B441DC3FCC500FB1924 /* AppDelegate.swift */; };
 		8CEC8B4C1DC3FCC500FB1924 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CEC8B4B1DC3FCC500FB1924 /* Assets.xcassets */; };
 		8CEC8B4F1DC3FCC500FB1924 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CEC8B4D1DC3FCC500FB1924 /* LaunchScreen.storyboard */; };
 		8CEC8B5A1DC3FCC500FB1924 /* ResCUerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEC8B591DC3FCC500FB1924 /* ResCUerTests.swift */; };
 		8CEC8B651DC3FCC500FB1924 /* ResCUerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEC8B641DC3FCC500FB1924 /* ResCUerUITests.swift */; };
-		8CFEBC231E3E87A9003DD5CA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFEBC201E3E87A9003DD5CA /* ViewController.swift */; };
-		8CFEBC241E3E87A9003DD5CA /* BookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFEBC211E3E87A9003DD5CA /* BookTableViewCell.swift */; };
-		BF028F841DCC3BAA00361837 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF028F831DCC3BAA00361837 /* MainTableViewController.swift */; };
-		BF028F861DCC3C3E00361837 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF028F851DCC3C3E00361837 /* MainTableViewCell.swift */; };
+		8CFEBC231E3E87A9003DD5CA /* GuideSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFEBC201E3E87A9003DD5CA /* GuideSelectionViewController.swift */; };
+		8CFEBC241E3E87A9003DD5CA /* GuideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFEBC211E3E87A9003DD5CA /* GuideTableViewCell.swift */; };
+		BF028F841DCC3BAA00361837 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF028F831DCC3BAA00361837 /* HomeTableViewController.swift */; };
+		BF028F861DCC3C3E00361837 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF028F851DCC3C3E00361837 /* HomeTableViewCell.swift */; };
 		BF591BE91DD60C6E004B5E6B /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF591BE81DD60C6E004B5E6B /* SettingsTableViewController.swift */; };
 		BF591BED1DD6284B004B5E6B /* EditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF591BEC1DD6284B004B5E6B /* EditTableViewCell.swift */; };
 		BF591BEF1DD62D98004B5E6B /* EditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF591BEE1DD62D98004B5E6B /* EditTableViewController.swift */; };
@@ -54,7 +54,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		8C0BAF581DF3544F0074BD9E /* MainGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainGuideViewController.swift; sourceTree = "<group>"; };
+		8C0BAF581DF3544F0074BD9E /* GuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
 		8CE339351DFA4F4A0052B052 /* GuideText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideText.swift; sourceTree = "<group>"; };
 		8CEC8B411DC3FCC500FB1924 /* ResCUer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ResCUer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CEC8B441DC3FCC500FB1924 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -67,10 +67,10 @@
 		8CEC8B601DC3FCC500FB1924 /* ResCUerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ResCUerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CEC8B641DC3FCC500FB1924 /* ResCUerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResCUerUITests.swift; sourceTree = "<group>"; };
 		8CEC8B661DC3FCC500FB1924 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8CFEBC201E3E87A9003DD5CA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		8CFEBC211E3E87A9003DD5CA /* BookTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookTableViewCell.swift; sourceTree = "<group>"; };
-		BF028F831DCC3BAA00361837 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
-		BF028F851DCC3C3E00361837 /* MainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		8CFEBC201E3E87A9003DD5CA /* GuideSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideSelectionViewController.swift; sourceTree = "<group>"; };
+		8CFEBC211E3E87A9003DD5CA /* GuideTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideTableViewCell.swift; sourceTree = "<group>"; };
+		BF028F831DCC3BAA00361837 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
+		BF028F851DCC3C3E00361837 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		BF591BE81DD60C6E004B5E6B /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		BF591BEC1DD6284B004B5E6B /* EditTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTableViewCell.swift; sourceTree = "<group>"; };
 		BF591BEE1DD62D98004B5E6B /* EditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTableViewController.swift; sourceTree = "<group>"; };
@@ -127,16 +127,10 @@
 		8CEC8B431DC3FCC500FB1924 /* ResCUer */ = {
 			isa = PBXGroup;
 			children = (
-				8CFEBC201E3E87A9003DD5CA /* ViewController.swift */,
 				8CEC8B441DC3FCC500FB1924 /* AppDelegate.swift */,
-				BF028F831DCC3BAA00361837 /* MainTableViewController.swift */,
-				8CE339351DFA4F4A0052B052 /* GuideText.swift */,
-				BF028F851DCC3C3E00361837 /* MainTableViewCell.swift */,
-				8C0BAF581DF3544F0074BD9E /* MainGuideViewController.swift */,
-				8CFEBC211E3E87A9003DD5CA /* BookTableViewCell.swift */,
-				BF591BE81DD60C6E004B5E6B /* SettingsTableViewController.swift */,
-				BF591BEE1DD62D98004B5E6B /* EditTableViewController.swift */,
-				BF591BEC1DD6284B004B5E6B /* EditTableViewCell.swift */,
+				BFFF94A41E3EE3CA0071AA57 /* Home */,
+				BFFF94A31E3EE3B20071AA57 /* Guide */,
+				BFFF94A51E3EE3D30071AA57 /* Settings */,
 				8CEC8B4B1DC3FCC500FB1924 /* Assets.xcassets */,
 				8CEC8B4D1DC3FCC500FB1924 /* LaunchScreen.storyboard */,
 				8CEC8B501DC3FCC500FB1924 /* Info.plist */,
@@ -169,6 +163,36 @@
 				BFBEC12C1DD6A73D003F67A8 /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BFFF94A31E3EE3B20071AA57 /* Guide */ = {
+			isa = PBXGroup;
+			children = (
+				8C0BAF581DF3544F0074BD9E /* GuideViewController.swift */,
+				8CFEBC201E3E87A9003DD5CA /* GuideSelectionViewController.swift */,
+				8CFEBC211E3E87A9003DD5CA /* GuideTableViewCell.swift */,
+				8CE339351DFA4F4A0052B052 /* GuideText.swift */,
+			);
+			name = Guide;
+			sourceTree = "<group>";
+		};
+		BFFF94A41E3EE3CA0071AA57 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				BF028F831DCC3BAA00361837 /* HomeTableViewController.swift */,
+				BF028F851DCC3C3E00361837 /* HomeTableViewCell.swift */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		BFFF94A51E3EE3D30071AA57 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				BF591BE81DD60C6E004B5E6B /* SettingsTableViewController.swift */,
+				BF591BEE1DD62D98004B5E6B /* EditTableViewController.swift */,
+				BF591BEC1DD6284B004B5E6B /* EditTableViewCell.swift */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -313,13 +337,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CFEBC241E3E87A9003DD5CA /* BookTableViewCell.swift in Sources */,
+				8CFEBC241E3E87A9003DD5CA /* GuideTableViewCell.swift in Sources */,
 				8CEC8B451DC3FCC500FB1924 /* AppDelegate.swift in Sources */,
 				8CE339361DFA4F4A0052B052 /* GuideText.swift in Sources */,
-				8C0BAF591DF3544F0074BD9E /* MainGuideViewController.swift in Sources */,
-				BF028F841DCC3BAA00361837 /* MainTableViewController.swift in Sources */,
-				8CFEBC231E3E87A9003DD5CA /* ViewController.swift in Sources */,
-				BF028F861DCC3C3E00361837 /* MainTableViewCell.swift in Sources */,
+				8C0BAF591DF3544F0074BD9E /* GuideViewController.swift in Sources */,
+				BF028F841DCC3BAA00361837 /* HomeTableViewController.swift in Sources */,
+				8CFEBC231E3E87A9003DD5CA /* GuideSelectionViewController.swift in Sources */,
+				BF028F861DCC3C3E00361837 /* HomeTableViewCell.swift in Sources */,
 				BF591BEF1DD62D98004B5E6B /* EditTableViewController.swift in Sources */,
 				BF591BE91DD60C6E004B5E6B /* SettingsTableViewController.swift in Sources */,
 				BF591BED1DD6284B004B5E6B /* EditTableViewCell.swift in Sources */,
