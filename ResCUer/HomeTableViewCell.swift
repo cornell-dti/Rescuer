@@ -28,7 +28,7 @@ class MainTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        backgroundColor = UIColor.darkGray
+        backgroundColor = .darkGray
         
         mainView = UIView()
         mainView.layer.cornerRadius = 8

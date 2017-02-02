@@ -19,6 +19,7 @@ class SettingsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         self.navigationItem.title = "Settings"
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
                 
         if data.value(forKey: "introShown") == nil {
             
@@ -41,8 +42,8 @@ class SettingsTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        UIApplication.shared.statusBarStyle = .default
-        self.tabBarController?.tabBar.tintColor = .black
+        ///UIApplication.shared.statusBarStyle = .default
+        //self.tabBarController?.tabBar.tintColor = .black
                 
         // Load saved data, if any
         if let savedAddress = data.value(forKey: "address") as? String {
@@ -160,15 +161,25 @@ class SettingsTableViewController: UITableViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         let tabBarController = UITabBarController()
+        tabBarController.tabBar.tintColor = .white
         let home = UINavigationController(rootViewController: MainTableViewController())
         let guide = UINavigationController(rootViewController: MainGuideViewController())
+        guide.navigationItem.title = "Emergency Guide"
         let settings = UINavigationController(rootViewController: SettingsTableViewController())
+        settings.navigationItem.title = "Settings"
         let controllers = [home, guide, settings]
         tabBarController.viewControllers = controllers
         appDelegate.window?.rootViewController = tabBarController
-        home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home"), tag: 1)
-        guide.tabBarItem = UITabBarItem(title: "Guide", image: UIImage(named: "guide"), tag: 2)
-        settings.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "settings"), tag: 3)
+        
+        home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: appDelegate.homeAsset), tag: 1)
+        guide.tabBarItem = UITabBarItem(title: "Guide", image: UIImage(named: appDelegate.guideAsset), tag: 2)
+        settings.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: appDelegate.settingsAsset), tag: 3)
+        
+        for item in tabBarController.tabBar.items! {
+            if let image = item.image {
+                item.image = image.withRenderingMode(.alwaysOriginal)
+            }
+        }
         
         let desiredViewController = UINavigationController(rootViewController: MainTableViewController())
         

@@ -38,6 +38,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let data = UserDefaults(suiteName: "group.rescuer")!
+    
+    let homeAsset = "home_light"
+    let guideAsset = "guide_light"
+    let settingsAsset = "settings_light"
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -46,13 +50,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         window = UIWindow()
+        
+        UITabBar.appearance().barTintColor = UIColor(netHex: "E74E33")
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.5)], for:.normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for:.selected)
+        
+        UITabBar.appearance().tintColor = .white
+        UINavigationBar.appearance().barTintColor = UIColor(netHex: "E74E33")
+        UINavigationBar.appearance().tintColor = .white
                 
         if data.value(forKey: "introShown") == nil {
             window?.rootViewController = UINavigationController(rootViewController: SettingsTableViewController())
             window?.rootViewController?.navigationItem.title = "Settings"
         } else {
+            
             let tabBarController = UITabBarController()
-
+            tabBarController.tabBar.tintColor = .white
             let home = UINavigationController(rootViewController: MainTableViewController())
             let guide = UINavigationController(rootViewController: MainGuideViewController())
             guide.navigationItem.title = "Emergency Guide"
@@ -60,12 +73,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             settings.navigationItem.title = "Settings"
             let controllers = [home, guide, settings]
             tabBarController.viewControllers = controllers
-            tabBarController.tabBar.tintColor = UIColor(netHex: "E74E33")
             window?.rootViewController = tabBarController
             
-            home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home"), tag: 1)
-            guide.tabBarItem = UITabBarItem(title: "Guide", image: UIImage(named: "guide"), tag: 2)
-            settings.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "settings"), tag: 3)
+            home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: homeAsset), tag: 1)
+            guide.tabBarItem = UITabBarItem(title: "Guide", image: UIImage(named: guideAsset), tag: 2)
+            settings.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: settingsAsset), tag: 3)
+            
+            for item in tabBarController.tabBar.items! {
+                if let image = item.image {
+                    item.image = image.withRenderingMode(.alwaysOriginal)
+                }
+            }
         }
                 
         window?.makeKeyAndVisible()

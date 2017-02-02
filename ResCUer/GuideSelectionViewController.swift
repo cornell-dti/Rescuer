@@ -37,10 +37,6 @@ class ViewController: UIViewController {
         tableview.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        UIApplication.shared.statusBarStyle = .default
-    }
-
 }
 
 extension ViewController : UITableViewDataSource {
