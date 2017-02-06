@@ -23,7 +23,7 @@ class MainTableViewController: UITableViewController {
         super.viewDidLoad()
         
         tableView.separatorStyle = .none
-        tableView.backgroundColor = UIColor.darkGray
+        tableView.backgroundColor = .darkGray
         tableView.isScrollEnabled = false
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
@@ -39,14 +39,6 @@ class MainTableViewController: UITableViewController {
         }, completion: nil)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        UIApplication.shared.statusBarStyle = .lightContent
-        self.tabBarController?.tabBar.tintColor = .black
-        //self.tabBarController?.tabBar.backgroundColor = UIColor.darkGray.withAlphaComponent(0.75)
-        //self.tabBarController?.tabBar.shadowImage = UIImage()
-        //self.tabBarController?.tabBar.tintColor = .white
-    }
-
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {

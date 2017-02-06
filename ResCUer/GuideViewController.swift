@@ -33,13 +33,10 @@ class MainGuideViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //view.backgroundColor = .white
-        
-        
         self.navigationItem.title = "Emergency Guide"
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
                 
         tableView = UITableView(frame: view.frame)
-        //tableView.backgroundColor = .white
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
@@ -60,9 +57,7 @@ class MainGuideViewController: UIViewController, UITableViewDataSource, UITableV
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        UIApplication.shared.statusBarStyle = .default
-    }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return topics.count
