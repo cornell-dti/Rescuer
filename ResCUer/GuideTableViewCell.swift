@@ -27,7 +27,7 @@ class BookTableViewCell: UITableViewCell {
         nameLabel.topAnchor.constraint(equalTo: marginGuide.topAnchor).isActive = true
         nameLabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor).isActive = true
         nameLabel.numberOfLines = 0
-        nameLabel.font = UIFont(name: "AvenirNext-DemiBold", size: 16)
+        nameLabel.font = UIFont(name: "AvenirNext-DemiBold", size: 17)
         
         // configure authorLabel
         contentView.addSubview(detailLabel)
@@ -37,7 +37,7 @@ class BookTableViewCell: UITableViewCell {
         detailLabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor).isActive = true
         detailLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor).isActive = true
         detailLabel.numberOfLines = 0
-        detailLabel.font = UIFont(name: "Avenir-Book", size: 14)
+        detailLabel.font = UIFont(name: "Avenir-Book", size: 15)
         detailLabel.textColor = UIColor.darkGray
     }
     

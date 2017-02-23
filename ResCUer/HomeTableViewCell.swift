@@ -36,7 +36,7 @@ class MainTableViewCell: UITableViewCell {
         
         titleLabel = UILabel(frame: CGRect())
         titleLabel.textColor = .white
-        titleLabel.font = UIFont.systemFont(ofSize: 36)
+        titleLabel.font = UIFont.systemFont(ofSize: 36, weight: UIFontWeightRegular)
         mainView.addSubview(titleLabel)
         
     }

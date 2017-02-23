@@ -53,9 +53,7 @@ class EditTableViewCell: UITableViewCell, UITextFieldDelegate {
             let newString = oldString.replacingCharacters(in: newStart..<newEnd, with: string)
             textField.text = newString.replacingOccurrences(of: " ", with: "\u{00a0}")
             return false;
-        } else {
-            return true;
-        }
+        } else { return true }
     }
     
 }
