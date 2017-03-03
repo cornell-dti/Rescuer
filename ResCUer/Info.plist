@@ -28,7 +28,7 @@
 			<key>UIApplicationShortcutItemIconType</key>
 			<string>UIApplicationShortcutIconTypeHome</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>Get Directions Home</string>
+			<string>Go Home</string>
 			<key>UIApplicationShortcutItemType</key>
 			<string>$(PRODUCT_BUNDLE_IDENTIFIER).Home</string>
 			<key>UIApplicationShortcutItemUserInfo</key>
@@ -41,7 +41,7 @@
 			<key>UIApplicationShortcutItemIconType</key>
 			<string>UIApplicationShortcutIconTypeContact</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>Call A Friend</string>
+			<string>Call a Friend</string>
 			<key>UIApplicationShortcutItemType</key>
 			<string>$(PRODUCT_BUNDLE_IDENTIFIER).Friends</string>
 			<key>UIApplicationShortcutItemUserInfo</key>
@@ -54,7 +54,7 @@
 			<key>UIApplicationShortcutItemIconType</key>
 			<string>UIApplicationShortcutIconTypeFavorite</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>Call A Taxi</string>
+			<string>Call a Taxi</string>
 			<key>UIApplicationShortcutItemType</key>
 			<string>$(PRODUCT_BUNDLE_IDENTIFIER).Taxi</string>
 			<key>UIApplicationShortcutItemUserInfo</key>
@@ -67,7 +67,7 @@
 			<key>UIApplicationShortcutItemIconType</key>
 			<string>UIApplicationShortcutIconTypeLove</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>Call Emergency Services</string>
+			<string>Emergency Call</string>
 			<key>UIApplicationShortcutItemType</key>
 			<string>$(PRODUCT_BUNDLE_IDENTIFIER).Emergency</string>
 			<key>UIApplicationShortcutItemUserInfo</key>
@@ -77,8 +77,6 @@
 			</dict>
 		</dict>
 	</array>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
