@@ -104,7 +104,7 @@
 		8CEC8B381DC3FCC500FB1924 = {
 			isa = PBXGroup;
 			children = (
-				8CEC8B431DC3FCC500FB1924 /* ResCUer */,
+				8CEC8B431DC3FCC500FB1924 /* Rescuer */,
 				8CEC8B581DC3FCC500FB1924 /* ResCUerTests */,
 				8CEC8B631DC3FCC500FB1924 /* ResCUerUITests */,
 				BFBEC12B1DD6A73D003F67A8 /* Frameworks */,
@@ -122,7 +122,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8CEC8B431DC3FCC500FB1924 /* ResCUer */ = {
+		8CEC8B431DC3FCC500FB1924 /* Rescuer */ = {
 			isa = PBXGroup;
 			children = (
 				8CEC8B441DC3FCC500FB1924 /* AppDelegate.swift */,
@@ -133,6 +133,7 @@
 				8CEC8B501DC3FCC500FB1924 /* Info.plist */,
 				BFBEC1251DD6745C003F67A8 /* ResCUer.entitlements */,
 			);
+			name = Rescuer;
 			path = ResCUer;
 			sourceTree = "<group>";
 		};
@@ -257,11 +258,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
 				LastUpgradeCheck = 0810;
-				ORGANIZATIONNAME = "Raymone Radi ";
+				ORGANIZATIONNAME = "Cornell SA Tech";
 				TargetAttributes = {
 					8CEC8B401DC3FCC500FB1924 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = FV2G57GLFW;
+						DevelopmentTeam = UJQ88SCQSQ;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -283,7 +284,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8CEC8B3C1DC3FCC500FB1924 /* Build configuration list for PBXProject "ResCUer" */;
+			buildConfigurationList = 8CEC8B3C1DC3FCC500FB1924 /* Build configuration list for PBXProject "Rescuer" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -480,11 +481,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = FV2G57GLFW;
+				DEVELOPMENT_TEAM = UJQ88SCQSQ;
 				INFOPLIST_FILE = ResCUer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mattbarker.Rescuer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cornellsatech.RescuerApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -497,11 +498,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = FV2G57GLFW;
+				DEVELOPMENT_TEAM = UJQ88SCQSQ;
 				INFOPLIST_FILE = ResCUer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mattbarker.Rescuer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cornellsatech.RescuerApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -519,7 +520,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.rsr242.RaymoneRadi.ResCUerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ResCUer.app/ResCUer";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Rescuer.temp_caseinsensitive_rename.app/Rescuer.temp_caseinsensitive_rename";
 			};
 			name = Debug;
 		};
@@ -535,7 +536,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.rsr242.RaymoneRadi.ResCUerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ResCUer.app/ResCUer";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Rescuer.temp_caseinsensitive_rename.app/Rescuer.temp_caseinsensitive_rename";
 			};
 			name = Release;
 		};
@@ -572,7 +573,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8CEC8B3C1DC3FCC500FB1924 /* Build configuration list for PBXProject "ResCUer" */ = {
+		8CEC8B3C1DC3FCC500FB1924 /* Build configuration list for PBXProject "Rescuer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8CEC8B671DC3FCC500FB1924 /* Debug */,

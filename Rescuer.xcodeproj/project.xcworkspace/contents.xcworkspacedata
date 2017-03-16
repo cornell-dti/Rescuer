@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:ResCUer.xcodeproj">
+      location = "self:/Users/mattbarker016/Documents/Projects/Rescuer/resCUer-app-iOS2/Rescuer.xcodeproj">
    </FileRef>
 </Workspace>
