@@ -4,16 +4,21 @@ import UIKit
 import MapKit
 import CoreLocation
 
+<<<<<<< HEAD
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate{
     
     var mapView: MKMapView!
     var locationManager: CLLocationManager!
     var lolISuck = 1
     var blueLightAnnotations: [MKPointAnnotation]!
+=======
+class MapViewController: UIViewController {
+>>>>>>> 51ac28a5f6ceceb0cbba3a1756d3cb151284d9a0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+<<<<<<< HEAD
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         title = "Map"
         // Do any additional setup after loading the view.
@@ -155,4 +160,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     
+=======
+        self.navigationItem.title = "Blue Light Map"
+        
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.barTintColor = UIColor(netHex: "E74E33")
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        
+    }
+    
+>>>>>>> 51ac28a5f6ceceb0cbba3a1756d3cb151284d9a0
 }

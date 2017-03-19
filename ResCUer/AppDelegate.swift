@@ -39,10 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let data = UserDefaults(suiteName: "group.rescuer")!
     
-    let homeAsset = "home_light"
-    let guideAsset = "guide_light"
-    let settingsAsset = "settings_light"
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
@@ -65,32 +61,83 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             
             let tabBarController = UITabBarController()
+            window?.rootViewController = tabBarController
             tabBarController.tabBar.tintColor = .white
-            let home = UINavigationController(rootViewController: MainTableViewController())
+            let home = UINavigationController(rootViewController:
+                HomeCollectionViewController(collectionViewLayout: homeFlow()))
+            let map = UINavigationController(rootViewController: MapViewController())
+            map.navigationItem.title = "Blue Light Map"
             let guide = UINavigationController(rootViewController: MainGuideViewController())
             guide.navigationItem.title = "Emergency Guide"
+<<<<<<< HEAD
             let settings = UINavigationController(rootViewController: SettingsTableViewController())
             settings.navigationItem.title = "Settings"
             let map = UINavigationController(rootViewController: MapViewController())
             let controllers = [home, guide, settings, map]
+=======
+            let controllers = [home, map, guide]
+>>>>>>> 51ac28a5f6ceceb0cbba3a1756d3cb151284d9a0
             tabBarController.viewControllers = controllers
-            window?.rootViewController = tabBarController
             
+<<<<<<< HEAD
             home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: homeAsset), tag: 1)
             guide.tabBarItem = UITabBarItem(title: "Guide", image: UIImage(named: guideAsset), tag: 2)
             settings.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: settingsAsset), tag: 3)
             map.tabBarItem = UITabBarItem(title: "Map", image: UIImage(named: settingsAsset), tag: 4)
+=======
+            home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home"), tag: 1)
+            map.tabBarItem = UITabBarItem(title: "Map", image: UIImage(named: "map"), tag: 2)
+            guide.tabBarItem = UITabBarItem(title: "Guide", image: UIImage(named: "guide"), tag: 3)
+>>>>>>> 51ac28a5f6ceceb0cbba3a1756d3cb151284d9a0
             
             for item in tabBarController.tabBar.items! {
                 if let image = item.image {
                     item.image = image.withRenderingMode(.alwaysOriginal)
                 }
             }
+            
+            for navController in controllers {
+                let settingsButton = UIBarButtonItem(image: UIImage(named: "settings"),
+                                                     style: .plain, target: self, action: #selector(launchSettings))
+                navController.visibleViewController?.navigationItem.setRightBarButton(settingsButton, animated: true)
+            }
+            
         }
                 
         window?.makeKeyAndVisible()
         
         return true
+    }
+    
+    func launchSettings() {
+        
+        let currentVC = (window?.rootViewController as! UITabBarController).selectedViewController as! UINavigationController
+        let settings = UINavigationController(rootViewController: SettingsTableViewController())
+        currentVC.present(settings, animated: true) { 
+            
+        }
+        
+    }
+    
+    func homeFlow() -> UICollectionViewLayout {
+        
+        let layout = UICollectionViewFlowLayout()
+        let usableScreenWidth = UIScreen.main.bounds.width
+        layout.itemSize = CGSize(width: usableScreenWidth / 2, height: usableScreenWidth / 2)
+        layout.minimumLineSpacing = 32
+        layout.minimumInteritemSpacing = 0
+        
+        let deviceHeight = UIScreen.main.bounds.height
+        let navHeight = UINavigationController().navigationBar.frame.height
+        let statusHeight = UIApplication.shared.statusBarFrame.height
+        let tabHeight = UITabBarController().tabBar.frame.height
+        
+        let visibleScreenHeight = deviceHeight - statusHeight - navHeight - tabHeight
+        let insetHeight = ( (visibleScreenHeight - usableScreenWidth) / 2 ) - layout.minimumLineSpacing
+        layout.headerReferenceSize = CGSize(width: 0, height: insetHeight)
+        
+        return layout
+        
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
@@ -130,15 +177,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let shortCutType = shortcutItem.type as String? else { return false }
         
         //let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        var vc: MainTableViewController? = nil
+        var vc: HomeCollectionViewController? = nil
         if !(window!.rootViewController is UITabBarController) {
             print("caught error"); handled = false
         } else {
             
             for navController in (window!.rootViewController! as! UITabBarController).childViewControllers {
                 let controller = (navController as! UINavigationController).viewControllers.first
-                if controller is MainTableViewController {
-                    vc = controller as? MainTableViewController
+                if controller is HomeCollectionViewController {
+                    vc = controller as? HomeCollectionViewController
                 }
             }
             
@@ -165,5 +212,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+}
+
+/** Create UIColors from hex values */
+extension UIColor {
+    convenience init(red: Int, green: Int, blue: Int) {
+        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+    }
+    
+    convenience init(netHex: String) {
+        let hex = Int(netHex, radix: 16)!
+        self.init(red:(hex >> 16) & 0xff, green:(hex >> 8) & 0xff, blue:hex & 0xff)
+    }
 }
 
