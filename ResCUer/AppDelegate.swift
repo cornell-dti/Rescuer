@@ -71,13 +71,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             guide.navigationItem.title = "Emergency Guide"
             let settings = UINavigationController(rootViewController: SettingsTableViewController())
             settings.navigationItem.title = "Settings"
-            let controllers = [home, guide, settings]
+            let map = UINavigationController(rootViewController: MapViewController())
+            let controllers = [home, guide, settings, map]
             tabBarController.viewControllers = controllers
             window?.rootViewController = tabBarController
             
             home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: homeAsset), tag: 1)
             guide.tabBarItem = UITabBarItem(title: "Guide", image: UIImage(named: guideAsset), tag: 2)
             settings.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: settingsAsset), tag: 3)
+            map.tabBarItem = UITabBarItem(title: "Map", image: UIImage(named: settingsAsset), tag: 4)
             
             for item in tabBarController.tabBar.items! {
                 if let image = item.image {

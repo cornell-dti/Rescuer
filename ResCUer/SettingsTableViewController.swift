@@ -167,13 +167,16 @@ class SettingsTableViewController: UITableViewController {
         guide.navigationItem.title = "Emergency Guide"
         let settings = UINavigationController(rootViewController: SettingsTableViewController())
         settings.navigationItem.title = "Settings"
-        let controllers = [home, guide, settings]
+        let map = UINavigationController(rootViewController: MapViewController())
+        map.navigationItem.title = "Map"
+        let controllers = [home, guide, settings, map]
         tabBarController.viewControllers = controllers
         appDelegate.window?.rootViewController = tabBarController
         
         home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: appDelegate.homeAsset), tag: 1)
         guide.tabBarItem = UITabBarItem(title: "Guide", image: UIImage(named: appDelegate.guideAsset), tag: 2)
         settings.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: appDelegate.settingsAsset), tag: 3)
+        map.tabBarItem = UITabBarItem(title: "Map", image: UIImage(named: appDelegate.settingsAsset), tag: 4)
         
         for item in tabBarController.tabBar.items! {
             if let image = item.image {
