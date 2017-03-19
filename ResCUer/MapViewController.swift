@@ -1,9 +1,9 @@
 //
 //  MapViewController.swift
-//  Rescuer
+//  ResCUer
 //
-//  Created by Matthew Barker on 3/18/17.
-//  Copyright © 2017 Cornell SA Tech. All rights reserved.
+//  Created by Raymone Radi  on 3/16/17.
+//  Copyright © 2017 Raymone Radi . All rights reserved.
 //
 
 import UIKit
@@ -21,5 +21,4 @@ class MapViewController: UIViewController {
         
     }
     
-
 }
