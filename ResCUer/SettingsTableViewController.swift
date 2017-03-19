@@ -20,17 +20,20 @@ class SettingsTableViewController: UITableViewController {
         
         self.navigationItem.title = "Settings"
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-                
+        
         if data.value(forKey: "introShown") == nil {
             
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem:
-                UIBarButtonSystemItem.done, target: self, action: #selector(dismissIntro))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissIntro))
             
             let message = "Thanks for downloading the app and putting your safety first! To get the most use out of the app, enter your current address and up to three important contacts."
             let alertController = UIAlertController(title: "Welcome to Rescuer!", message: message, preferredStyle: .alert)
             let action = UIAlertAction(title: "You got it!", style: .cancel, handler: nil)
             alertController.addAction(action)
             present(alertController, animated: true, completion: nil)
+            
+        } else {
+            
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissView))
             
         }
         
@@ -153,6 +156,10 @@ class SettingsTableViewController: UITableViewController {
 
         }
     }
+    
+    func dismissView() {
+        dismiss(animated: true, completion: nil)
+    }
 
     /// MARK: Intro functions
     
@@ -162,18 +169,19 @@ class SettingsTableViewController: UITableViewController {
         
         let tabBarController = UITabBarController()
         tabBarController.tabBar.tintColor = .white
-        let home = UINavigationController(rootViewController: MainTableViewController())
+        let home = UINavigationController(rootViewController:
+            HomeCollectionViewController(collectionViewLayout: appDelegate.homeFlow()))
+        let map = UINavigationController(rootViewController: MapViewController())
+        map.navigationItem.title = "Blue Light Map"
         let guide = UINavigationController(rootViewController: MainGuideViewController())
         guide.navigationItem.title = "Emergency Guide"
-        let settings = UINavigationController(rootViewController: SettingsTableViewController())
-        settings.navigationItem.title = "Settings"
-        let controllers = [home, guide, settings]
+        let controllers = [home, map, guide]
         tabBarController.viewControllers = controllers
         appDelegate.window?.rootViewController = tabBarController
         
-        home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: appDelegate.homeAsset), tag: 1)
-        guide.tabBarItem = UITabBarItem(title: "Guide", image: UIImage(named: appDelegate.guideAsset), tag: 2)
-        settings.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: appDelegate.settingsAsset), tag: 3)
+        home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home"), tag: 1)
+        map.tabBarItem = UITabBarItem(title: "Map", image: UIImage(named: "map"), tag: 2)
+        guide.tabBarItem = UITabBarItem(title: "Guide", image: UIImage(named: "guide"), tag: 3)
         
         for item in tabBarController.tabBar.items! {
             if let image = item.image {
@@ -181,7 +189,13 @@ class SettingsTableViewController: UITableViewController {
             }
         }
         
-        let desiredViewController = UINavigationController(rootViewController: MainTableViewController())
+        for navController in controllers {
+            let settingsButton = UIBarButtonItem(image: UIImage(named: "settings"),
+                                                 style: .plain, target: self, action: #selector(appDelegate.launchSettings))
+            navController.visibleViewController?.navigationItem.setRightBarButton(settingsButton, animated: true)
+        }
+        
+        let desiredViewController = home
         
         let snapshot: UIView = appDelegate.window!.snapshotView(afterScreenUpdates: true)!
         desiredViewController.view.addSubview(snapshot);

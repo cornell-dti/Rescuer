@@ -1,90 +1,120 @@
 //
-//  MainTableViewController.swift
-//  ResCUer
+//  HomeCollectionViewController.swift
+//  Rescuer
 //
-//  Created by Matthew Barker on 11/3/16.
-//  Copyright © 2016 Raymone Radi . All rights reserved.
+//  Created by Matthew Barker on 3/18/17.
+//  Copyright © 2017 Cornell SA Tech. All rights reserved.
 //
 
 import UIKit
-import CoreLocation
 import MapKit
+import CoreLocation
 
-class MainTableViewController: UITableViewController {
+private let reuseIdentifier = "cell"
+let data = UserDefaults(suiteName: "group.rescuer")!
+
+class HomeCollectionViewController: UICollectionViewController {
     
-    let data = UserDefaults(suiteName: "group.rescuer")!
-    
-    let cellData = [(title: "Home", color: UIColor(netHex: "2474CC")),
-                     (title: "Friends", color: UIColor(netHex: "6CB95B")),
-                    (title: "Taxi", color: UIColor(netHex: "F9B604")),
-                    (title: "Emergency", color: UIColor(netHex: "E62424"))]
+    let cellData = [(title: "Get Directions Home", color: UIColor(netHex: "2474CC"), image: "directions"),
+                    (title: "Call Friends", color: UIColor(netHex: "6CB95B"), image: "friends"),
+                    (title: "Call Taxi Service", color: UIColor(netHex: "F9B604"), image: "taxi"),
+                    (title: "Emergency Services", color: UIColor(netHex: "E62424"), image: "emergency")
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.separatorStyle = .none
-        tableView.backgroundColor = .darkGray
-        tableView.isScrollEnabled = false
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        
-        self.navigationItem.title = "Cornell Rescuer"
 
+        // Register cell classes
+        collectionView!.register(HomeCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+
+        // Do any additional setup after loading the view.
+        self.navigationItem.title = "Cornell Rescuer"
+        collectionView!.backgroundColor = .white
+        
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.barTintColor = UIColor(netHex: "E74E33")
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-                
+        
         UIView.animate(withDuration: 0.8, animations: {
             self.view.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             self.view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
         }, completion: nil)
+        
     }
     
-    // MARK: - Table view data source
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+
+    // MARK: UICollectionViewDataSource
+
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4
     }
-    
-    func cellDimensions() -> (cellHeight: CGFloat, separation: CGFloat) {
-        let height = view.frame.height
-        let tabHeight = tabBarController?.tabBar.frame.height ?? 0
-        let statusBar = UIApplication.shared.value(forKey: "statusBar") as! UIView?
-        let statusBarHeight = statusBar?.frame.height ?? 0
-        let navHeight = self.navigationController?.navigationBar.frame.height ?? 0
 
-        let viewableSpace = height - tabHeight - statusBarHeight - navHeight
-        let totalCellHeight = viewableSpace / CGFloat(4)
-        
-        let buttonHeight = totalCellHeight * 0.7
-        let totalSeparation = viewableSpace - (buttonHeight * 4)
-        let separation = totalSeparation / 10.0
-        
-        return (totalCellHeight, separation)
-        
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return cellDimensions().cellHeight
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = MainTableViewCell() //tableView.dequeueReusableCell(withIdentifier: "mainCell", for: indexPath)
-        cell.cellDimensions = cellDimensions()
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! HomeCollectionViewCell
         cell.setCell(data: cellData[indexPath.row])
-        cell.selectionStyle = .none
+    
+        // Configure the cell
+    
         return cell
     }
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.row == 0 { zeroSelected() } // Home
+        else if indexPath.row == 1 { oneSelected() } // Friends
+        else if indexPath.row == 2 { twoSelected() } // Taxi
+        else if indexPath.row == 3 { threeSelected() } // Emergency
+    }
+
+    // MARK: UICollectionViewDelegate
+
+    /*
+    // Uncomment this method to specify if the specified item should be highlighted during tracking
+    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    */
+
+    /*
+    // Uncomment this method to specify if the specified item should be selected
+    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    */
+
+    /*
+    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
+    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
+        return false
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
+    
+    }
+    */
+    
+    /// MARK: Action Functions
+    
+    /** Get Directions Home */
     func zeroSelected() {
         if let address = data.string(forKey: "address") {
             getDirections(forLocation: address)
         } else { addressError("") }
     }
     
+    /** Call A Friend */
     func oneSelected() {
         var accum = 0
         for index in 0...2 {
@@ -127,6 +157,7 @@ class MainTableViewController: UITableViewController {
         }
     }
     
+    /** Call A Taxi */
     func twoSelected() {
         confirmCall(number: "(607) 588-8888", recipient: "Taxi Service")
     }
@@ -174,21 +205,11 @@ class MainTableViewController: UITableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        if indexPath.row == 0 { zeroSelected() } // Home
-        else if indexPath.row == 1 { oneSelected() } // Friends
-        else if indexPath.row == 2 { twoSelected() } // Taxi
-        else if indexPath.row == 3 { threeSelected() } // Emergency
-        
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
     // MARK: Call Functions
     
     /// Presents a UIAlert where the user can confirm the call and do so
     func confirmCall(number: String, recipient: String) {
-
+        
         let message = "Are you sure that you want to call \(number)?"
         let alertController = UIAlertController(title: "Call \(recipient)", message: message, preferredStyle: .alert)
         
@@ -231,8 +252,8 @@ class MainTableViewController: UITableViewController {
     func callError(_ number: String) {
         let message = number == "" ? "You have not entered a valid phone number. " : "The phone number \(number) is not valid. "
         let alertController = UIAlertController(title: "Invalid Phone Number", message: message, preferredStyle: .alert)
-            let action = UIAlertAction(title: "OK", style: .default) { (action) in }
-            alertController.addAction(action)
+        let action = UIAlertAction(title: "OK", style: .default) { (action) in }
+        alertController.addAction(action)
         DispatchQueue.main.async {
             self.present(alertController, animated: true, completion: nil)
         }
@@ -264,16 +285,4 @@ class MainTableViewController: UITableViewController {
         self.present(alertController, animated: true, completion: nil)
     }
 
-}
-
-/** Create UIColors from hex values */
-extension UIColor {
-    convenience init(red: Int, green: Int, blue: Int) {
-        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
-    }
-    
-    convenience init(netHex: String) {
-        let hex = Int(netHex, radix: 16)!
-        self.init(red:(hex >> 16) & 0xff, green:(hex >> 8) & 0xff, blue:hex & 0xff)
-    }
 }
