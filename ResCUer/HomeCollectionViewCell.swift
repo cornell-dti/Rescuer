@@ -41,7 +41,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(imageView)
         
         titleLabel = UILabel(frame: CGRect())
-        titleLabel.numberOfLines = 0
+        titleLabel.numberOfLines = 2
         titleLabel.textAlignment = .center
         titleLabel.textColor = .darkGray
         titleLabel.font = UIFont.systemFont(ofSize: 17, weight: UIFontWeightMedium)
@@ -65,8 +65,8 @@ class HomeCollectionViewCell: UICollectionViewCell {
         titleLabel.sizeToFit()
         titleLabel.frame.size.width = backgroundCircle.frame.width
         titleLabel.center.x = backgroundCircle.center.x
-        titleLabel.frame.origin.y = backgroundCircle.frame.maxY + 8
-        
+        titleLabel.frame.origin.y = backgroundCircle.frame.maxY + 16
+                
     }
     
 }

@@ -110,7 +110,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let layout = UICollectionViewFlowLayout()
         let usableScreenWidth = UIScreen.main.bounds.width
         layout.itemSize = CGSize(width: usableScreenWidth / 2, height: usableScreenWidth / 2)
-        layout.minimumLineSpacing = 32
+        layout.minimumLineSpacing = 40
         layout.minimumInteritemSpacing = 0
         
         let deviceHeight = UIScreen.main.bounds.height

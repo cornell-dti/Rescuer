@@ -15,9 +15,10 @@ let data = UserDefaults(suiteName: "group.rescuer")!
 
 class HomeCollectionViewController: UICollectionViewController {
     
+    // For one line titles, use \n to make the two line titles look nice
     let cellData = [(title: "Get Directions Home", color: UIColor(netHex: "2474CC"), image: "directions"),
-                    (title: "Call Friends", color: UIColor(netHex: "6CB95B"), image: "friends"),
-                    (title: "Call Taxi Service", color: UIColor(netHex: "F9B604"), image: "taxi"),
+                    (title: "Call Friends\n", color: UIColor(netHex: "6CB95B"), image: "friends"),
+                    (title: "Call Taxi Service\n", color: UIColor(netHex: "F9B604"), image: "taxi"),
                     (title: "Emergency Services", color: UIColor(netHex: "E62424"), image: "emergency")
     ]
 
@@ -60,10 +61,7 @@ class HomeCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! HomeCollectionViewCell
-        cell.setCell(data: cellData[indexPath.row])
-    
-        // Configure the cell
-    
+        cell.setCell(data: cellData[indexPath.row])    
         return cell
     }
     
