@@ -69,12 +69,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             map.navigationItem.title = "Blue Light Map"
             let guide = UINavigationController(rootViewController: MainGuideViewController())
             guide.navigationItem.title = "Emergency Guide"
+<<<<<<< HEAD
+            let settings = UINavigationController(rootViewController: SettingsTableViewController())
+            settings.navigationItem.title = "Settings"
+            let map = UINavigationController(rootViewController: MapViewController())
+            let controllers = [home, guide, settings, map]
+=======
             let controllers = [home, map, guide]
+>>>>>>> 51ac28a5f6ceceb0cbba3a1756d3cb151284d9a0
             tabBarController.viewControllers = controllers
             
+<<<<<<< HEAD
+            home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: homeAsset), tag: 1)
+            guide.tabBarItem = UITabBarItem(title: "Guide", image: UIImage(named: guideAsset), tag: 2)
+            settings.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: settingsAsset), tag: 3)
+            map.tabBarItem = UITabBarItem(title: "Map", image: UIImage(named: settingsAsset), tag: 4)
+=======
             home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home"), tag: 1)
             map.tabBarItem = UITabBarItem(title: "Map", image: UIImage(named: "map"), tag: 2)
             guide.tabBarItem = UITabBarItem(title: "Guide", image: UIImage(named: "guide"), tag: 3)
+>>>>>>> 51ac28a5f6ceceb0cbba3a1756d3cb151284d9a0
             
             for item in tabBarController.tabBar.items! {
                 if let image = item.image {

@@ -175,6 +175,20 @@ class SettingsTableViewController: UITableViewController {
         map.navigationItem.title = "Blue Light Map"
         let guide = UINavigationController(rootViewController: MainGuideViewController())
         guide.navigationItem.title = "Emergency Guide"
+<<<<<<< HEAD
+        let settings = UINavigationController(rootViewController: SettingsTableViewController())
+        settings.navigationItem.title = "Settings"
+        let map = UINavigationController(rootViewController: MapViewController())
+        map.navigationItem.title = "Map"
+        let controllers = [home, guide, settings, map]
+        tabBarController.viewControllers = controllers
+        appDelegate.window?.rootViewController = tabBarController
+        
+        home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: appDelegate.homeAsset), tag: 1)
+        guide.tabBarItem = UITabBarItem(title: "Guide", image: UIImage(named: appDelegate.guideAsset), tag: 2)
+        settings.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: appDelegate.settingsAsset), tag: 3)
+        map.tabBarItem = UITabBarItem(title: "Map", image: UIImage(named: appDelegate.settingsAsset), tag: 4)
+=======
         let controllers = [home, map, guide]
         tabBarController.viewControllers = controllers
         appDelegate.window?.rootViewController = tabBarController
@@ -182,6 +196,7 @@ class SettingsTableViewController: UITableViewController {
         home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home"), tag: 1)
         map.tabBarItem = UITabBarItem(title: "Map", image: UIImage(named: "map"), tag: 2)
         guide.tabBarItem = UITabBarItem(title: "Guide", image: UIImage(named: "guide"), tag: 3)
+>>>>>>> 51ac28a5f6ceceb0cbba3a1756d3cb151284d9a0
         
         for item in tabBarController.tabBar.items! {
             if let image = item.image {
