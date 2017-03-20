@@ -22,17 +22,15 @@
 	<string>2</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Will you allow this app to always know your location?</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Do you allow this app to know your current location?</string>
+	<string>Rescuer will use your current location to find the nearest blue lights.</string>
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>
 			<key>UIApplicationShortcutItemIconType</key>
 			<string>UIApplicationShortcutIconTypeHome</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>Go Home</string>
+			<string>Get Directions Home</string>
 			<key>UIApplicationShortcutItemType</key>
 			<string>$(PRODUCT_BUNDLE_IDENTIFIER).Home</string>
 			<key>UIApplicationShortcutItemUserInfo</key>
@@ -45,7 +43,7 @@
 			<key>UIApplicationShortcutItemIconType</key>
 			<string>UIApplicationShortcutIconTypeContact</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>Call a Friend</string>
+			<string>Call Friends</string>
 			<key>UIApplicationShortcutItemType</key>
 			<string>$(PRODUCT_BUNDLE_IDENTIFIER).Friends</string>
 			<key>UIApplicationShortcutItemUserInfo</key>
@@ -58,7 +56,7 @@
 			<key>UIApplicationShortcutItemIconType</key>
 			<string>UIApplicationShortcutIconTypeFavorite</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>Call a Taxi</string>
+			<string>Call Taxi Service</string>
 			<key>UIApplicationShortcutItemType</key>
 			<string>$(PRODUCT_BUNDLE_IDENTIFIER).Taxi</string>
 			<key>UIApplicationShortcutItemUserInfo</key>
@@ -71,7 +69,7 @@
 			<key>UIApplicationShortcutItemIconType</key>
 			<string>UIApplicationShortcutIconTypeLove</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>Emergency Call</string>
+			<string>Emergency Services</string>
 			<key>UIApplicationShortcutItemType</key>
 			<string>$(PRODUCT_BUNDLE_IDENTIFIER).Emergency</string>
 			<key>UIApplicationShortcutItemUserInfo</key>

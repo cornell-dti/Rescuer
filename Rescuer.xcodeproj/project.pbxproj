@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8C0BAF591DF3544F0074BD9E /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0BAF581DF3544F0074BD9E /* GuideViewController.swift */; };
-		8C100CB11E7AF128000B5498 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C100CB01E7AF128000B5498 /* MapViewController.swift */; };
 		8CE339361DFA4F4A0052B052 /* GuideText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE339351DFA4F4A0052B052 /* GuideText.swift */; };
 		8CEC8B451DC3FCC500FB1924 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEC8B441DC3FCC500FB1924 /* AppDelegate.swift */; };
 		8CEC8B5A1DC3FCC500FB1924 /* ResCUerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEC8B591DC3FCC500FB1924 /* ResCUerTests.swift */; };
@@ -56,7 +55,6 @@
 
 /* Begin PBXFileReference section */
 		8C0BAF581DF3544F0074BD9E /* GuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
-		8C100CB01E7AF128000B5498 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		8CE339351DFA4F4A0052B052 /* GuideText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideText.swift; sourceTree = "<group>"; };
 		8CEC8B411DC3FCC500FB1924 /* ResCUer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ResCUer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CEC8B441DC3FCC500FB1924 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -130,7 +128,6 @@
 			isa = PBXGroup;
 			children = (
 				8CEC8B441DC3FCC500FB1924 /* AppDelegate.swift */,
-				8C100CB01E7AF128000B5498 /* MapViewController.swift */,
 				BFFF94A41E3EE3CA0071AA57 /* Home */,
 				BF86E9901E7D8AE3000637B0 /* Map */,
 				BFFF94A31E3EE3B20071AA57 /* Guide */,
@@ -276,11 +273,7 @@
 				TargetAttributes = {
 					8CEC8B401DC3FCC500FB1924 = {
 						CreatedOnToolsVersion = 8.0;
-<<<<<<< HEAD:ResCUer.xcodeproj/project.pbxproj
-						DevelopmentTeam = MJ5Q5C9SFW;
-=======
 						DevelopmentTeam = UJQ88SCQSQ;
->>>>>>> 51ac28a5f6ceceb0cbba3a1756d3cb151284d9a0:Rescuer.xcodeproj/project.pbxproj
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -352,11 +345,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD:ResCUer.xcodeproj/project.pbxproj
-				8C100CB11E7AF128000B5498 /* MapViewController.swift in Sources */,
-=======
 				BF86E98F1E7D8ADE000637B0 /* MapViewController.swift in Sources */,
->>>>>>> 51ac28a5f6ceceb0cbba3a1756d3cb151284d9a0:Rescuer.xcodeproj/project.pbxproj
 				8CFEBC241E3E87A9003DD5CA /* GuideTableViewCell.swift in Sources */,
 				8CEC8B451DC3FCC500FB1924 /* AppDelegate.swift in Sources */,
 				8CE339361DFA4F4A0052B052 /* GuideText.swift in Sources */,
@@ -504,19 +493,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-<<<<<<< HEAD:ResCUer.xcodeproj/project.pbxproj
-				DEVELOPMENT_TEAM = MJ5Q5C9SFW;
-=======
 				DEVELOPMENT_TEAM = UJQ88SCQSQ;
->>>>>>> 51ac28a5f6ceceb0cbba3a1756d3cb151284d9a0:Rescuer.xcodeproj/project.pbxproj
 				INFOPLIST_FILE = ResCUer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-<<<<<<< HEAD:ResCUer.xcodeproj/project.pbxproj
-				PRODUCT_BUNDLE_IDENTIFIER = com.raymoneradi.Rescuer;
-=======
 				PRODUCT_BUNDLE_IDENTIFIER = com.cornellsatech.RescuerApp;
->>>>>>> 51ac28a5f6ceceb0cbba3a1756d3cb151284d9a0:Rescuer.xcodeproj/project.pbxproj
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -529,19 +510,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-<<<<<<< HEAD:ResCUer.xcodeproj/project.pbxproj
-				DEVELOPMENT_TEAM = MJ5Q5C9SFW;
-=======
 				DEVELOPMENT_TEAM = UJQ88SCQSQ;
->>>>>>> 51ac28a5f6ceceb0cbba3a1756d3cb151284d9a0:Rescuer.xcodeproj/project.pbxproj
 				INFOPLIST_FILE = ResCUer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-<<<<<<< HEAD:ResCUer.xcodeproj/project.pbxproj
-				PRODUCT_BUNDLE_IDENTIFIER = com.raymoneradi.Rescuer;
-=======
 				PRODUCT_BUNDLE_IDENTIFIER = com.cornellsatech.RescuerApp;
->>>>>>> 51ac28a5f6ceceb0cbba3a1756d3cb151284d9a0:Rescuer.xcodeproj/project.pbxproj
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
