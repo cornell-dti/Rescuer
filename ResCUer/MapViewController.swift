@@ -10,6 +10,19 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var locationManager: CLLocationManager!
     var lolISuck = 1
     var blueLightAnnotations: [MKPointAnnotation]!
+    var centerCoordinate: CLLocationCoordinate2D!
+    var centerCoordinate2: CLLocationCoordinate2D!
+    var centerCoordinate3: CLLocationCoordinate2D!
+    var annotation: MKPointAnnotation!
+    var annotation2: MKPointAnnotation!
+    var annotation3: MKPointAnnotation!
+    var timeIncrementer = 0
+    var image: UIImage!
+    var button: UIButton!
+    var giveDirections1 = false
+    var giveDirections2 = false
+    var giveDirections3 = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,57 +41,34 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         mapView.delegate = self
         mapView.showsUserLocation = true
         
-        let annotation = MKPointAnnotation()
-        let centerCoordinate = CLLocationCoordinate2D(latitude: 42.449209054141145, longitude: -76.484568582589557)
+        annotation = MKPointAnnotation()
+        centerCoordinate = CLLocationCoordinate2D(latitude: 42.449209054141145, longitude: -76.484568582589557)
         annotation.coordinate = centerCoordinate
         annotation.title = "Blue Light 1"
         annotation.subtitle = "Tap for directions"
         mapView.addAnnotation(annotation)
         
-        let annotation2 = MKPointAnnotation()
-        let centerCoordinate2 = CLLocationCoordinate2D(latitude: 42.449209054141145, longitude: -76.485558582589557)
+        annotation2 = MKPointAnnotation()
+        centerCoordinate2 = CLLocationCoordinate2D(latitude: 42.449209054141145, longitude: -76.485558582589557)
         annotation2.coordinate = centerCoordinate2
         annotation2.title = "Blue Light 2"
         annotation2.subtitle = "Tap for directions"
         mapView.addAnnotation(annotation2)
         
-        let annotation3 = MKPointAnnotation()
-        let centerCoordinate3 = CLLocationCoordinate2D(latitude: 42.44676609054141145, longitude: -76.484558582589557)
+        annotation3 = MKPointAnnotation()
+        centerCoordinate3 = CLLocationCoordinate2D(latitude: 42.44676609054141145, longitude: -76.484558582589557)
         annotation3.coordinate = centerCoordinate3
         annotation3.title = "Blue Light 3"
         annotation3.subtitle = "Tap for directions"
         mapView.addAnnotation(annotation3)
-        
-        let one = MKMapPointForCoordinate(centerCoordinate)
-        let two = MKMapPointForCoordinate(centerCoordinate2)
-        let three = MKMapPointForCoordinate(centerCoordinate3)
-        let currentLocation = MKMapPointForCoordinate(mapView.userLocation.coordinate)
-        print ("current location")
-        print (currentLocation)
-        
-        let allBlueLights = [one, two, three]
-        blueLightAnnotations = [annotation, annotation2, annotation3]
-        var bestDistance = MKMetersBetweenMapPoints(currentLocation, one)
-        var bestMapPoint = one
-        
-        for bluelight in allBlueLights {
-            
-            if MKMetersBetweenMapPoints(currentLocation, bluelight) < bestDistance {
-                bestDistance = MKMetersBetweenMapPoints(currentLocation, bluelight)
-                bestMapPoint = bluelight
-            }
-        }
-        
-        print ("best map point: ")
-        print (bestMapPoint)
-        print ("one")
-        print (one)
-        
-        if (bestMapPoint.x == one.x) && (bestMapPoint.y == one.y) {mapView.selectAnnotation(annotation, animated: true)}
-        if (bestMapPoint.x == two.x) && (bestMapPoint.y == two.y) {mapView.selectAnnotation(annotation2, animated: true)}
-        if (bestMapPoint.x == three.x) && (bestMapPoint.y == three.y) {mapView.selectAnnotation(annotation3, animated: true)}
-        
         view.addSubview(mapView)
+        
+        image = UIImage(named: "location") as UIImage?
+        button = UIButton(type: UIButtonType.custom) as UIButton
+        button.frame = CGRect(x: 340, y: 580, width: 30, height: 30)
+        button.setImage(image, for: .normal)
+        button.addTarget(self, action: #selector(btnTouched), for:.touchUpInside)
+        view.addSubview(button)
         
         if CLLocationManager.locationServicesEnabled() {
             locationManager.requestAlwaysAuthorization()
@@ -88,29 +78,62 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             locationManager.startUpdatingLocation()
             //locationManager.requestLocation()
             mapView.showsUserLocation = true
+            locationManager.distanceFilter = 10
             print ("The location services are enabled.")
             print (mapView.userLocation.coordinate)
         }
         
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print ("Did Update Locations")
-        print (locations.first!.coordinate)
+        
+        print("\nRUNNING DID UPDATE LOCATION")
+        print("locations array: \(locations)")
+
+        
         //mapView.setCenter((locations.first!.coordinate), animated: true)
-        print (locations[0].coordinate)
         let locationArray = locations as NSArray
         let locationObj = locationArray.lastObject as! CLLocation
         let coord = locationObj.coordinate
-        print (coord)
         
         if (lolISuck == 1)
         {
         let mapCamera = MKMapCamera(lookingAtCenter: coord, fromEyeCoordinate: coord, eyeAltitude: 2500)
-        print (mapCamera)
-        print (mapView)
         mapView.setCamera(mapCamera, animated: false)
         lolISuck = lolISuck + 1
+        }
+        
+        let one = MKMapPointForCoordinate(centerCoordinate)
+        let two = MKMapPointForCoordinate(centerCoordinate2)
+        let three = MKMapPointForCoordinate(centerCoordinate3)
+        let currentLocation = MKMapPointForCoordinate(mapView.userLocation.coordinate)
+        
+        
+        let allBlueLights = [one, two, three]
+        blueLightAnnotations = [annotation, annotation2, annotation3]
+        var bestDistance = MKMetersBetweenMapPoints(currentLocation, one)
+        var bestMapPoint = one
+        
+        for bluelight in allBlueLights {
+            let distance = MKMetersBetweenMapPoints(currentLocation, bluelight)
+            
+            if distance < bestDistance {
+                
+                bestDistance = distance
+                bestMapPoint = bluelight
+                print (bestDistance)
+            }
+        }
+        
+        if (bestDistance < 50000)
+            
+        {
+        
+        if (bestMapPoint.x == one.x) && (bestMapPoint.y == one.y) {mapView.selectAnnotation(annotation, animated: true);}
+        if (bestMapPoint.x == two.x) && (bestMapPoint.y == two.y) {mapView.selectAnnotation(annotation2, animated: true);}
+        if (bestMapPoint.x == three.x) && (bestMapPoint.y == three.y) {mapView.selectAnnotation(annotation3, animated: true);}
+            
         }
         
     }
@@ -143,19 +166,61 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         if annotationView == nil{
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "Pin")
             annotationView?.canShowCallout = true
-        }else{
+        }
+        else{
             annotationView?.annotation = annotation
         }
     
+//        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(directionsToBlueLight(withSender:)))
+//        annotationView!.addGestureRecognizer(gestureRecognizer)
         
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(directionsToBlueLight))
-        annotationView!.addGestureRecognizer(gestureRecognizer)
+        // Right accessory view
+        let image = UIImage(named: "location")
+        let button = UIButton(type: .custom)
+        button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        button.setImage(image, for: UIControlState())
+        annotationView?.rightCalloutAccessoryView = button
         
         return annotationView
+        
+    }
+//    
+//    func directionsToBlueLight(withSender sender: MKAnnotation) {
+//        
+//        
+//    }
+    
+    func btnTouched(){
+            let mapCamera = MKMapCamera(lookingAtCenter: mapView.userLocation.coordinate, fromEyeCoordinate: mapView.userLocation.coordinate, eyeAltitude: 4500)
+            mapView.setCamera(mapCamera, animated: true)
+            lolISuck = lolISuck + 1
     }
     
-    func directionsToBlueLight() {
-        print ("cool")
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+        let placemark = MKPlacemark(coordinate: view.annotation!.coordinate, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeWalking]
+        mapItem.openInMaps(launchOptions: launchOptions)
+        
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        
+        if ((view.annotation?.title)! == "Blue Light 1"){
+            
+            
+            
+        }
+        
+        if ((view.annotation?.title)! == "Blue Light 2"){
+            
+        }
+        
+        if ((view.annotation?.title)! == "Blue Light 3"){
+            
+        }
+        
     }
     
 }
