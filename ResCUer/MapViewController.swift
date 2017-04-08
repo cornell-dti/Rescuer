@@ -63,9 +63,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         mapView.addAnnotation(annotation3)
         view.addSubview(mapView)
         
-        image = UIImage(named: "location") as UIImage?
+        image = UIImage(named: "LocationArrowAttempt") as UIImage?
         button = UIButton(type: UIButtonType.custom) as UIButton
-        button.frame = CGRect(x: 340, y: 580, width: 30, height: 30)
+        button.frame = CGRect(x: 300, y: 540, width: 70, height: 70)
         button.setImage(image, for: .normal)
         button.addTarget(self, action: #selector(btnTouched), for:.touchUpInside)
         view.addSubview(button)
@@ -215,9 +215,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
         if ((view.annotation?.title)! == "Blue Light 2"){
             
+            
+            
         }
         
         if ((view.annotation?.title)! == "Blue Light 3"){
+            
+            
             
         }
         
