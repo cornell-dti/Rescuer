@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C0A9B331EA2832E006033E3 /* blueLight.json in Resources */ = {isa = PBXBuildFile; fileRef = 8C0A9B321EA2832E006033E3 /* blueLight.json */; };
 		8C0BAF591DF3544F0074BD9E /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0BAF581DF3544F0074BD9E /* GuideViewController.swift */; };
 		8CE339361DFA4F4A0052B052 /* GuideText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE339351DFA4F4A0052B052 /* GuideText.swift */; };
 		8CEC8B451DC3FCC500FB1924 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEC8B441DC3FCC500FB1924 /* AppDelegate.swift */; };
@@ -54,6 +55,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8C0A9B321EA2832E006033E3 /* blueLight.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = blueLight.json; sourceTree = "<group>"; };
 		8C0BAF581DF3544F0074BD9E /* GuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
 		8CE339351DFA4F4A0052B052 /* GuideText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideText.swift; sourceTree = "<group>"; };
 		8CEC8B411DC3FCC500FB1924 /* ResCUer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ResCUer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				BF86E98E1E7D8ADE000637B0 /* MapViewController.swift */,
+				8C0A9B321EA2832E006033E3 /* blueLight.json */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C0A9B331EA2832E006033E3 /* blueLight.json in Resources */,
 				BF86E9961E7E4A5A000637B0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
