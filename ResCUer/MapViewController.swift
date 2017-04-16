@@ -111,16 +111,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         mapView.selectAnnotation(selectedAnnotation, animated: true)
         
     }
+
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         locationManager.stopUpdatingLocation()
         print(error)
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         locationManager.startUpdatingLocation()
     }
     
+    // In progress: attempt to restrict map to Cornell
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
         
         if UserDefaults.standard.object(forKey: "latDelta")  == nil {

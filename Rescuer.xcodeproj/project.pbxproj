@@ -181,6 +181,7 @@
 			children = (
 				BFB84F041EA29992009DBCE6 /* BlueLight.json */,
 				BF86E98E1E7D8ADE000637B0 /* MapViewController.swift */,
+				8C0A9B321EA2832E006033E3 /* blueLight.json */,
 			);
 			name = Map;
 			sourceTree = "<group>";
