@@ -30,6 +30,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         mapView.frame = view.frame
         mapView.delegate = self
         mapView.showsUserLocation = true
+        let defaultLocation = CLLocationCoordinate2D(latitude: 42.444986, longitude: -76.481154)
+        let mapCamera = MKMapCamera(lookingAtCenter: defaultLocation, fromEyeCoordinate: defaultLocation, eyeAltitude: 2500)
+        mapView.setCamera(mapCamera, animated: false)
         view.addSubview(mapView)
         
         createBlueLights()
@@ -199,12 +202,24 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     func recenterMap() {
-        print("recenter map")
-        let mapCamera = MKMapCamera(lookingAtCenter: mapView.userLocation.coordinate,
-                                    fromEyeCoordinate: mapView.userLocation.coordinate, eyeAltitude: 1000)
-        mapView.setCamera(mapCamera, animated: true)
-        selectedAnnotation = annotations[closestAnnotationIndex]
-        mapView.selectAnnotation(selectedAnnotation, animated: true)
+        
+        if CLLocationManager.authorizationStatus() != .authorizedWhenInUse {
+            let message = "Please enable location services to find the nearest blue light to your current location."
+            let alert = UIAlertController(title: "Where you at?", message: message, preferredStyle: .alert)
+            let option1 = UIAlertAction(title: "Settings", style: .default) { (action) in
+                UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
+            }
+            let option2 = UIAlertAction(title: "You'll never find me!", style: .cancel, handler: nil)
+            alert.addAction(option1); alert.addAction(option2)
+            present(alert, animated: true, completion: nil)
+        } else {
+            let mapCamera = MKMapCamera(lookingAtCenter: mapView.userLocation.coordinate,
+                                        fromEyeCoordinate: mapView.userLocation.coordinate, eyeAltitude: 1000)
+            mapView.setCamera(mapCamera, animated: true)
+            selectedAnnotation = annotations[closestAnnotationIndex]
+            mapView.selectAnnotation(selectedAnnotation, animated: true)
+        }
+        
     }
     
 }

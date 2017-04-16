@@ -195,20 +195,7 @@ class SettingsTableViewController: UITableViewController {
             navController.visibleViewController?.navigationItem.setRightBarButton(settingsButton, animated: true)
         }
         
-        let desiredViewController = home
-        
-        let snapshot: UIView = appDelegate.window!.snapshotView(afterScreenUpdates: true)!
-        desiredViewController.view.addSubview(snapshot);
-        
         data.set(true, forKey: "introShown")
-        
-        UIView.animate(withDuration: 0.8, animations: {() in
-            snapshot.layer.opacity = 0;
-            snapshot.layer.transform = CATransform3DMakeScale(1.5, 1.5, 1.5);
-        }, completion: {
-            (value: Bool) in
-            snapshot.removeFromSuperview()
-        })
         
     }
 
