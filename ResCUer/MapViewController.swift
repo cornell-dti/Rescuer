@@ -26,7 +26,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
         // Do any additional setup after loading the view.
-        mapView.mapType = .standard
+        mapView.mapType = .hybrid
         mapView.frame = view.frame
         mapView.delegate = self
         mapView.showsUserLocation = true
@@ -37,7 +37,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
         createBlueLights()
         
-        let image = UIImage(named: "LocationArrowAttempt") as UIImage?
+        let image = UIImage(named: "Location") as UIImage?
         let button = UIButton(type: UIButtonType.custom) as UIButton
         button.frame.size = CGSize(width: 44, height: 44)
         let bounds = UIScreen.main.bounds
@@ -207,7 +207,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             let message = "Please enable location services to find the nearest blue light to your current location."
             let alert = UIAlertController(title: "Where you at?", message: message, preferredStyle: .alert)
             let option1 = UIAlertAction(title: "Settings", style: .default) { (action) in
-                UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
+                } else {
+                    UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
+                }
             }
             let option2 = UIAlertAction(title: "You'll never find me!", style: .cancel, handler: nil)
             alert.addAction(option1); alert.addAction(option2)
@@ -217,7 +221,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                                         fromEyeCoordinate: mapView.userLocation.coordinate, eyeAltitude: 1000)
             mapView.setCamera(mapCamera, animated: true)
             selectedAnnotation = annotations[closestAnnotationIndex]
-            mapView.selectAnnotation(selectedAnnotation, animated: true)
+            if selectedAnnotation.coordinate.latitude != 0.0 && selectedAnnotation.coordinate.longitude != 0.0 {
+                mapView.selectAnnotation(selectedAnnotation, animated: true)
+            }
         }
         
     }
