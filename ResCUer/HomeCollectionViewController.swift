@@ -9,16 +9,17 @@
 import UIKit
 import MapKit
 import CoreLocation
+import SafariServices
 
 private let reuseIdentifier = "cell"
 let data = UserDefaults(suiteName: "group.rescuer")!
 
-class HomeCollectionViewController: UICollectionViewController {
+class HomeCollectionViewController: UICollectionViewController, SFSafariViewControllerDelegate {
     
     // For one line titles, use \n to make the two line titles look nice
     let cellData = [(title: "Get Directions Home", color: UIColor(netHex: "2474CC"), image: "directions"),
                     (title: "Call Friends\n", color: UIColor(netHex: "6CB95B"), image: "friends"),
-                    (title: "Call Taxi Service\n", color: UIColor(netHex: "F9B604"), image: "taxi"),
+                    (title: "Find Transportation", color: UIColor(netHex: "F9B604"), image: "taxi"),
                     (title: "Emergency Services", color: UIColor(netHex: "E62424"), image: "emergency")
     ]
 
@@ -68,40 +69,9 @@ class HomeCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row == 0 { zeroSelected() } // Home
         else if indexPath.row == 1 { oneSelected() } // Friends
-        else if indexPath.row == 2 { twoSelected() } // Taxi
+        else if indexPath.row == 2 { twoSelected() } // Transportation
         else if indexPath.row == 3 { threeSelected() } // Emergency
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
     
     /// MARK: Action Functions
     
@@ -155,9 +125,42 @@ class HomeCollectionViewController: UICollectionViewController {
         }
     }
     
-    /** Call A Taxi */
+    /** Call A Taxi or Get Big Red Shuttle Info */
     func twoSelected() {
-        confirmCall(number: "(607) 588-8888", recipient: "Taxi Service")
+        
+        let subtitle = "Call a cab or get information about Big Red Shuttle, Cornell's late night shuttle service."
+        let alertController = UIAlertController(title: "Find Transportation", message: subtitle, preferredStyle: .alert)
+        
+        let firstOption = UIAlertAction(title: "Call Collegetown Cab", style: .default) { action in
+            self.call(number: "(607) 588-8888")
+        }
+        
+        let secondOption = UIAlertAction(title: "Big Red Shuttle Info", style: .default) { action in
+            let url = URL(string: "http://www.cornellbigredshuttle.com/#route-and-schedule")!
+            
+            let svc = SFSafariViewController(url: url)
+            svc.delegate = self
+            self.present(svc, animated: true, completion: {
+                UIApplication.shared.statusBarStyle = .default
+            })
+            
+            /*
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(url)
+            }*/
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+        
+        alertController.addAction(firstOption)
+        alertController.addAction(secondOption)
+        alertController.addAction(cancelAction)
+        
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
     
     func threeSelected() {
@@ -201,6 +204,12 @@ class HomeCollectionViewController: UICollectionViewController {
         DispatchQueue.main.async {
             self.present(alertController, animated: true, completion: nil)
         }
+    }
+    
+    // MARK: Safari View Controller Delegate functions
+    
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        UIApplication.shared.statusBarStyle = .lightContent
     }
     
     // MARK: Call Functions

@@ -56,22 +56,22 @@
 		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemIconType</key>
-			<string>UIApplicationShortcutIconTypeFavorite</string>
+			<string>UIApplicationShortcutIconTypeLove</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>Call Taxi Service</string>
+			<string>Emergency Services</string>
 			<key>UIApplicationShortcutItemType</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER).Taxi</string>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).Emergency</string>
 			<key>UIApplicationShortcutItemUserInfo</key>
 			<dict>
 				<key>secondShortcutKey1</key>
-				<string>thirdShortcutValue1</string>
+				<string>fourthShortcutValue1</string>
 			</dict>
 		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemIconType</key>
 			<string>UIApplicationShortcutIconTypeLove</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>Emergency Services</string>
+			<string>Find Blue Lights</string>
 			<key>UIApplicationShortcutItemType</key>
 			<string>$(PRODUCT_BUNDLE_IDENTIFIER).Emergency</string>
 			<key>UIApplicationShortcutItemUserInfo</key>

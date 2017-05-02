@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         case Friends
         case Taxi
         case Emergency
+        case BlueLight
         
         // MARK: Initializers
         
@@ -162,28 +163,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         guard let shortCutType = shortcutItem.type as String? else { return false }
         
-        //let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        var vc: HomeCollectionViewController? = nil
+        var homeVC: HomeCollectionViewController? = nil
+        var mapVC: MapViewController? = nil
         if !(window!.rootViewController is UITabBarController) {
             print("caught error"); handled = false
         } else {
             
-            for navController in (window!.rootViewController! as! UITabBarController).childViewControllers {
+            let tabVC = window!.rootViewController! as! UITabBarController
+            for navController in tabVC.childViewControllers {
                 let controller = (navController as! UINavigationController).viewControllers.first
                 if controller is HomeCollectionViewController {
-                    vc = controller as? HomeCollectionViewController
+                    homeVC = controller as? HomeCollectionViewController
+                }
+                else if controller is MapViewController {
+                    mapVC = controller as? MapViewController
                 }
             }
             
             switch (shortCutType) {
             case ShortcutIdentifier.Home.type:
-                vc?.zeroSelected(); handled = true; break
+                homeVC?.zeroSelected(); handled = true; break
             case ShortcutIdentifier.Friends.type:
-                vc?.oneSelected(); handled = true; break
+                homeVC?.oneSelected(); handled = true; break
             case ShortcutIdentifier.Taxi.type:
-                vc?.twoSelected(); handled = true; break
+                homeVC?.twoSelected(); handled = true; break
             case ShortcutIdentifier.Emergency.type:
-                vc?.threeSelected(); handled = true; break
+                homeVC?.threeSelected(); handled = true; break
+            case ShortcutIdentifier.BlueLight.type:
+                if let mapViewController = mapVC {
+                    tabVC.present(mapViewController, animated: true, completion: nil)
+                }
             default: break
             }
             

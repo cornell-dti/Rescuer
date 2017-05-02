@@ -1,20 +1,25 @@
-// raymone coded this garbage
+//
+//  MapViewController.swift
+//  Rescuer
+//
+//  Created by Matthew Barker on 3/18/17.
+//  Copyright © 2017 Cornell SA Tech. All rights reserved.
+//
 
 import UIKit
 import MapKit
 import CoreLocation
 import SwiftyJSON
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate{
+class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
     var mapView = MKMapView()
     var locationManager = CLLocationManager()
     var isInitialView: Bool = true
-    var annotations: [MKPointAnnotation] = []
+    var blueLightAnnotations: [MKAnnotation] = []
+    var busStopAnnotations: [MKAnnotation] = []
     var coordinates: [CLLocationCoordinate2D] = []
-    
     var closestAnnotationIndex = 0
-    var selectedAnnotation = MKPointAnnotation()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +30,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         navigationController?.navigationBar.barTintColor = UIColor(netHex: "E74E33")
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
-        // Do any additional setup after loading the view.
         mapView.mapType = .hybrid
         mapView.frame = view.frame
         mapView.delegate = self
@@ -36,6 +40,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         view.addSubview(mapView)
         
         createBlueLights()
+        createBusStops()
         
         let image = UIImage(named: "Location") as UIImage?
         let button = UIButton(type: UIButtonType.custom) as UIButton
@@ -70,18 +75,40 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             let localAnnotation = MKPointAnnotation()
             localAnnotation.coordinate = location
             localAnnotation.title = formattedAddress
-            localAnnotation.subtitle = "Tap for directions"
+            localAnnotation.subtitle = "Blue Light"
             mapView.addAnnotation(localAnnotation)
             
-            annotations.append(localAnnotation)
+            blueLightAnnotations.append(localAnnotation)
             coordinates.append(location)
         }
     
     }
+    
+    func createBusStops() {
+        
+        let json = try! JSON(data: Data(contentsOf: Bundle.main.url(forResource: "BusStops", withExtension: "json")!))
+        for (_, stop) in json {
+            let lat = stop["coords"]["lat"].doubleValue
+            let long = stop["coords"]["lon"].doubleValue
+            let address = stop["name"].stringValue
+            
+            if lat != 0 && long != 0 {
+                let location = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                let localAnnotation = MKPointAnnotation()
+                localAnnotation.coordinate = location
+                localAnnotation.title = address
+                localAnnotation.subtitle = "Bus Stop"
+                mapView.addAnnotation(localAnnotation)
+                
+                busStopAnnotations.append(localAnnotation)
+            }
+            
+        }
+        
+    }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        //mapView.setCenter((locations.first!.coordinate), animated: true)
         let locationArray = locations as NSArray
         let locationObj = locationArray.lastObject as! CLLocation
         let coord = locationObj.coordinate
@@ -110,8 +137,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             }
         }
         
-        selectedAnnotation = annotations[closestAnnotationIndex]
-        mapView.selectAnnotation(selectedAnnotation, animated: true)
+        mapView.selectAnnotation(blueLightAnnotations[closestAnnotationIndex], animated: true)
         
     }
 
@@ -125,82 +151,82 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         locationManager.startUpdatingLocation()
     }
     
-    // In progress: attempt to restrict map to Cornell
+    // Beta: Restrict map to Tompkins Country, reset map around current location otherwise
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
         
-        if UserDefaults.standard.object(forKey: "latDelta")  == nil {
-            let json = try! JSON(data: Data(contentsOf: Bundle.main.url(forResource: "BlueLight", withExtension: "json")!))
-            
-            var minLat = Double.greatestFiniteMagnitude; var maxLat = -1 * Double.greatestFiniteMagnitude
-            var minLong = Double.greatestFiniteMagnitude; var maxLong = -1 * Double.greatestFiniteMagnitude
-            for (_ , coordinate) in json["elements"] {
-                
-                let long = coordinate["X"].doubleValue
-                if long > maxLong { maxLong = long }
-                else if long < minLong { minLong = long }
-                
-                let lat = coordinate["Y"].doubleValue
-                if lat > maxLat { maxLat = lat }
-                else if lat < minLat { minLat = lat }
-                
-            }
-            
-            let infintyCheck = !(minLat == Double.infinity || maxLat == -1 * Double.infinity ||
-                minLong == Double.infinity || maxLong == -1 * Double.infinity)
-            
-            if infintyCheck {
-                UserDefaults.standard.set(maxLat - minLat, forKey: "latDelta")
-                UserDefaults.standard.set(maxLong - minLong, forKey: "longDelta")
-            }
-            
+        let rect = mapView.visibleMapRect
+        let northMapPoint = MKMapPointMake(MKMapRectGetMidX(rect), MKMapRectGetMinY(rect))
+        let southMapPoint = MKMapPointMake(MKMapRectGetMidX(rect), MKMapRectGetMaxY(rect))
+        let westMapPoint = MKMapPointMake(MKMapRectGetMinX(rect), MKMapRectGetMidY(rect))
+        let eastMapPoint = MKMapPointMake(MKMapRectGetMaxX(rect), MKMapRectGetMidY(rect))
+        
+        let currentLatSpan = MKMetersBetweenMapPoints(northMapPoint, southMapPoint)
+        let currentLongSpan = MKMetersBetweenMapPoints(westMapPoint, eastMapPoint)
+        let maxLatSpan: CLLocationDistance = 31728 // meters, used below data to calculate
+        let maxLongSpan: CLLocationDistance = 44009 // meters, used below data to calculate
+        
+        /* most extreme points on TCAT Route map
+        let north = 42.61321283145329
+        let east = -76.28125469914926
+        let south = 42.32796328578829
+        let west = -76.67690943302259 */
+        
+        let existsAnnotationsInView = mapView.annotations(in: rect).count != 0
+        let constant: CLLocationDistance = 4 // arbitrary number to reduce max span
+        let isZoomReasonable = currentLatSpan <= (maxLatSpan / constant) && currentLongSpan <= (maxLongSpan / constant)
+        
+        print("\(currentLatSpan <= (maxLatSpan / constant)) \(currentLatSpan) ≤ \((maxLatSpan / constant)) && \(currentLongSpan <= (maxLongSpan / constant)) \(currentLongSpan) ≤ \((maxLongSpan / constant))")
+        
+        if !(existsAnnotationsInView && isZoomReasonable) {
+            recenterMap()
         }
         
-        let latDelta = UserDefaults.standard.value(forKey: "latDelta") as! Double
-        let longDelta = UserDefaults.standard.value(forKey: "longDelta") as! Double
-        
-        if !isInitialView && (mapView.region.span.latitudeDelta > latDelta ||
-            mapView.region.span.longitudeDelta > longDelta) {
-                // recenterMap()
-        }
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
-        if annotation.title! == "My Location" {
-            return nil
-        }
+        // stop any other annotations (e.g. current location) from becoming pin
+        if !(annotation is MKPointAnnotation) { return nil }
         
-        var annotationView = self.mapView.dequeueReusableAnnotationView(withIdentifier: "Pin")
+        let identifier = "Pin"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
         
         if annotationView == nil {
-            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "Pin")
-            annotationView?.canShowCallout = true
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView!.canShowCallout = true
+            annotationView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         } else {
-            annotationView?.annotation = annotation
+            annotationView!.annotation = annotation
         }
-    
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(directionsToBlueLight))
-        annotationView!.addGestureRecognizer(gestureRecognizer)
+        
+        let isBlueLight = blueLightAnnotations.contains(where: { $0 == annotationView!.annotation! })
+        annotationView!.image = isBlueLight ? #imageLiteral(resourceName: "pin_blue") : #imageLiteral(resourceName: "pin_red")
+        annotationView?.tintColor = isBlueLight ? UIColor(netHex: "4990E2") : UIColor(netHex: "FB3A2F")
         
         return annotationView
         
     }
     
-    func directionsToBlueLight(sender: UITapGestureRecognizer) {
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
-        if let annotation = (sender.view as? MKPinAnnotationView)?.annotation {
-            if selectedAnnotation == annotation {
-                let placemark = MKPlacemark(coordinate: annotation.coordinate, addressDictionary: nil)
-                let mapItem = MKMapItem(placemark: placemark)
-                mapItem.name = annotation.title ?? "Selected Blue Light Location"
-                let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeWalking]
-                mapItem.openInMaps(launchOptions: launchOptions)
-            }
-            selectedAnnotation = annotation as! MKPointAnnotation
+        // Launch Apple Maps with walking directions to location
+        if let annotation = view.annotation {
+            let placemark = MKPlacemark(coordinate: annotation.coordinate, addressDictionary: nil)
+            let mapItem = MKMapItem(placemark: placemark)
+            let defaultString = "Selected \(isBlueLight(view) ? "Blue Light" : "Bus Stop")"
+            mapItem.name = annotation.title ?? defaultString
+            let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeWalking]
+            mapItem.openInMaps(launchOptions: launchOptions)
         }
         
     }
     
+    //* Returns true if the MKAnnotationView is a Blue Light. Must have annotation. */
+    func isBlueLight(_ view: MKAnnotationView) -> Bool {
+        return blueLightAnnotations.contains(where: { $0 == view.annotation! })
+    }
+    
+    //* Recenter map to current location, showing closest Blue Light again */
     func recenterMap() {
         
         if CLLocationManager.authorizationStatus() != .authorizedWhenInUse {
@@ -220,9 +246,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             let mapCamera = MKMapCamera(lookingAtCenter: mapView.userLocation.coordinate,
                                         fromEyeCoordinate: mapView.userLocation.coordinate, eyeAltitude: 1000)
             mapView.setCamera(mapCamera, animated: true)
-            selectedAnnotation = annotations[closestAnnotationIndex]
-            if selectedAnnotation.coordinate.latitude != 0.0 && selectedAnnotation.coordinate.longitude != 0.0 {
-                mapView.selectAnnotation(selectedAnnotation, animated: true)
+            if !blueLightAnnotations.isEmpty {
+                let selectedAnnotation = blueLightAnnotations[closestAnnotationIndex]
+                if selectedAnnotation.coordinate.latitude != 0.0 && selectedAnnotation.coordinate.longitude != 0.0 {
+                    mapView.selectAnnotation(selectedAnnotation, animated: true)
+                }
             }
         }
         

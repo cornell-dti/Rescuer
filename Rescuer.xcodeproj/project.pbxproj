@@ -17,6 +17,7 @@
 		8CEC8B651DC3FCC500FB1924 /* ResCUerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEC8B641DC3FCC500FB1924 /* ResCUerUITests.swift */; };
 		8CFEBC231E3E87A9003DD5CA /* GuideSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFEBC201E3E87A9003DD5CA /* GuideSelectionViewController.swift */; };
 		8CFEBC241E3E87A9003DD5CA /* GuideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFEBC211E3E87A9003DD5CA /* GuideTableViewCell.swift */; };
+		BF23E0481EB5B27100E0BA6D /* BusStops.json in Resources */ = {isa = PBXBuildFile; fileRef = BF23E0471EB5B27100E0BA6D /* BusStops.json */; };
 		BF591BE91DD60C6E004B5E6B /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF591BE81DD60C6E004B5E6B /* SettingsTableViewController.swift */; };
 		BF591BED1DD6284B004B5E6B /* EditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF591BEC1DD6284B004B5E6B /* EditTableViewCell.swift */; };
 		BF591BEF1DD62D98004B5E6B /* EditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF591BEE1DD62D98004B5E6B /* EditTableViewController.swift */; };
@@ -77,6 +78,7 @@
 		8CFEBC201E3E87A9003DD5CA /* GuideSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideSelectionViewController.swift; sourceTree = "<group>"; };
 		8CFEBC211E3E87A9003DD5CA /* GuideTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideTableViewCell.swift; sourceTree = "<group>"; };
 		A0D7AF8AF9DEAE1C537139A2 /* Pods-ResCUerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ResCUerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ResCUerTests/Pods-ResCUerTests.release.xcconfig"; sourceTree = "<group>"; };
+		BF23E0471EB5B27100E0BA6D /* BusStops.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BusStops.json; sourceTree = "<group>"; };
 		BF591BE81DD60C6E004B5E6B /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		BF591BEC1DD6284B004B5E6B /* EditTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTableViewCell.swift; sourceTree = "<group>"; };
 		BF591BEE1DD62D98004B5E6B /* EditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTableViewController.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				BFB84F041EA29992009DBCE6 /* BlueLight.json */,
+				BF23E0471EB5B27100E0BA6D /* BusStops.json */,
 				BF86E98E1E7D8ADE000637B0 /* MapViewController.swift */,
 			);
 			name = Map;
@@ -366,6 +369,7 @@
 			files = (
 				BFB84F051EA29992009DBCE6 /* BlueLight.json in Resources */,
 				BF86E9961E7E4A5A000637B0 /* Assets.xcassets in Resources */,
+				BF23E0481EB5B27100E0BA6D /* BusStops.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
