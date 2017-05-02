@@ -24,7 +24,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     override func viewDidLoad() {
         super.viewDidLoad()
                 
-        self.navigationItem.title = "Blue Light Map"
+        self.navigationItem.title = "Emergency Map"
         
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.barTintColor = UIColor(netHex: "E74E33")
