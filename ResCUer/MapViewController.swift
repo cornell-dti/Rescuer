@@ -92,7 +92,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             let long = stop["coords"]["lon"].doubleValue
             let address = stop["name"].stringValue
             
-            if lat != 0 && long != 0 {
+            if lat != 0.0 && long != 0.0 {
                 let location = CLLocationCoordinate2D(latitude: lat, longitude: long)
                 let localAnnotation = MKPointAnnotation()
                 localAnnotation.coordinate = location

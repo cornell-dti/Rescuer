@@ -10156,15 +10156,6 @@
             "lat": "0.000000"
         }
     },
-    "9383": {
-        "stop_times": {},
-        "id": "9383",
-        "name": "No service",
-        "coords": {
-            "lon": "0.000000",
-            "lat": "0.000000"
-        }
-    },
     "9159": {
         "stop_times": {
             "8:47AMRoute 13 Monday - Friday Inbound to center of Ithaca0": {
