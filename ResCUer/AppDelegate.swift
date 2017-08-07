@@ -48,13 +48,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow()
         
-        UITabBar.appearance().barTintColor = UIColor(netHex: "E74E33")
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.5)], for:.normal)
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for:.selected)
+        UITabBar.appearance().barTintColor = .appPrimaryColor
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName :
+            UIColor.appTintColor.withAlphaComponent(0.5)], for:.normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName :
+            UIColor.appTintColor], for:.selected)
         
-        UITabBar.appearance().tintColor = .white
-        UINavigationBar.appearance().barTintColor = UIColor(netHex: "E74E33")
-        UINavigationBar.appearance().tintColor = .white
+        UITabBar.appearance().tintColor = .appTintColor
+        UINavigationBar.appearance().barTintColor = .appPrimaryColor
+        UINavigationBar.appearance().tintColor = .appTintColor
                 
         if data.value(forKey: "introShown") == nil {
             window?.rootViewController = UINavigationController(rootViewController: SettingsTableViewController())
@@ -63,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let tabBarController = UITabBarController()
             window?.rootViewController = tabBarController
-            tabBarController.tabBar.tintColor = .white
+            tabBarController.tabBar.tintColor = .appTintColor
             let home = UINavigationController(rootViewController:
                 HomeCollectionViewController(collectionViewLayout: homeFlow()))
             let map = UINavigationController(rootViewController: MapViewController())
@@ -209,6 +211,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+/// MARK: Extensions
+
 /** Create UIColors from hex values */
 extension UIColor {
     convenience init(red: Int, green: Int, blue: Int) {
@@ -218,6 +222,18 @@ extension UIColor {
     convenience init(netHex: String) {
         let hex = Int(netHex, radix: 16)!
         self.init(red:(hex >> 16) & 0xff, green:(hex >> 8) & 0xff, blue:hex & 0xff)
+    }
+
+    static let appPrimaryColor = UIColor(netHex: "E74E33")
+    static let appTintColor = UIColor.white
+    static let navigationColor = UIColor(netHex: "0076FF")
+    
+}
+
+/** Get version number */
+extension Bundle {
+    var releaseVersionNumber: String {
+        return infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0"
     }
 }
 

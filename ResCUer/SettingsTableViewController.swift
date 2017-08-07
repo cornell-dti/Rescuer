@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class SettingsTableViewController: UITableViewController {
+class SettingsTableViewController: UITableViewController, MFMailComposeViewControllerDelegate {
     
     var address = ""
     var numbers = [(name: String, content: String)]()
@@ -19,7 +20,7 @@ class SettingsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         self.navigationItem.title = "Settings"
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.appTintColor]
         
         if data.value(forKey: "introShown") == nil {
             
@@ -45,9 +46,8 @@ class SettingsTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        ///UIApplication.shared.statusBarStyle = .default
-        //self.tabBarController?.tabBar.tintColor = .black
-                
+        // UIApplication.shared.statusBarStyle = .lightContent
+        
         // Load saved data, if any
         if let savedAddress = data.value(forKey: "address") as? String {
             address = savedAddress
@@ -75,26 +75,44 @@ class SettingsTableViewController: UITableViewController {
         
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return section == 0 ? "Address" : "Contacts"
+        switch section {
+            case 0: return "Address"
+            case 1: return "Contacts"
+            default: return nil
+        }
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 1 { return numbers.count + 1 < 3 ? numbers.count + 1 : 3 }
-        else { return 1 }
+        if section == 1 {
+            return numbers.count + 1 < 3 ? numbers.count + 1 : 3
+        } else {
+            return 1
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: "editCell")
+        var cell = UITableViewCell(style: .value1, reuseIdentifier: "editCell")
+        cell.accessoryType = .disclosureIndicator
         
         if indexPath.section == 0 {
             cell.textLabel?.text = "Home"
             cell.detailTextLabel?.text = address
-        } else {
+        }
+        
+        else if indexPath.section == 2 {
+            cell = UITableViewCell(style: .default, reuseIdentifier: "editCell")
+            cell.accessoryType = .none
+            cell.textLabel?.text = "Send Feedback"
+            cell.textLabel?.textAlignment = .center
+            cell.textLabel?.textColor = .navigationColor
+        }
+        
+        else {
             if indexPath.row == numbers.count {
                 cell.textLabel?.text = "Add New Contact"
                 cell.detailTextLabel?.text = ""
@@ -103,26 +121,33 @@ class SettingsTableViewController: UITableViewController {
                 cell.detailTextLabel?.text = numbers[indexPath.row].content
             }
         }
-
-        cell.accessoryType = .disclosureIndicator
+        
         return cell
         
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-                
-        let editingVC = EditTableViewController()
-        if indexPath.section == 0 { editingVC.address = address }
-        else {
-            editingVC.item = (indexPath.row == numbers.count) ? ("Name", "Phone Number") : numbers[indexPath.row]
+        
+        if indexPath.section == 2 {
+            sendFeedback()
         }
         
-        editingVC.mode = indexPath.section == 0 ? "Address" : "Contact Info"
-        editingVC.title = indexPath.section == 0 ? "Home" :
-            "Name" == editingVC.item.name ? "New Contact" : editingVC.item.name
-        editingVC.index = indexPath.row
+        else {
+            let editingVC = EditTableViewController()
+            if indexPath.section == 0 {
+                editingVC.address = address
+            } else {
+                editingVC.item = (indexPath.row == numbers.count) ? ("Name", "Phone Number") : numbers[indexPath.row]
+            }
+            
+            editingVC.mode = indexPath.section == 0 ? "Address" : "Contact Info"
+            editingVC.title = indexPath.section == 0 ? "Home" :
+                "Name" == editingVC.item.name ? "New Contact" : editingVC.item.name
+            editingVC.index = indexPath.row
+            
+            navigationController?.pushViewController(editingVC, animated: true)
+        }
         
-        navigationController?.pushViewController(editingVC, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
         
     }
@@ -160,15 +185,66 @@ class SettingsTableViewController: UITableViewController {
     func dismissView() {
         dismiss(animated: true, completion: nil)
     }
+    
+    /// MARK: Send Feedback
+    
+    func sendFeedback() {
+        
+        let address = "cornellsatech@gmail.com"
+        
+        let subject = "Rescuer Feedback v\(Bundle.main.releaseVersionNumber)"
+        
+        let message = "Thanks for taking the time to send us feedback! How can we improve the app?"
+        
+        func mailError() {
+            let title = "Can't Send Email"
+            let message = "Your device isn't configured to send email. Please contact \(address). The address has been copied to your clipboard."
+            UIPasteboard.general.string = address
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            present(alertController, animated: true, completion: nil)
+        }
+        
+        if MFMailComposeViewController.canSendMail() {
+            let mailComposerVC = MFMailComposeViewController()
+            mailComposerVC.mailComposeDelegate = self // needed for iOS 9
+            mailComposerVC.setToRecipients([address])
+            mailComposerVC.setSubject(subject)
+            mailComposerVC.setMessageBody(message, isHTML: false)
+            present(mailComposerVC, animated: true) {
+                UIApplication.shared.statusBarStyle = .lightContent
+            }
+            
+            // Custom UI
+            mailComposerVC.navigationBar.tintColor = .appTintColor
+            mailComposerVC.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.appTintColor]
+            
+            
+        } else {
+            let string = "mailto:\(address)?subject=\(subject)&body=\(message)"
+            let url = string.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            if let emailURL = URL(string: url!) {
+                if UIApplication.shared.canOpenURL(emailURL) {
+                    if !UIApplication.shared.openURL(emailURL) { mailError() }
+                } else { mailError() }
+            }
+        }
+        
+    }
+    
+    // needed for iOS 9
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
 
-    /// MARK: Intro functions
+    /// MARK: Intro Functions
     
     func dismissIntro() {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         let tabBarController = UITabBarController()
-        tabBarController.tabBar.tintColor = .white
+        tabBarController.tabBar.tintColor = .appTintColor
         let home = UINavigationController(rootViewController:
             HomeCollectionViewController(collectionViewLayout: appDelegate.homeFlow()))
         let map = UINavigationController(rootViewController: MapViewController())

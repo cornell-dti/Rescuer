@@ -27,8 +27,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         self.navigationItem.title = "Emergency Map"
         
         navigationController?.navigationBar.isTranslucent = true
-        navigationController?.navigationBar.barTintColor = UIColor(netHex: "E74E33")
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        navigationController?.navigationBar.barTintColor = .appPrimaryColor
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.appTintColor]
         
         mapView.mapType = .hybrid
         mapView.frame = view.frame

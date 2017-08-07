@@ -34,8 +34,8 @@ class HomeCollectionViewController: UICollectionViewController, SFSafariViewCont
         collectionView!.backgroundColor = .white
         
         navigationController?.navigationBar.isTranslucent = true
-        navigationController?.navigationBar.barTintColor = UIColor(netHex: "E74E33")
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        navigationController?.navigationBar.barTintColor = .appPrimaryColor
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.appTintColor]
         
         UIView.animate(withDuration: 0.8, animations: {
             self.view.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
@@ -140,16 +140,10 @@ class HomeCollectionViewController: UICollectionViewController, SFSafariViewCont
             
             let svc = SFSafariViewController(url: url)
             svc.delegate = self
-            self.present(svc, animated: true, completion: {
+            self.present(svc, animated: true) {
                 UIApplication.shared.statusBarStyle = .default
-            })
+            }
             
-            /*
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            } else {
-                UIApplication.shared.openURL(url)
-            }*/
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)

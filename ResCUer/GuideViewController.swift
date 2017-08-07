@@ -34,7 +34,7 @@ class MainGuideViewController: UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         
         self.navigationItem.title = "Emergency Guide"
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.appTintColor]
                 
         tableView = UITableView(frame: view.frame)
         tableView.dataSource = self
