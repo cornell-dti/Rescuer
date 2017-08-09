@@ -110,9 +110,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func homeFlow() -> UICollectionViewLayout {
         
+        // Catch iPhone 4 interface (320 x 480) possilby running on iPads
+        let teensyScreen: Bool = UIScreen.main.bounds.height < 500
+        // Adjust cell size to "better" fit content
+        let constant: CGFloat = teensyScreen ? 2.25 : 2
+        
         let layout = UICollectionViewFlowLayout()
         let usableScreenWidth = UIScreen.main.bounds.width
-        layout.itemSize = CGSize(width: usableScreenWidth / 2, height: usableScreenWidth / 2)
+        layout.itemSize = CGSize(width: usableScreenWidth / constant, height: usableScreenWidth / constant)
         layout.minimumLineSpacing = 40
         layout.minimumInteritemSpacing = 0
         
